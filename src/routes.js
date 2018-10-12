@@ -182,11 +182,19 @@ const User = Loadable({
   loading: Loading,
 });
 
+const Rutas = Loadable({
+  loader: () => import('./app/ruta/Rutas'),
+  loading: Loading,
+});
+
 
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+
+  { path: '/rutas/listar', exact: true, name: 'Rutas', component: Rutas },
+
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },

@@ -11,6 +11,35 @@ export default {
     },
     {
       title: true,
+      name: 'Info',
+      wrapper: {            // optional wrapper object
+        element: '',        // required valid HTML5 element tag
+        attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
+      },
+      class: ''             // optional class names space delimited list for title item ex: "text-center"
+    },
+    {
+      name: 'Cooperativas',
+      url: '',
+      icon: 'fa fa-industry',
+    },
+    {
+      name: 'Rutas',
+      url: '/rutas/listar',
+      icon: 'icon-cursor',
+    },
+    {
+      name: 'Buses',
+      url: '',
+      icon: 'fa fa-bus',
+    },
+    {
+      name: 'Oicinas',
+      url: '',
+      icon: 'icon-briefcase',
+    },
+    {
+      title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
