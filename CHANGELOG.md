@@ -32,13 +32,13 @@ fixes some issues with `rtl`, `ie11`, `sidebar-minimized` behaviour and `aside` 
   - chore: add `eslintConfig` in `package.json` 
   - chore: add `browserslist` in `package.json` 
   - chore: update `manifest.json`
-  - refactor(index.js): add `react-app-polyfill` for `ie9-11` support
-  - refactor(index.js): migration to `serviceWorker.js`
+  - refactor(indexRuta.jsa.js): add `react-app-polyfill` for `ie9-11` support
+  - refactor(indexRutaRuta.js): migration to `serviceWorker.js`
 
 ###### Migrating from CRA 1.x to 2.x:
 affected files: 
 - `package.json` -> dependencies update  
-- `src/index.js` -> move to `serviceWorker`, add `react-app-polyfill` for `ie9-11` support when needed
+- `src/indexRutaRuta.js` -> move to `serviceWorker`, add `react-app-polyfill` for `ie9-11` support when needed
 
 In most cases bumping the `react-scripts` version in `package.json` and running `npm install` in this folder should be enough, but it’s good to consult the [changelog](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#migrating-from-1x-to-203) for potential breaking changes.  
 

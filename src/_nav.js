@@ -24,8 +24,8 @@ export default {
       icon: 'fa fa-industry',
     },
     {
-      name: 'Rutas',
-      url: '/rutas/listar',
+      name: 'ListarRutas',
+      url: '/rutas/view',
       icon: 'icon-cursor',
     },
     {

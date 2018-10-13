@@ -136,28 +136,28 @@ my-app/
   node_modules/
   package.json
   public/
-    index.html
+    indexRuta.html
     favicon.ico
   src/
     App.css
     App.js
     App.test.js
-    index.css
-    index.js
+    indexRuta.css
+    indexRutaRuta.js
     logo.svg
 ```
 
 For the project to build, **these files must exist with exact filenames**:
 
-- `public/index.html` is the page template;
-- `src/index.js` is the JavaScript entry point.
+- `public/indexRuta.html` is the page template;
+- `src/indexRutaRuta.js` is the JavaScript entry point.
 
 You can delete or rename the other files.
 
 You may create subdirectories inside `src`. For faster rebuilds, only files inside `src` are processed by Webpack.<br>
 You need to **put any JS and CSS files inside `src`**, otherwise Webpack won’t see them.
 
-Only files inside `public` can be used from `public/index.html`.<br>
+Only files inside `public` can be used from `public/indexRuta.html`.<br>
 Read instructions below for using assets from JavaScript and HTML.
 
 You can, however, create more top-level directories.<br>
@@ -509,7 +509,7 @@ class Button extends Component {
 
 In development, expressing dependencies this way allows your styles to be reloaded on the fly as you edit them. In production, all CSS files will be concatenated into a single minified `.css` file in the build output.
 
-If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/index.js`, but you could always remove that import if you later migrate to a different build tool.
+If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/indexRuta.css`. It would still be imported from `src/indexRutaRuta.js`, but you could always remove that import if you later migrate to a different build tool.
 
 ## Adding a CSS Modules Stylesheet
 
@@ -720,7 +720,7 @@ However there is an **escape hatch** that you can use to add an asset outside of
 
 If you put a file into the `public` folder, it will **not** be processed by Webpack. Instead it will be copied into the build folder untouched. To reference assets in the `public` folder, you need to use a special variable called `PUBLIC_URL`.
 
-Inside `index.html`, you can use it like this:
+Inside `indexRuta.html`, you can use it like this:
 
 ```html
 <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -789,7 +789,7 @@ Alternatively you may use `yarn`:
 yarn add bootstrap@4 reactstrap
 ```
 
-Import Bootstrap CSS and optionally Bootstrap theme CSS in the beginning of your `src/index.js` file:
+Import Bootstrap CSS and optionally Bootstrap theme CSS in the beginning of your `src/indexRutaRuta.js` file:
 
 ```js
 import 'bootstrap/dist/css/bootstrap.css';
@@ -824,7 +824,7 @@ $body-bg: #000;
 
 > **Note:** You must prefix imports from `node_modules` with `~` as displayed above.
 
-Finally, import the newly created `.scss` file instead of the default Bootstrap `.css` in the beginning of your `src/index.js` file, for example:
+Finally, import the newly created `.scss` file instead of the default Bootstrap `.css` in the beginning of your `src/indexRuta.jsa.js` file, for example:
 
 ```javascript
 import './custom.scss';
@@ -936,7 +936,7 @@ When you compile the app with `npm run build`, the minification step will strip 
 
 > Note: this feature is available with `react-scripts@0.9.0` and higher.
 
-You can also access the environment variables starting with `REACT_APP_` in the `public/index.html`. For example:
+You can also access the environment variables starting with `REACT_APP_` in the `public/indexRuta.html`. For example:
 
 ```html
 <title>%REACT_APP_WEBSITE_NAME%</title>
@@ -1088,8 +1088,8 @@ People often serve the front-end React app from the same host and port as their 
 For example, a production setup might look like this after the app is deployed:
 
 ```
-/             - static server returns index.html with React app
-/todos        - static server returns index.html with React app
+/             - static server returns indexRuta.html with React app
+/todos        - static server returns indexRuta.html with React app
 /api/todos    - server handles any /api/* requests using the backend implementation
 ```
 
@@ -1226,7 +1226,7 @@ Since Create React App doesn’t support server rendering, you might be wonderin
     <meta property="og:description" content="__OG_DESCRIPTION__">
 ```
 
-Then, on the server, regardless of the backend you use, you can read `index.html` into memory and replace `__OG_TITLE__`, `__OG_DESCRIPTION__`, and any other placeholders with values depending on the current URL. Just make sure to sanitize and escape the interpolated values so that they are safe to embed into HTML!
+Then, on the server, regardless of the backend you use, you can read `indexRuta.html` into memory and replace `__OG_TITLE__`, `__OG_DESCRIPTION__`, and any other placeholders with values depending on the current URL. Just make sure to sanitize and escape the interpolated values so that they are safe to embed into HTML!
 
 If you use a Node server, you can even share the route matching logic between the client and the server. However duplicating it also works fine in simple cases.
 
@@ -1603,12 +1603,12 @@ To help you make up your mind, here is a list of APIs that **need jsdom**:
 - Any browser globals like `window` and `document`
 - [`ReactDOM.render()`](https://facebook.github.io/react/docs/top-level-api.html#reactdom.render)
 - [`TestUtils.renderIntoDocument()`](https://facebook.github.io/react/docs/test-utils.html#renderintodocument) ([a shortcut](https://github.com/facebook/react/blob/34761cf9a252964abfaab6faf74d473ad95d1f21/src/test/ReactTestUtils.js#L83-L91) for the above)
-- [`mount()`](http://airbnb.io/enzyme/docs/api/mount.html) in [Enzyme](http://airbnb.io/enzyme/index.html)
+- [`mount()`](http://airbnb.io/enzyme/docs/api/mount.html) in [Enzyme](http://airbnb.io/enzyme/indexRuta.html)
 
 In contrast, **jsdom is not needed** for the following APIs:
 
 - [`TestUtils.createRenderer()`](https://facebook.github.io/react/docs/test-utils.html#shallow-rendering) (shallow rendering)
-- [`shallow()`](http://airbnb.io/enzyme/docs/api/shallow.html) in [Enzyme](http://airbnb.io/enzyme/index.html)
+- [`shallow()`](http://airbnb.io/enzyme/docs/api/shallow.html) in [Enzyme](http://airbnb.io/enzyme/indexRuta.html)
 
 Finally, jsdom is also not needed for [snapshot testing](http://facebook.github.io/jest/blog/2016/07/27/jest-14.html).
 
@@ -1778,7 +1778,7 @@ the build process will generate a service worker file, but it will not be
 registered, so it will not take control of your production web app.
 
 In order to opt-in to the offline-first behavior, developers should look for the
-following in their [`src/index.js`](src/index.js) file:
+following in their [`src/indexRutaRuta.js`](src/indexRutaRuta.js) file:
 
 ```js
 // If you want your app to work offline and load faster, you can change
@@ -1910,7 +1910,7 @@ npm run analyze
 
 ## Deployment
 
-`npm run build` creates a `build` directory with a production build of your app. Set up your favorite HTTP server so that a visitor to your site is served `index.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file.
+`npm run build` creates a `build` directory with a production build of your app. Set up your favorite HTTP server so that a visitor to your site is served `indexRuta.html`, and requests to static paths like `/static/js/main.<hash>.js` are served with the contents of the `/static/js/main.<hash>.js` file.
 
 ### Static Server
 
@@ -1943,7 +1943,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'indexRuta.html'));
 });
 
 app.listen(9000);
@@ -1959,14 +1959,14 @@ However this is not quite enough if you use client-side routing. Read the next s
 
 If you use routers that use the HTML5 [`pushState` history API](https://developer.mozilla.org/en-US/docs/Web/API/History_API#Adding_and_modifying_history_entries) under the hood (for example, [React Router](https://github.com/ReactTraining/react-router) with `browserHistory`), many static file servers will fail. For example, if you used React Router with a route for `/todos/42`, the development server will respond to `localhost:3000/todos/42` properly, but an Express serving a production build as above will not.
 
-This is because when there is a fresh page load for a `/todos/42`, the server looks for the file `build/todos/42` and does not find it. The server needs to be configured to respond to a request to `/todos/42` by serving `index.html`. For example, we can amend our Express example above to serve `index.html` for any unknown paths:
+This is because when there is a fresh page load for a `/todos/42`, the server looks for the file `build/todos/42` and does not find it. The server needs to be configured to respond to a request to `/todos/42` by serving `indexRuta.html`. For example, we can amend our Express example above to serve `indexRuta.html` for any unknown paths:
 
 ```diff
  app.use(express.static(path.join(__dirname, 'build')));
 
 -app.get('/', function (req, res) {
 +app.get('/*', function (req, res) {
-   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+   res.sendFile(path.join(__dirname, 'build', 'indexRuta.html'));
  });
 ```
 
@@ -1976,7 +1976,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     Options -MultiViews
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.html [QSA,L]
+    RewriteRule ^ indexRuta.html [QSA,L]
 ```
 
 It will get copied to the `build` folder when you run `npm run build`.
@@ -1987,14 +1987,14 @@ Now requests to `/todos/42` will be handled correctly both in development and in
 
 On a production build, and when you've [opted-in](#why-opt-in),
 a [service worker](https://developers.google.com/web/fundamentals/primers/service-workers/) will automatically handle all navigation requests, like for
-`/todos/42`, by serving the cached copy of your `index.html`. This
+`/todos/42`, by serving the cached copy of your `indexRuta.html`. This
 service worker navigation routing can be configured or disabled by
 [`eject`ing](#npm-run-eject) and then modifying the
 [`navigateFallback`](https://github.com/GoogleChrome/sw-precache#navigatefallback-string)
 and [`navigateFallbackWhitelist`](https://github.com/GoogleChrome/sw-precache#navigatefallbackwhitelist-arrayregexp)
 options of the `SWPreachePlugin` [configuration](../config/webpack.config.prod.js).
 
-When users install your app to the homescreen of their device the default configuration will make a shortcut to `/index.html`. This may not work for client-side routers which expect the app to be served from `/`. Edit the web app manifest at [`public/manifest.json`](public/manifest.json) and change `start_url` to match the required URL scheme, for example:
+When users install your app to the homescreen of their device the default configuration will make a shortcut to `/indexRuta.html`. This may not work for client-side routers which expect the app to be served from `/`. Edit the web app manifest at [`public/manifest.json`](public/manifest.json) and change `start_url` to match the required URL scheme, for example:
 
 ```js
   "start_url": ".",
@@ -2031,7 +2031,7 @@ If you are not using the HTML5 `pushState` history API or not using client-side 
   "homepage": ".",
 ```
 
-This will make sure that all the asset paths are relative to `index.html`. You will then be able to move your app from `http://mywebsite.com` to `http://mywebsite.com/relativepath` or even `http://mywebsite.com/relative/path` without having to rebuild it.
+This will make sure that all the asset paths are relative to `indexRuta.html`. You will then be able to move your app from `http://mywebsite.com` to `http://mywebsite.com/relativepath` or even `http://mywebsite.com/relative/path` without having to rebuild it.
 
 ### Customizing Environment Variables for Arbitrary Build Environments
 
@@ -2099,8 +2099,8 @@ Then run the `firebase init` command from your project’s root. You need to cho
     have a build process for your assets, use your build's output directory.
 
     ? What do you want to use as your public directory? build
-    ? Configure as a single-page app (rewrite all urls to /index.html)? Yes
-    ✔  Wrote build/index.html
+    ? Configure as a single-page app (rewrite all urls to /indexRuta.html)? Yes
+    ✔  Wrote build/indexRuta.html
 
     i  Writing configuration info to firebase.json...
     i  Writing project information to .firebaserc...
@@ -2239,7 +2239,7 @@ mywebsite.com
 GitHub Pages doesn’t support routers that use the HTML5 `pushState` history API under the hood (for example, React Router using `browserHistory`). This is because when there is a fresh page load for a url like `http://user.github.io/todomvc/todos/42`, where `/todos/42` is a frontend route, the GitHub Pages server returns 404 because it knows nothing of `/todos/42`. If you want to add a router to a project hosted on GitHub Pages, here are a couple of solutions:
 
 - You could switch from using HTML5 history API to routing with hashes. If you use React Router, you can switch to `hashHistory` for this effect, but the URL will be longer and more verbose (for example, `http://user.github.io/todomvc/#/todos/42?_k=yknaj`). [Read more](https://reacttraining.com/react-router/web/api/Router) about different history implementations in React Router.
-- Alternatively, you can use a trick to teach GitHub Pages to handle 404 by redirecting to your `index.html` page with a special redirect parameter. You would need to add a `404.html` file with the redirection code to the `build` folder before deploying your project, and you’ll need to add code handling the redirect parameter to `index.html`. You can find a detailed explanation of this technique [in this guide](https://github.com/rafrex/spa-github-pages).
+- Alternatively, you can use a trick to teach GitHub Pages to handle 404 by redirecting to your `indexRuta.html` page with a special redirect parameter. You would need to add a `404.html` file with the redirection code to the `build` folder before deploying your project, and you’ll need to add code handling the redirect parameter to `indexRuta.html`. You can find a detailed explanation of this technique [in this guide](https://github.com/rafrex/spa-github-pages).
 
 #### Troubleshooting
 
@@ -2288,7 +2288,7 @@ If you exclude or ignore necessary files from the package you will see a error s
 
 ```
 remote: Could not find a required file.
-remote:   Name: `index.html`
+remote:   Name: `indexRuta.html`
 remote:   Searched in: /tmp/build_a2875fc163b209225122d68916f1d4df/public
 remote:
 remote: npm ERR! Linux 3.13.0-105-generic
@@ -2321,7 +2321,7 @@ With this setup Netlify will build and deploy when you push to git or open a pul
 To support `pushState`, make sure to create a `public/_redirects` file with the following rewrite rules:
 
 ```
-/*  /index.html  200
+/*  /indexRuta.html  200
 ```
 
 When you build the project, Create React App will place the `public` folder contents into the build output.
@@ -2360,7 +2360,7 @@ When asked about the project path, make sure to specify the `build` folder, for 
        project path: /path/to/project/build
 ```
 
-Note that in order to support routers that use HTML5 `pushState` API, you may want to rename the `index.html` in your build folder to `200.html` before deploying to Surge. This [ensures that every URL falls back to that file](https://surge.sh/help/adding-a-200-page-for-client-side-routing).
+Note that in order to support routers that use HTML5 `pushState` API, you may want to rename the `indexRuta.html` in your build folder to `200.html` before deploying to Surge. This [ensures that every URL falls back to that file](https://surge.sh/help/adding-a-200-page-for-client-side-routing).
 
 ## Advanced Configuration
 
@@ -2387,7 +2387,7 @@ When you save a file while `npm start` is running, the browser should refresh wi
 If this doesn’t happen, try one of the following workarounds:
 
 - If your project is in a Dropbox folder, try moving it out.
-- If the watcher doesn’t see a file called `index.js` and you’re referencing it by the folder name, you [need to restart the watcher](https://github.com/facebook/create-react-app/issues/1164) due to a Webpack bug.
+- If the watcher doesn’t see a file called `indexRutaRuta.js` and you’re referencing it by the folder name, you [need to restart the watcher](https://github.com/facebook/create-react-app/issues/1164) due to a Webpack bug.
 - Some editors like Vim and IntelliJ have a “safe write” feature that currently breaks the watcher. You will need to disable it. Follow the instructions in [“Adjusting Your Text Editor”](https://webpack.js.org/guides/development/#adjusting-your-text-editor).
 - If your project path contains parentheses, try moving the project to a path without them. This is caused by a [Webpack watcher bug](https://github.com/webpack/watchpack/issues/42).
 - On Linux and macOS, you might need to [tweak system settings](https://github.com/webpack/docs/wiki/troubleshooting#not-enough-watchers) to allow more watchers.

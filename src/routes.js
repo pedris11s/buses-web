@@ -182,8 +182,8 @@ const User = Loadable({
   loading: Loading,
 });
 
-const Rutas = Loadable({
-  loader: () => import('./app/ruta/Rutas'),
+const indexRuta = Loadable({
+  loader: () => import('./app/ruta/indexRuta'),
   loading: Loading,
 });
 
@@ -193,7 +193,7 @@ const Rutas = Loadable({
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
 
-  { path: '/rutas/listar', exact: true, name: 'Rutas', component: Rutas },
+  { path: '/rutas/view', exact: true, name: 'indexRuta', component: indexRuta },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
