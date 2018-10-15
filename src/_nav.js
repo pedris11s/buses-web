@@ -20,22 +20,22 @@ export default {
     },
     {
       name: 'Cooperativas',
-      url: '',
+      url: '/coops/view',
       icon: 'fa fa-industry',
     },
     {
-      name: 'ListarRutas',
+      name: 'Rutas',
       url: '/rutas/view',
       icon: 'icon-cursor',
     },
     {
       name: 'Buses',
-      url: '',
+      url: '/TODO',
       icon: 'fa fa-bus',
     },
     {
       name: 'Oicinas',
-      url: '',
+      url: '/TODO',
       icon: 'icon-briefcase',
     },
     {

@@ -187,13 +187,18 @@ const indexRuta = Loadable({
   loading: Loading,
 });
 
-
+const indexCooperativa = Loadable({
+  loader: () => import('./app/cooperativa/indexCooperativa'),
+  loading: Loading,
+});
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
 
   { path: '/rutas/view', exact: true, name: 'indexRuta', component: indexRuta },
+
+  { path: '/coops/view', exact: true, name: 'indexCooperativa', component: indexCooperativa },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

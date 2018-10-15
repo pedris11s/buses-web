@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Form, Input, Label, FormGroup, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import {API_ROOT} from "../../config";
 
+//TODO alert succesfull cuando se adiciona ruta
+
 export default class CrearRuta extends React.Component{
   constructor(props){
     super(props);
