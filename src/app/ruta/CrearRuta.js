@@ -76,8 +76,6 @@ export default class CrearRuta extends React.Component{
     this.setState({ coop_ruta: event.target.value, });
   }
 
-  //FIXME esta seleccionando mal
-  //TODO annadir buses a la ruta
   handleBusesRutaChange = event => {
     //this.setState({ coop_ruta: event.target.value, });
     let options = event.target.options;
@@ -106,15 +104,19 @@ export default class CrearRuta extends React.Component{
     };
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
-      .then(this.setState({
-        nombre: '',
-        coo_origen: '',
-        coo_destino: '',
-        ciudad_destino:'',
-        ciudad_origen: '',
-        coop_ruta: [],
-        buses_ruta: []
-      }));
+      .then(res => {
+        this.setState({
+          nombre: '',
+          coo_origen: '',
+          coo_destino: '',
+          ciudad_destino: '',
+          ciudad_origen: '',
+          coop_ruta: [],
+          buses_ruta: []
+        });
+
+        this.props.addRuta(ruta);
+      });
 
   }
 
@@ -128,6 +130,7 @@ export default class CrearRuta extends React.Component{
                 <i className="fa fa-plus-square-o"></i> <strong>Crear Ruta</strong>
               </CardHeader>
               <CardBody>
+
                 <Form onSubmit={this.handleSubmit} className="form-horizontal">
                   <FormGroup row className="my-0">
                     <Col xs="4">

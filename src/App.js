@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import { Provider } from 'react-redux';
 
 // Containers
 import { DefaultLayout } from './containers';
@@ -13,7 +12,6 @@ import { Login, Page404, Page500, Register } from './views/Pages';
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
         <HashRouter>
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
@@ -23,7 +21,6 @@ class App extends Component {
             <Route path="/" name="Home" component={DefaultLayout} />
           </Switch>
         </HashRouter>
-      </Provider>
     );
   }
 }

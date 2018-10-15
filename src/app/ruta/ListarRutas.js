@@ -19,11 +19,11 @@ export default class ListarRutas extends React.Component{
       .then(res => {
         const arr = this.state.rutas.filter(r => r.id !== id);
         this.setState({rutas: arr});
-        console.log(this.state.rutas);
+        //console.log(this.state.rutas);
       })
       .catch(err => {
         //FIXME
-        alert(err);
+        alert("soy un error" + err);
       });
   }
 
@@ -33,6 +33,7 @@ export default class ListarRutas extends React.Component{
         console.log(res.data);
         const rutas = res.data;
         this.setState({ rutas });
+        this.props.setRutas(rutas);
       });
   }
 
@@ -59,7 +60,7 @@ export default class ListarRutas extends React.Component{
                   </tr>
                   </thead>
                   <tbody>
-                  { this.state.rutas.map( (ruta, index) =>
+                  { this.props.rutas.rutas.map( (ruta, index) =>
                       <tr key={index}>
                         <td>{ruta.nombre}</td>
                         <td>{ruta.coo_origen}</td>
