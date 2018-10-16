@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import * as RutasActions from '../../store/actions/RutasActions';
-import CrearRuta from "./CrearRuta";
+import AddRuta from "./AddRuta";
 
 const mapStateToProps = state => {
   return {
@@ -19,4 +19,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CrearRuta);
+)(AddRuta);

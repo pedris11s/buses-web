@@ -6,7 +6,7 @@ import {API_ROOT} from "../../config";
 
 //TODO alert succesfull cuando se adiciona ruta
 
-export default class CrearRuta extends React.Component{
+export default class AddRuta extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -89,7 +89,7 @@ export default class CrearRuta extends React.Component{
       }
     }
     this.setState({buses_ruta: value});
-    console.log(value);
+    //console.log(value);
   }
 
   handleSubmit = event => {
@@ -107,6 +107,7 @@ export default class CrearRuta extends React.Component{
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
       .then(res => {
+        this.props.addRuta(ruta);
         this.setState({
           nombre: '',
           coo_origen: '',
@@ -116,8 +117,6 @@ export default class CrearRuta extends React.Component{
           coop_ruta: [],
           buses_ruta: []
         });
-
-        this.props.addRuta(ruta);
       });
 
   }

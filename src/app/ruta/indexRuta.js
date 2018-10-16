@@ -1,13 +1,13 @@
 import React from 'react';
 
 import ListarRutas from './ListarRutasContainer';
-import CrearRuta from './CrearRutaContainer';
+import AddRuta from './AddRutaContainer';
 
 export default class indexRuta extends React.Component{
   render(){
     return(
       <div>
-        <CrearRuta/>
+        <AddRuta/>
         <ListarRutas/>
       </div>
     );
