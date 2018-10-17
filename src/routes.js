@@ -196,9 +196,9 @@ const indexCooperativa = Loadable({
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
 
-  { path: '/rutas/view', exact: true, name: 'indexRuta', component: indexRuta },
+  { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
 
-  { path: '/coops/view', exact: true, name: 'indexCooperativa', component: indexCooperativa },
+  { path: '/coops/view', exact: true, name: 'Cooperativas', component: indexCooperativa },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

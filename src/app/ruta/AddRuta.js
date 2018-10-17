@@ -117,7 +117,9 @@ export default class AddRuta extends React.Component{
           coop_ruta: [],
           buses_ruta: []
         });
+        console.log(this.props.rutas);
       });
+
 
   }
 
