@@ -187,8 +187,7 @@ export default class AddRuta extends React.Component{
                         </Input>
                       </FormGroup>
                       <div className="btn btn-group">
-                        <Button type="submit" color="primary"><i
-                          className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="submit" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
                         <Button type="reset" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                       </div>
                     </Col>
