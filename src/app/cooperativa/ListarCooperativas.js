@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {API_ROOT} from "../../config";
-import { Badge, Modal, ModalFooter, ModalBody, ModalHeader, Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 
 export default class ListarCooperativas extends React.Component{
   constructor(props){

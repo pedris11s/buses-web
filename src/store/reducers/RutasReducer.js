@@ -12,10 +12,6 @@ export default function(state = defaultState, action) {
     case ADD_RUTA:
       return {...state, rutas: [...state.rutas, action.payload] };
     //TODO del from store
-    case DEL_RUTA:
-      let id = action.payload.id;
-      return {...state,  rutas: [...state.rutas, action.payload]};
-
   }
   return state;
 }

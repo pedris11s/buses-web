@@ -182,21 +182,35 @@ const User = Loadable({
   loading: Loading,
 });
 
+//AQUI EMPIEZA LO MIO
+
+
+/*RUTAS*/
 const indexRuta = Loadable({
   loader: () => import('./app/ruta/indexRuta'),
   loading: Loading,
 });
 
+const viewRutaContainer = Loadable({
+  loader: () => import('./app/ruta/ViewRutaContainer'),
+  loading: Loading,
+});
+
+/*COOPERATIVAS*/
 const indexCooperativa = Loadable({
   loader: () => import('./app/cooperativa/indexCooperativa'),
   loading: Loading,
 });
+
+
+
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
 
   { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
+  { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRutaContainer},
 
   { path: '/coops/view', exact: true, name: 'Cooperativas', component: indexCooperativa },
 

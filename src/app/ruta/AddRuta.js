@@ -101,8 +101,7 @@ export default class AddRuta extends React.Component{
       coo_destino: this.state.coo_destino,
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
-      cooperativa: this.state.coop_ruta,
-      buses: this.state.buses_ruta
+      //cooperativa: this.state.coop_ruta
     };
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
@@ -170,23 +169,8 @@ export default class AddRuta extends React.Component{
                   </FormGroup>
 
                   <FormGroup row>
-                    <Col xs="6">
-                      <FormGroup>
-                        <Label htmlFor="multiple-select">Buses</Label>
-                        <Input type="select" value={this.state.buses_ruta} name="select-bus" id="multiple-select" multiple onChange={this.handleBusesRutaChange} required>
-                          { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
-                        </Input>
-                      </FormGroup>
-                    </Col>
-
-                    <Col xs="6">
-                      <FormGroup>
-                        <Label htmlFor="select">Cooperativa</Label>
-                        <Input type="select" value={this.state.coop_ruta} name="select-coops" id="select" onChange={this.handleCoopRutaChange} required>
-                          { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
-                        </Input>
-                      </FormGroup>
-                      <div className="btn btn-group">
+                    <Col>
+                      <div className="btn btn-group pull-right">
                         <Button type="submit" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
                         <Button type="reset" color="danger"><i className="fa fa-ban"></i> Reset</Button>
                       </div>
