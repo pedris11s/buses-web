@@ -20,7 +20,10 @@ export default class AddCoopRuta extends React.Component{
     axios.get(`${API_ROOT}/cooperativa`)
       .then(res => {
         const coops = res.data;
-        this.setState({cooperativas: coops})
+        this.setState({
+          cooperativas: coops,
+          cooperativa: coops[0].id
+        })
       })
 
   }
@@ -34,10 +37,13 @@ export default class AddCoopRuta extends React.Component{
   }
 
   handleSubmit = event => {
-    axios.put(`${API_ROOT}/ruta/${this.props.ruta.id}`, {
+    const id = this.props.ruta.id;
+
+    axios.put(`${API_ROOT}/ruta/${id}`, {
       cooperativa: this.state.cooperativa
     }).then(res => {
       console.log(res.data);
+      this.toggle();
     }).catch(err => {
       console.log(err);
     })
@@ -53,7 +59,7 @@ export default class AddCoopRuta extends React.Component{
               className={'modal-blanco'}>
          <ModalHeader toggle={this.toggle}><i className="fa fa-industry"></i>&nbsp;Add Cooperativa</ModalHeader>
          <ModalBody>
-           <Form onSubmit={this.handleSubmit} method="post" inline>
+           <Form inline>
              <FormGroup className="pr-1">
                <Label htmlFor="exampleInputEmail2" className="pr-1">Cooperativa: </Label>
                <Input type="select" name="select-coops" id="select" onChange={this.handleCoopOnChange} required>
@@ -61,7 +67,7 @@ export default class AddCoopRuta extends React.Component{
                </Input>
              </FormGroup>
              <FormGroup className="pr-1">
-               <Button type="submit" color="success" onClick={this.toggle}><i className="fa fa-plus"></i>&nbsp;Adicionar</Button>
+               <Button color="success" onClick={this.handleSubmit}><i className="fa fa-plus"></i>&nbsp;Adicionar</Button>
              </FormGroup>
            </Form>
          </ModalBody>
