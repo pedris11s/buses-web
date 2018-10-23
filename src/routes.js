@@ -202,6 +202,12 @@ const indexCooperativa = Loadable({
   loading: Loading,
 });
 
+/*OFICINAS*/
+const indexOficina = Loadable({
+  loader: () => import('./app/oficina/indexOficina'),
+  loading: Loading,
+});
+
 
 
 
@@ -213,6 +219,8 @@ const routes = [
   { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRutaContainer},
 
   { path: '/coops/view', exact: true, name: 'Cooperativas', component: indexCooperativa },
+
+  { path: '/oficinas/view', exact: true, name: 'Oficinas', component: indexOficina },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

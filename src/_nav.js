@@ -35,7 +35,7 @@ export default {
     },
     {
       name: 'Oicinas',
-      url: '/TODO',
+      url: '/oficinas/view',
       icon: 'icon-briefcase',
     },
     {
