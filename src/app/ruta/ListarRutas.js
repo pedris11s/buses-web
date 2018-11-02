@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {API_ROOT} from "../../config";
+import { Redirect } from 'react-router-dom';
 
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 
@@ -21,7 +22,8 @@ const RutaRow = props => {
         </a>
         &nbsp;
         <a>
-          <Button size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+          {/*onClick={() => this.props.deleteRuta(ruta.id)}*/}
+          <Button onClick={ () => this.props.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
         </a>
       </td>
     </tr>
@@ -33,10 +35,12 @@ export default class ListarRutas extends React.Component{
     super(props);
     this.state = {
       rutas: [],
+      viewRedirect: false,
       viewModal: false
     }
 
     this.deleteRuta = this.deleteRuta.bind(this);
+    this.viewRuta = this.viewRuta.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 
@@ -46,7 +50,7 @@ export default class ListarRutas extends React.Component{
     });
   }
 
-  deleteRuta(id){
+  deleteRuta = (id) => {
     axios.delete(`${API_ROOT}/ruta/${id}`)
       .then(res => {
         const arr = this.state.rutas.filter(r => r.id !== id);
@@ -59,13 +63,24 @@ export default class ListarRutas extends React.Component{
       });
   }
 
+  setViewRedirect = () => {
+    this.setState({viewRedirect: true});
+  }
+
+  viewRuta = (id) => {
+    //console.log("ENTRE AQUI!!!!");
+    const link = `/rutas/view/${id}`;
+    if(this.state.viewRedirect)
+      return <Redirect to={link}/>
+  }
+
   componentDidMount(){
     axios.get(`${API_ROOT}/ruta`)
       .then(res => {
-        //console.log(res.data);
+        console.log(res.data);
         const rutas = res.data;
         this.setState({ rutas });
-        this.props.setRutas(rutas);
+        //this.props.setRutas(rutas);
       });
   }
 
@@ -91,8 +106,22 @@ export default class ListarRutas extends React.Component{
                   </tr>
                   </thead>
                   <tbody>
-                  { this.props.rutas.rutas.map( (ruta, index) =>
-                    <RutaRow key={index} ruta={ruta} />
+                  { this.state.rutas.map( (ruta, index) =>
+                    <tr>
+                      <td>{ruta.nombre}</td>
+                      <td>{ruta.coo_origen}</td>
+                      <td>{ruta.coo_destino}</td>
+                      <td>{ruta.ciudad_origen}</td>
+                      <td>{ruta.ciudad_destino}</td>
+                      <td>
+                          {this.viewRuta(ruta.id)}
+                          <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        &nbsp;
+                        <a>
+                          <Button onClick={ () => this.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                        </a>
+                      </td>
+                    </tr>
                   )}
                   </tbody>
                 </Table>
