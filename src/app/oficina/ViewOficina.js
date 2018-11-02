@@ -5,6 +5,7 @@ import {API_ROOT} from "../../config";
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import AddCoopOficina from './AddCoopOficina';
 
+import CoopRow from '../ruta/ViewRuta'
 
 export default class ViewOficina extends React.Component{
 
@@ -61,8 +62,12 @@ export default class ViewOficina extends React.Component{
                     <td>Whatsapp:</td>
                     <td><strong>{this.state.oficina.whatsapp}</strong></td>
                   </tr>
+
+                  <CoopRow coopRowVisibility={true} cooperativa={this.state.oficina.cooperativa}/>
+
                   </tbody>
                 </Table>
+
                 <AddCoopOficina oficina={this.state.oficina}/>
 
               </CardBody>

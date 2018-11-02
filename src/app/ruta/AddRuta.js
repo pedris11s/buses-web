@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import  { Redirect } from 'react-router-dom';
 
 import { Form, Input, Label, FormGroup, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import {API_ROOT} from "../../config";
@@ -92,6 +93,10 @@ export default class AddRuta extends React.Component{
     //console.log(value);
   }
 
+  redirectTo(){
+    return <Redirect to='#/rutas/view'/>;
+  }
+
   handleSubmit = event => {
     event.preventDefault();
 
@@ -106,7 +111,7 @@ export default class AddRuta extends React.Component{
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
       .then(res => {
-        this.props.addRuta(ruta);
+        //this.props.addRuta(ruta);
         this.setState({
           nombre: '',
           coo_origen: '',
@@ -117,6 +122,7 @@ export default class AddRuta extends React.Component{
           buses_ruta: []
         });
         //console.log(this.props.rutas);
+        this.props.history.push('/rutas/view');
       });
 
 

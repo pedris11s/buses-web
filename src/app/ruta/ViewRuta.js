@@ -6,19 +6,34 @@ import {API_ROOT} from "../../config";
 import AddCoopRuta from "./AddCoopRuta";
 import AddBusesRuta from "./AddBusesRuta";
 
-
-const CoopRow = props => {
-  console.log(props.coopRowVisibility);
-  if(props.coopRowVisibility)
+export const CoopRow = props => {
+  //console.log(props.coopRowVisibility);
+  if(props.coopRowVisibility == true) {
     return (
-      <div>
-        <tr hidden={props.coopRowVisibility}>
-          <td>Cooperativa:</td>
-          <td><strong>{props.cooperativa.nombre}</strong></td>
-        </tr>
-      </div>
+      <tr>
+        <td>Cooperativa:</td>
+        <td><strong>{props.cooperativa.nombre}</strong></td>
+      </tr>
     );
+  }
   return (<div></div>);
+}
+
+export const BusesRow = props => {
+  return (
+    <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
+      <thead className="thead-light">
+      <tr>
+        <th className="text-center"><i className="fa fa-bus"></i> Buses</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td className="text-center">Hola</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
 }
 
 export default class ViewRuta extends React.Component{
@@ -44,15 +59,15 @@ export default class ViewRuta extends React.Component{
 
   render(){
 
-    let coopButton, coopRowVisibility;
-    console.log(this.state.ruta.cooperativa);
+    let coopButton, coopRow;
+    //console.log(this.state.ruta.cooperativa);
     if(this.state.ruta.cooperativa == null) {
       coopButton = <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0"><AddCoopRuta hidden={false} ruta={this.state.ruta}/></Col>
-      coopRowVisibility = false;
+      coopRow = <CoopRow coopRowVisibility={false} cooperativa={this.state.ruta.cooperativa}/>;
     }
     else {
-      coopButton = <AddCoopRuta hidden={true} ruta={this.state.ruta}/>
-      coopRowVisibility = true;
+      coopButton = <Col hidden={true} col="6" sm="4" md="2" xl className="mb-3 mb-xl-0"><AddCoopRuta hidden={true} ruta={this.state.ruta}/></Col>
+      coopRow = <CoopRow coopRowVisibility={true} cooperativa={this.state.ruta.cooperativa}/>;
     }
 
     return (
@@ -64,40 +79,48 @@ export default class ViewRuta extends React.Component{
                 <strong><i className="icon-info pr-1"></i>Ruta id: {this.state.ruta.id}</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive striped hover>
-                  <tbody>
-                    <tr>
-                      <td>Nombre:</td>
-                      <td><strong>{this.state.ruta.nombre}</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Coo. Origen:</td>
-                      <td><strong>{this.state.ruta.coo_origen}</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Coo.Destino:</td>
-                      <td><strong>{this.state.ruta.coo_destino}</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Ciudad Origen:</td>
-                      <td><strong>{this.state.ruta.ciudad_origen}</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Ciudad Destino:</td>
-                      <td><strong>{this.state.ruta.ciudad_destino}</strong></td>
-                    </tr>
-                    <CoopRow coopRowVisibility={coopRowVisibility} cooperativa={this.state.ruta.cooperativa}/>
-                  </tbody>
-                </Table>
-                <Row className="">
-                  { coopButton }
-                  <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                    <AddBusesRuta ruta={this.state.ruta}/>
+
+
+                <Row>
+                  <Col>
+                    <Table responsive striped hover>
+                      <tbody>
+                      <tr>
+                        <td>Nombre:</td>
+                        <td><strong>{this.state.ruta.nombre}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Coo. Origen:</td>
+                        <td><strong>{this.state.ruta.coo_origen}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Coo.Destino:</td>
+                        <td><strong>{this.state.ruta.coo_destino}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Origen:</td>
+                        <td><strong>{this.state.ruta.ciudad_origen}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Destino:</td>
+                        <td><strong>{this.state.ruta.ciudad_destino}</strong></td>
+                      </tr>
+                      { coopRow }
+                      </tbody>
+                    </Table>
+
+                    { coopButton }
+
                   </Col>
+
+                  <Col>
+                    <BusesRow />
+                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                      <AddBusesRuta ruta={this.state.ruta}/>
+                    </Col>
+                  </Col>
+
                 </Row>
-
-
-
 
               </CardBody>
             </Card>

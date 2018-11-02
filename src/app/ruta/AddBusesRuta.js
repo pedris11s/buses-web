@@ -9,7 +9,7 @@ export default class AddBusesRuta extends React.Component{
 
     this.state = {
       modal: false,
-      buses: []
+      buses: [],
     }
 
     this.toggle = this.toggle.bind(this);
@@ -20,8 +20,10 @@ export default class AddBusesRuta extends React.Component{
     axios.get(`${API_ROOT}/bus`)
       .then(res => {
         const buss = res.data;
-        this.setState({buses: buss})
-      })
+        this.setState({
+          buses: buss
+        })
+      });
 
   }
 
@@ -44,10 +46,15 @@ export default class AddBusesRuta extends React.Component{
   }
 
   handleSubmit = event => {
-    axios.post(`${API_ROOT}/ruta/${this.props.ruta.id}`, {
-      cooperativa: this.state.cooperativa
+    const id = this.props.ruta.id;
+
+    axios.put(`${API_ROOT}/ruta/${id}`, {
+      buses: this.state.buses_ruta
     }).then(res => {
       console.log(res.data);
+      this.toggle();
+    }).catch(err => {
+      console.log(err);
     })
   }
 

@@ -43,6 +43,7 @@ export default class AddCoopRuta extends React.Component{
       cooperativa: this.state.cooperativa
     }).then(res => {
       console.log(res.data);
+      //this.props.history.push(`/rutas/view/`);
       this.toggle();
     }).catch(err => {
       console.log(err);
