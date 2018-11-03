@@ -20,19 +20,21 @@ export const CoopRow = props => {
 }
 
 export const BusesRow = props => {
+
+  console.log(props.buses);
+  let list = "hola";
+  if(props.buses == null)
+    list = "No hay buses para esta ruta.";
+
   return (
-    <Table hover responsive className="table-outline mb-0 d-none d-sm-table">
-      <thead className="thead-light">
-      <tr>
-        <th className="text-center"><i className="fa fa-bus"></i> Buses</th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td className="text-center">Hola</td>
-        </tr>
-      </tbody>
-    </Table>
+    <Card>
+      <CardHeader className="text-center">
+        <i className="fa fa-bus"></i> Buses
+      </CardHeader>
+      <CardBody className="text-center">
+        { list }
+      </CardBody>
+    </Card>
   );
 }
 
@@ -83,6 +85,7 @@ export default class ViewRuta extends React.Component{
           </Col>
         </Row>
         <br/>
+
         <Row>
           <Col>
             <Card>
@@ -90,10 +93,8 @@ export default class ViewRuta extends React.Component{
                 <strong><i className="icon-info pr-1"></i>Ruta id: {this.state.ruta.id}</strong>
               </CardHeader>
               <CardBody>
-
-
                 <Row>
-                  <Col>
+                  <Col xs="9">
                     <Table responsive striped hover>
                       <tbody>
                       <tr>
@@ -119,20 +120,16 @@ export default class ViewRuta extends React.Component{
                       { coopRow }
                       </tbody>
                     </Table>
-
                     { coopButton }
-
                   </Col>
 
-                  <Col>
-                    <BusesRow />
+                  <Col xs="3">
+                    <BusesRow buses={this.state.ruta.buses_ruta}/>
                     <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
                       <AddBusesRuta ruta={this.state.ruta}/>
                     </Col>
                   </Col>
-
                 </Row>
-
               </CardBody>
             </Card>
           </Col>
