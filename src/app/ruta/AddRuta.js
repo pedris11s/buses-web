@@ -2,8 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import  { Redirect } from 'react-router-dom';
 
-import { Form, Input, Label, FormGroup, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import { Table, Form, Input, Label, FormGroup, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import {API_ROOT} from "../../config";
+import AddBusesRuta from "./AddBusesRuta";
+import {BusesRow} from "./ViewRuta";
 
 //TODO alert succesfull cuando se adiciona ruta
 
@@ -80,9 +82,7 @@ export default class AddRuta extends React.Component{
   }
 
   handleBusesRutaChange = event => {
-    //this.setState({ coop_ruta: event.target.value, });
     let options = event.target.options;
-    //console.log(options);
     let value = [];
     for (let i = 0, size = options.length; i < size; i++) {
       if (options[i].selected) {
@@ -90,7 +90,6 @@ export default class AddRuta extends React.Component{
       }
     }
     this.setState({buses_ruta: value});
-    //console.log(value);
   }
 
   redirectTo(){
@@ -106,7 +105,7 @@ export default class AddRuta extends React.Component{
       coo_destino: this.state.coo_destino,
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
-      //cooperativa: this.state.coop_ruta
+      cooperativa: this.state.coop_ruta
     };
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
@@ -130,63 +129,74 @@ export default class AddRuta extends React.Component{
 
   render(){
     return (
+      <div>
+
       <div className="animated fadeIn">
+
         <Row>
           <Col>
+            <Form onSubmit={this.handleSubmit} className="form-horizontal">
+
             <Card>
               <CardHeader>
                 <i className="fa fa-plus-square-o"></i> <strong>Crear Ruta</strong>
               </CardHeader>
               <CardBody>
+                <Row>
+                  <Col xs="9">
+                    <Table responsive striped hover>
+                      <tbody>
+                      <tr>
+                        <td>Nombre:</td>
+                        <td><Input type="text" value={this.state.nombre} onChange={this.handleNombreChange} required/></td>
+                      </tr>
+                      <tr>
+                        <td>Coo. Origen:</td>
+                        <td><Input type="text" value={this.state.coo_origen} onChange={this.handleCooOrigenChange} required/></td>
+                      </tr>
+                      <tr>
+                        <td>Coo.Destino:</td>
+                        <td><Input type="text" value={this.state.coo_destino} onChange={this.handleCooDestinoChange} required/></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Origen:</td>
+                        <td><Input type="text" value={this.state.ciudad_origen} onChange={this.handleCiudadOrigenChange} required/></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Destino:</td>
+                        <td><Input type="text"  value={this.state.ciudad_destino} onChange={this.handleCiudadDestinoChange} required/></td>
+                      </tr>
+                      <tr>
+                        <td>Cooperativa:</td>
+                        <td><Input type="select" name="select-coops" id="select" onChange={this.handleCoopRutaChange} required>
+                          { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
+                        </Input></td>
+                      </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
 
-                <Form onSubmit={this.handleSubmit} className="form-horizontal">
-                  <FormGroup row className="my-0">
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="city">Nombre</Label>
-                        <Input type="text" name="nombre" placeholder="Nombre" value={this.state.nombre} onChange={this.handleNombreChange} required/>
-                      </FormGroup>
-                    </Col>
-                    <Col xs="2">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Coo.Origen</Label>
-                        <Input type="text" id="postal-code" placeholder="Coo.Origen" value={this.state.coo_origen} onChange={this.handleCooOrigenChange} required/>
-                      </FormGroup>
-                    </Col>
+                  <Col xs="3">
+                    <Card>
+                      <CardHeader className="text-center">
+                        <i className="fa fa-bus"></i> Buses
+                      </CardHeader>
+                      <CardBody className="text-center">
+                        <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesChange} required>
+                          { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
+                        </Input>
+                      </CardBody>
+                    </Card>
 
-                    <Col xs="2">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Coo.Destino</Label>
-                        <Input type="text" id="postal-code" placeholder="Coo.Destino" value={this.state.coo_destino} onChange={this.handleCooDestinoChange} required/>
-                      </FormGroup>
-                    </Col>
-                    <Col xs="2">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Ciudad Origen</Label>
-                        <Input type="text" id="postal-code" placeholder="Ciudad Origen" value={this.state.ciudad_origen} onChange={this.handleCiudadOrigenChange} required/>
-                      </FormGroup>
-                    </Col>
-                    <Col xs="2">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Ciudad Destino</Label>
-                        <Input type="text" id="postal-code" placeholder="Ciudad Destino" value={this.state.ciudad_destino} onChange={this.handleCiudadDestinoChange} required/>
-                      </FormGroup>
-                    </Col>
-                  </FormGroup>
-
-                  <FormGroup row>
-                    <Col>
-                      <div className="btn btn-group pull-right">
-                        <Button type="submit" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                        <Button type="reset" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-                      </div>
-                    </Col>
-                  </FormGroup>
-                </Form>
+                    <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                  </Col>
+                </Row>
               </CardBody>
             </Card>
+            </Form>
           </Col>
         </Row>
+      </div>
       </div>
     );
   }
