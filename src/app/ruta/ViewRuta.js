@@ -72,6 +72,17 @@ export default class ViewRuta extends React.Component{
 
     return (
       <div className="animated fadeIn">
+
+        <Row>
+          <Col>
+            <div class="pull-right">
+              <a href="">
+                <Button size="sm" color="success"><i className="icon icon-pencil"></i>&nbsp;Edit ruta</Button>
+              </a>
+            </div>
+          </Col>
+        </Row>
+        <br/>
         <Row>
           <Col>
             <Card>

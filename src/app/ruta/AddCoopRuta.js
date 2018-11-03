@@ -42,7 +42,7 @@ export default class AddCoopRuta extends React.Component{
     axios.put(`${API_ROOT}/ruta/${id}`, {
       cooperativa: this.state.cooperativa
     }).then(res => {
-      console.log(res.data);
+      //console.log(res.data);
       //this.props.history.push(`/rutas/view/`);
       this.toggle();
     }).catch(err => {
