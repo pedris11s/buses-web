@@ -104,7 +104,7 @@ export default class AddRuta extends React.Component{
     axios.post(`${API_ROOT}/ruta/`, ruta)
       .then(res => {
         //this.props.addRuta(ruta);
-        console.log(this.state.buses_ruta);
+        //console.log(this.state.buses_ruta);
         this.setState({
           nombre: '',
           coo_origen: '',
@@ -177,7 +177,7 @@ export default class AddRuta extends React.Component{
                       </CardHeader>
                       <CardBody className="text-center">
                         <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesRutaChange} required>
-                          { this.state.buses.map( bus => <option key={bus.id} value={bus.nobus}>{bus.nobus}</option>) }
+                          { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
                         </Input>
                       </CardBody>
                     </Card>

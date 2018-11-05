@@ -77,7 +77,7 @@ export default class ListarRutas extends React.Component{
   componentDidMount(){
     axios.get(`${API_ROOT}/ruta`)
       .then(res => {
-        console.log(res.data);
+        //console.log(res.data);
         const rutas = res.data;
         this.setState({ rutas });
         //this.props.setRutas(rutas);

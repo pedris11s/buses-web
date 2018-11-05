@@ -9,9 +9,7 @@ export default class ViewRuta extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      ruta: [],
-      coopButton: false,
-      busesButton: false
+      ruta: []
     }
   }
 
@@ -21,16 +19,17 @@ export default class ViewRuta extends React.Component{
       .then(res => {
         const r = res.data;
         //console.log(r);
-        this.setState({ruta:r});
+        this.setState({ ruta: r});
       });
   }
 
   render(){
 
-    let cooperativa = (this.state.ruta.cooperativa == undefined) ? "Desconocida" : this.state.ruta.cooperativa;
-    let buses = (this.state.ruta.buses == undefined) ? "Desconocida" : this.state.ruta.buses;
+    let cooperativa = (this.state.ruta.cooperativa === undefined) ? "Desconocida" : this.state.ruta.cooperativa;
+    let buses = (this.state.ruta.buses === undefined || this.state.ruta.buses.length === 0) ? "No hay buses." : this.state.ruta.buses;
 
-    console.log("buses " + this.state.ruta.buses);
+    console.log("ATRIBUTO BUSES ES UNA DUDA!!!");
+    console.log(this.state.ruta);
 
     return (
       <div className="animated fadeIn">
@@ -81,8 +80,7 @@ export default class ViewRuta extends React.Component{
                         <i className="fa fa-bus"></i> Buses
                       </CardHeader>
                       <CardBody className="text-center">
-                        <ul>
-                        </ul>
+                        { buses }
                       </CardBody>
                     </Card>
 
