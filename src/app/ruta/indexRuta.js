@@ -1,7 +1,6 @@
 import React from 'react';
 
-import ListarRutas from './ListarRutasContainer';
-import AddRuta from './AddRutaContainer';
+import ListarRutas from './ListarRutas';
 
 import { Button, Row, Col } from 'reactstrap';
 

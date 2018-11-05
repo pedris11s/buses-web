@@ -1,11 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import  { Redirect } from 'react-router-dom';
 
-import { Table, Form, Input, Label, FormGroup, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import {API_ROOT} from "../../config";
-import AddBusesRuta from "./AddBusesRuta";
-import {BusesRow} from "./ViewRuta";
 
 //TODO alert succesfull cuando se adiciona ruta
 
@@ -92,25 +89,22 @@ export default class AddRuta extends React.Component{
     this.setState({buses_ruta: value});
   }
 
-  redirectTo(){
-    return <Redirect to='#/rutas/view'/>;
-  }
-
   handleSubmit = event => {
     event.preventDefault();
-
     const ruta = {
       nombre: this.state.nombre,
       coo_origen: this.state.coo_origen,
       coo_destino: this.state.coo_destino,
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
-      cooperativa: this.state.coop_ruta
+      cooperativa: this.state.coop_ruta,
+      buses: this.state.buses_ruta
     };
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
       .then(res => {
         //this.props.addRuta(ruta);
+        console.log(this.state.buses_ruta);
         this.setState({
           nombre: '',
           coo_origen: '',
@@ -182,8 +176,8 @@ export default class AddRuta extends React.Component{
                         <i className="fa fa-bus"></i> Buses
                       </CardHeader>
                       <CardBody className="text-center">
-                        <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesChange} required>
-                          { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
+                        <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesRutaChange} required>
+                          { this.state.buses.map( bus => <option key={bus.id} value={bus.nobus}>{bus.nobus}</option>) }
                         </Input>
                       </CardBody>
                     </Card>
