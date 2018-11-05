@@ -48,9 +48,6 @@ export default class ListarCooperativas extends React.Component{
                     <th>Pais</th>
                     <th>Provincia</th>
                     <th>Ciudad</th>
-                    <th>Parroquia</th>
-                    <th>Tipo</th>
-                    <th>Modalidad</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
@@ -63,45 +60,15 @@ export default class ListarCooperativas extends React.Component{
                             <td>{coop.pais}</td>
                             <td>{coop.provincia}</td>
                             <td>{coop.ciudad}</td>
-                            <td>{coop.parroquia}</td>
-                            <td>{coop.tipo}</td>
-                            <td>{coop.modalidad}</td>
                             <td>
-                              <Button onClick="" size="sm" color="success" outline>
-                                <i className="fa fa-lightbulb-o"></i>
-                              </Button>
+                              <Button onClick="" size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                               &nbsp;
-                              <Button size="sm" color="danger" outline onClick={ () => this.deleteCoop(coop.id) }>
-                                <i className="fa fa-trash"></i>
-                              </Button>
+                              <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                             </td>
                           </tr>
-
                       )}
                   </tbody>
                 </Table>
-
-
-                <Pagination>
-                  <PaginationItem>
-                    <PaginationLink previous tag="button"></PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink tag="button">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">4</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink next tag="button"></PaginationLink>
-                  </PaginationItem>
-                </Pagination>
               </CardBody>
             </Card>
           </Col>
