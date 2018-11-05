@@ -3,30 +3,6 @@ import axios from 'axios';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import {API_ROOT} from "../../config";
 
-const OficinaRow = props => {
-  const oficina = props.oficina;
-  const oficinaLink = `#/oficinas/view/${oficina.id}`;
-
-  return (
-    <tr>
-      <td>{oficina.nombre}</td>
-      <td>{oficina.ciudad}</td>
-      <td>{oficina.direccion}</td>
-      <td>{oficina.telefono}</td>
-      <td>
-        <a href={oficinaLink}>
-          <Button size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
-        </a>
-        &nbsp;
-        <a>
-          <Button size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
-        </a>
-      </td>
-    </tr>
-  );
-}
-
-
 export default class ListarOficinas extends React.Component{
 
   constructor(props){
@@ -80,9 +56,19 @@ export default class ListarOficinas extends React.Component{
                   </thead>
                   <tbody>
                     {
-                      this.state.oficinas.map( (oficina, index) =>
-                      <OficinaRow key={index} oficina={oficina} />
-                    )}
+                      this.state.oficinas.map( (oficina, index) => (
+                        <tr>
+                          <td>{oficina.nombre}</td>
+                          <td>{oficina.ciudad}</td>
+                          <td>{oficina.direccion}</td>
+                          <td>{oficina.telefono}</td>
+                          <td>
+                            <Button size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                            &nbsp;
+                            <Button onClick={() => this.deleteOficina(oficina.id)} size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </Table>
 
