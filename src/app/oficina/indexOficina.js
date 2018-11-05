@@ -1,12 +1,25 @@
 import React from 'react';
 import ListarOficinas from "./ListarOficinas";
-import AddOficina from "./AddOficina";
+import { Button, Row, Col } from 'reactstrap';
 
 export default class indexOficina extends React.Component{
   render(){
     return (
       <div>
-        <AddOficina/>
+        <Row>
+          <Col>
+
+            <div class="pull-right">
+              <a href="#/oficinas/view/add" >
+                <Button size="sm" color="success"><i className="fa fa-plus-square"></i>&nbsp;Add oficina</Button>
+              </a>
+            </div>
+          </Col>
+        </Row>
+
+        <br/>
+
+
         <ListarOficinas/>
       </div>
     )
