@@ -1,8 +1,12 @@
 import React from 'react';
-import { Button, Card, CardBody, CardFooter, CardHeader, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+import { Button, Table, Card, CardBody, CardFooter, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
+import axios from "axios";
+import {API_ROOT} from "../../config";
 
-export default class AddCooperativa extends React.Component{
-  constructor(props){
+
+
+export default class AddCooperativa extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       nombre: '',
@@ -10,131 +14,285 @@ export default class AddCooperativa extends React.Component{
       ciudad: '',
       provincia: '',
       parroquia: '',
-      tipo: '',//radio
-      modalidad: '',//select
-      rutas: [],//muliple select
-      buses: [],//multiple select
-      oficina: ''//select
+      tipo: 'Publica',//radio -> string
+      modalidad: 'internacional',//select
+      rutas_coop: [],//muliple select
+      buses_coop: [],//multiple select
+      oficina_coop: '',//select
+
+      oficinas: [],
+      rutas: [],
+      buses: []
     }
+
+    this.handleNombreChange = this.handleNombreChange.bind(this);
+    this.handlePaisChange = this.handlePaisChange.bind(this);
+    this.handleProvinciaChange = this.handleProvinciaChange.bind(this);
+    this.handleCiudadChange = this.handleCiudadChange.bind(this);
+    this.handleParroquiaChange = this.handleParroquiaChange.bind(this);
+    this.handleModalidadChange = this.handleModalidadChange.bind(this);
+    this.handleOficinaChange = this.handleOficinaChange.bind(this);
+    this.handleTipoChange = this.handleTipoChange.bind(this);
+    this.handleBusesChange = this.handleBusesChange.bind(this);
+    this.handleRutasChange = this.handleRutasChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  render(){
-    return(
+  componentDidMount(){
+    axios.get(`${API_ROOT}/ruta`)
+      .then(res => {
+        const r = res.data;
+        if(r.length > 0)
+          this.setState(
+            {
+              rutas: r
+            });
+      });
+
+    axios.get(`${API_ROOT}/bus`)
+      .then(res => {
+        const buses = res.data;
+        if(buses.length > 0)
+          this.setState(
+            {
+              buses: buses,
+            });
+      });
+
+    axios.get(`${API_ROOT}/oficina`)
+      .then(res => {
+        const off = res.data;
+        if(off.length > 0)
+          this.setState(
+            {
+              oficinas: off,
+              oficina_coop: off[0].id
+            });
+      });
+  }
+
+  handleNombreChange = event => {
+    this.setState({ nombre: event.target.value, });
+  }
+
+  handlePaisChange = event => {
+    this.setState({ pais: event.target.value, });
+  }
+
+  handleProvinciaChange = event => {
+    this.setState({ provincia: event.target.value, });
+  }
+
+  handleCiudadChange = event => {
+    this.setState({ ciudad: event.target.value, });
+  }
+
+  handleParroquiaChange = event => {
+    this.setState({ parroquia: event.target.value, });
+  }
+
+  handleModalidadChange = event => {
+    this.setState({ modalidad: event.target.value, });
+  }
+
+  handleOficinaChange = event => {
+    this.setState({ oficina_coop: event.target.value, });
+  }
+
+  handleTipoChange = event => {
+    console.log(event.target.value);
+    this.setState({tipo: event.target.value});
+  }
+
+  handleBusesChange = event => {
+    let options = event.target.options;
+    let value = [];
+    for (let i = 0, size = options.length; i < size; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    this.setState({buses_coop: value});
+  }
+
+  handleRutasChange = event => {
+    let options = event.target.options;
+    let value = [];
+    for (let i = 0, size = options.length; i < size; i++) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    this.setState({rutas_coop: value});
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const cooperativa = {
+      nombre: this.state.nombre,
+      pais: this.state.pais,
+      provincia: this.state.provincia,
+      ciudad: this.state.ciudad,
+      parroquia: this.state.parroquia,
+      tipo: this.state.tipo,
+      modalidad: this.state.modalidad,
+      oficina: this.state.oficina_coop,
+      rutas: this.state.rutas_coop,
+      buses: this.state.buses_coop
+    }
+
+    console.log(cooperativa);
+
+    axios.post(`${API_ROOT}/cooperativa/`, cooperativa)
+      .then(res => {
+        //console.log(res.data);
+        this.setState({
+          nombre: '',
+          pais: '',
+          provincia: '',
+          ciudad: '',
+          parroquia: '',
+          tipo: 'Publica',
+          modalidad: 'internacional'
+        })
+        this.props.history.push('/coops/view');
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  render() {
+
+    let modalidades = [
+      'internacional', 'interprovincial', 'intercantonal', 'intraparroquial', 'urbanos'
+    ]
+
+    return (
       <div>
-        <Row>
-          <Col>
-            <Card>
-              <CardHeader>
-                <strong>Basic Form</strong> Elements
-              </CardHeader>
-              <CardBody>
-                <Form action="" method="post" encType="multipart/form-data" className="form-horizontal">
+        <div className="animated fadeIn">
+          <Row>
+            <Col>
+              <Form onSubmit={this.handleSubmit} className="form-horizontal">
+                <Card>
+                  <CardHeader>
+                    <i className="fa fa-plus-square-o"></i> <strong>Crear Cooperativa</strong>
+                  </CardHeader>
+                  <CardBody>
+                    <Row>
+                      <Col xs="9">
+                        <Table responsive striped hover>
+                          <tbody>
+                          <tr>
+                            <td>Nombre:</td>
+                            <td><Input type="text" value={this.state.nombre} onChange={this.handleNombreChange}
+                                       required/></td>
+                          </tr>
+                          <tr>
+                            <td>Pais:</td>
+                            <td><Input type="text" value={this.state.pais} onChange={this.handlePaisChange}
+                                       required/></td>
+                          </tr>
+                          <tr>
+                            <td>Provincia:</td>
+                            <td><Input type="text" value={this.state.provincia} onChange={this.handleProvinciaChange}
+                                       required/></td>
+                          </tr>
+                          <tr>
+                            <td>Ciudad:</td>
+                            <td><Input type="text" value={this.state.ciudad} onChange={this.handleCiudadChange}
+                                       required/></td>
+                          </tr>
+                          <tr>
+                            <td>Parroquia:</td>
+                            <td><Input type="text" value={this.state.parroquia} onChange={this.handleParroquiaChange}
+                                       required/></td>
+                          </tr>
+                          <tr>
+                            <td>Modalidad:</td>
+                            <td><Input type="select" onChange={ this.handleModalidadChange } required>
+                              {modalidades.map(mod => (
+                                <option key={mod} value={mod}>{mod}</option>
+                              ))}
+                              </Input>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Oficina:</td>
+                            <td><Input type="select" onChange={this.handleOficinaChange} required>
+                              { this.state.oficinas.map( off => <option key={off.id} value={off.id}>{off.nombre}</option>) }
+                            </Input></td>
+                          </tr>
+                          <tr>
+                            <td>Tipo:</td>
+                            <td>
+                              <Col md="9">
+                                <FormGroup check inline>
+                                  <Input className="form-check-input" onChange={this.handleTipoChange} type="radio" value='Publica' checked={this.state.tipo === 'Publica'}  />
+                                  <Label className="form-check-label" check htmlFor="inline-radio1">Publica</Label>
+                                </FormGroup>
+                                <FormGroup check inline>
+                                  <Input className="form-check-input" onChange={this.handleTipoChange} type="radio" value='Privada' checked={this.state.tipo === 'Privada'}  />
+                                  <Label className="form-check-label" check htmlFor="inline-radio2">Privada</Label>
+                                </FormGroup>
+                              </Col>
+                            </td>
+                          </tr>
+                          </tbody>
+                        </Table>
+                      </Col>
 
-                  <FormGroup row className="my-0">
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="city">Nombre</Label>
-                        <Input type="text" name="nombre" placeholder="Nombre" value={this.state.nombre} onChange={this.handleNombreChange} required/>
-                      </FormGroup>
-                    </Col>
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Pais</Label>
-                        <Input type="text" id="postal-code" placeholder="Ciudad Origen" required/>
-                      </FormGroup>
-                     </Col>
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Ciudad</Label>
-                        <Input type="text" id="postal-code" placeholder="Ciudad Destino"  required/>
-                      </FormGroup>
-                    </Col>
-                  </FormGroup>
+                      <Col xs="3">
+                        <Card>
+                          <CardHeader className="text-center">
+                            <i className="fa fa-bus"></i> Buses
+                          </CardHeader>
+                          <CardBody className="text-center">
+                            <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesChange} required>
+                              { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
+                            </Input>
+                          </CardBody>
+                        </Card>
 
-                  <FormGroup row className="my-0">
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="city">Provincia</Label>
-                        <Input type="text" name="nombre" placeholder="Nombre" value={this.state.nombre} onChange={this.handleNombreChange} required/>
-                      </FormGroup>
-                    </Col>
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Parroquia</Label>
-                        <Input type="text" id="postal-code" placeholder="Ciudad Origen" required/>
-                      </FormGroup>
-                    </Col>
-                    <Col xs="4">
-                      <FormGroup>
-                        <Label htmlFor="postal-code">Tipo</Label>
-                        <FormGroup row>
-                          <Col md="9">
-                            <FormGroup check inline>
-                              <Input className="form-check-input" type="radio" id="inline-radio1" name="inline-radios" value="option1" />
-                              <Label className="form-check-label" check htmlFor="inline-radio1">Publica</Label>
-                            </FormGroup>
-                            <FormGroup check inline>
-                              <Input className="form-check-input" type="radio" id="inline-radio2" name="inline-radios" value="option2" />
-                              <Label className="form-check-label" check htmlFor="inline-radio2">Privada</Label>
-                            </FormGroup>
-                          </Col>
-                        </FormGroup>
-                      </FormGroup>
-                    </Col>
-                  </FormGroup>
+                        <Card>
+                          <CardHeader className="text-center">
+                            <i className="icon-cursor"></i> Rutas
+                          </CardHeader>
+                          <CardBody className="text-center">
+                            <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleRutasChange} required>
+                              { this.state.rutas.map( ruta => <option key={ruta.id} value={ruta.id}>{ruta.nombre}</option>) }
+                            </Input>
+                          </CardBody>
+                        </Card>
 
-                  <FormGroup row>
-                    <Col xs="3">
-                      <FormGroup>
-                        <Label htmlFor="multiple-select">Rutas</Label>
-                        <Input type="select"  name="select-bus" id="multiple-select" multiple  required>
-                          <option >opcion</option>
-                        </Input>
-                      </FormGroup>
-                    </Col>
-
-                    <Col xs="3">
-                      <FormGroup>
-                        <Label htmlFor="multiple-select">Buses</Label>
-                        <Input type="select"  name="select-bus" id="multiple-select" multiple  required>
-                          <option >opcion</option>
-                        </Input>
-                      </FormGroup>
-                    </Col>
-
-                    <Col xs="3">
-                      <FormGroup>
-                        <Label htmlFor="select">Modalidad</Label>
-                        <Input type="select"  name="select-coops" id="select"  required>
-                          <option>hola</option>
-                        </Input>
-                      </FormGroup>
-                    </Col>
-
-                    <Col xs="3">
-                      <FormGroup>
-                        <Label htmlFor="select">Oficina</Label>
-                        <Input type="select"  name="select-coops" id="select"  required>
-                          <option>hola</option>
-                        </Input>
-                      </FormGroup>
-                    </Col>
-
-
-
-                  </FormGroup>
-                </Form>
-              </CardBody>
-              <CardFooter>
-                <Button type="submit" size="sm" color="primary"><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                <Button type="reset" size="sm" color="danger"><i className="fa fa-ban"></i> Reset</Button>
-              </CardFooter>
-            </Card>
-          </Col>
-        </Row>
+                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                      </Col>
+                    </Row>
+                  </CardBody>
+                </Card>
+              </Form>
+            </Col>
+          </Row>
+        </div>
       </div>
-    )
+    );
   }
-
-
 }
+
+/*
+<FormGroup>
+  <Label htmlFor="postal-code">Tipo</Label>
+  <FormGroup row>
+    <Col md="9">
+      <FormGroup check inline>
+        <Input className="form-check-input" type="radio" id="inline-radio1" name="inline-radios" value="option1" />
+        <Label className="form-check-label" check htmlFor="inline-radio1">Publica</Label>
+      </FormGroup>
+      <FormGroup check inline>
+        <Input className="form-check-input" type="radio" id="inline-radio2" name="inline-radios" value="option2" />
+        <Label className="form-check-label" check htmlFor="inline-radio2">Privada</Label>
+      </FormGroup>
+    </Col>
+  </FormGroup>
+*/
