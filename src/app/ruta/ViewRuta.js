@@ -25,7 +25,7 @@ export default class ViewRuta extends React.Component{
 
   render(){
 
-    let cooperativa = (this.state.ruta.cooperativa === undefined) ? "Desconocida" : this.state.ruta.cooperativa;
+    let cooperativa = (this.state.ruta.cooperativa === undefined || this.state.ruta.cooperativa === null) ? "Desconocida" : this.state.ruta.cooperativa;
     let buses = (this.state.ruta.buses === undefined || this.state.ruta.buses.length === 0) ? "No hay buses." : this.state.ruta.buses;
 
     console.log("ATRIBUTO BUSES ES UNA DUDA!!!");

@@ -24,9 +24,12 @@ export default class ViewOficina extends React.Component{
   }
 
   render(){
-    
-    console.log(this.state.oficina);
-    let cooperativa = (this.state.oficina.cooperativa === undefined) ? "Desconocida" : this.state.oficina.cooperativa;
+
+    //FIXME cuando se borra la cooperativa asociada se forma locura
+    console.log("hola");
+    console.log(this.state.oficina.cooperativa);
+    console.log("fin");
+    let cooperativa = (this.state.oficina.cooperativa === undefined || this.state.oficina.cooperativa === null || this.state.oficina.cooperativa.length === 0) ? "Desconocida" : this.state.oficina.cooperativa;
 
     return (
       <div className="animated fadeIn">
