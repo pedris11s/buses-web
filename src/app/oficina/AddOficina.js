@@ -116,7 +116,7 @@ export default class AddOficina extends React.Component{
                   </CardHeader>
                   <CardBody>
                     <Row>
-                      <Col xs="9">
+                      <Col xs="6">
                         <Table responsive striped hover>
                           <tbody>
                           <tr>
@@ -131,6 +131,13 @@ export default class AddOficina extends React.Component{
                             <td>Direccion:</td>
                             <td><Input type="text" value={this.state.direccion} onChange={this.handleDireccionChange} required/></td>
                           </tr>
+                          </tbody>
+                        </Table>
+                      </Col>
+
+                      <Col xs="6">
+                        <Table responsive striped hover>
+                          <tbody>
                           <tr>
                             <td>Telefono:</td>
                             <td><Input type="text" value={this.state.telefono} onChange={this.handleTelefonoChange} required/></td>
@@ -143,17 +150,25 @@ export default class AddOficina extends React.Component{
                             <td>Whatsapp:</td>
                             <td><Input type="text"  value={this.state.whatsapp} onChange={this.handleWhatsappChange} required/></td>
                           </tr>
-                          <tr>
-                            <td>Cooperativa:</td>
-                            <td><Input type="select" name="select-coops" id="select" onChange={this.handleCoopChange} required>
-                              { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
-                            </Input></td>
-                          </tr>
                           </tbody>
                         </Table>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
                       </Col>
+                    </Row>
 
+                    <Row>
+                        <Col>
+                          <Table responsive striped hover>
+                            <tbody>
+                            <tr>
+                              <td>Cooperativa:</td>
+                              <td><Input type="select" name="select-coops" id="select" onChange={this.handleCoopChange} required>
+                                { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
+                              </Input></td>
+                            </tr>
+                            </tbody>
+                          </Table>
+                          <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        </Col>
                     </Row>
                   </CardBody>
                 </Card>

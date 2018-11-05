@@ -42,7 +42,8 @@ export default class ViewOficina extends React.Component{
               </CardHeader>
               <CardBody>
                 <Row>
-                  <Col xs="9">
+
+                  <Col xs="6">
                     <Table responsive striped hover>
                       <tbody>
                       <tr>
@@ -50,30 +51,45 @@ export default class ViewOficina extends React.Component{
                         <td><strong>{this.state.oficina.nombre}</strong></td>
                       </tr>
                       <tr>
-                        <td>Coo. Origen:</td>
+                        <td>Ciudad:</td>
                         <td><strong>{this.state.oficina.ciudad}</strong></td>
                       </tr>
                       <tr>
-                        <td>Coo.Destino:</td>
+                        <td>Direccion:</td>
                         <td><strong>{this.state.oficina.direccion}</strong></td>
                       </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+
+                  <Col xs="6">
+                    <Table responsive striped hover>
+                      <tbody>
                       <tr>
-                        <td>Ciudad Origen:</td>
+                        <td>Telefono:</td>
                         <td><strong>{this.state.oficina.telefono}</strong></td>
                       </tr>
                       <tr>
-                        <td>Ciudad Destino:</td>
+                        <td>Facebook:</td>
                         <td><strong>{this.state.oficina.facebook}</strong></td>
                       </tr>
                       <tr>
-                        <td>Ciudad Destino:</td>
+                        <td>Whatsapp:</td>
                         <td><strong>{this.state.oficina.whatsapp}</strong></td>
                       </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col>
+                    <Table responsive striped hover>
+                      <tbody>
                       <tr>
                         <td>Cooperativa:</td>
                         <td><strong>{cooperativa.nombre}</strong></td>
                       </tr>
-
                       </tbody>
                     </Table>
                     <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
