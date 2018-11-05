@@ -3,9 +3,6 @@ import axios from "axios";
 import {API_ROOT} from "../../config";
 
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
-import AddCoopOficina from './AddCoopOficina';
-
-import CoopRow from '../ruta/ViewRuta'
 
 export default class ViewOficina extends React.Component{
 
@@ -27,8 +24,13 @@ export default class ViewOficina extends React.Component{
   }
 
   render(){
+    
+    console.log(this.state.oficina);
+    let cooperativa = (this.state.oficina.cooperativa === undefined) ? "Desconocida" : this.state.oficina.cooperativa;
+
     return (
       <div className="animated fadeIn">
+
         <Row>
           <Col>
             <Card>
@@ -36,45 +38,49 @@ export default class ViewOficina extends React.Component{
                 <strong><i className="icon-info pr-1"></i>Oficina id: {this.state.oficina.id}</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive striped hover>
-                  <tbody>
-                  <tr>
-                    <td>Nombre:</td>
-                    <td><strong>{this.state.oficina.nombre}</strong></td>
-                  </tr>
-                  <tr>
-                    <td>Ciudad:</td>
-                    <td><strong>{this.state.oficina.ciudad}</strong></td>
-                  </tr>
-                  <tr>
-                    <td>Direccion:</td>
-                    <td><strong>{this.state.oficina.direccion}</strong></td>
-                  </tr>
-                  <tr>
-                    <td>Telefono:</td>
-                    <td><strong>{this.state.oficina.telefono}</strong></td>
-                  </tr>
-                  <tr>
-                    <td>Facebook:</td>
-                    <td><strong>{this.state.oficina.facebook}</strong></td>
-                  </tr>
-                  <tr>
-                    <td>Whatsapp:</td>
-                    <td><strong>{this.state.oficina.whatsapp}</strong></td>
-                  </tr>
+                <Row>
+                  <Col xs="9">
+                    <Table responsive striped hover>
+                      <tbody>
+                      <tr>
+                        <td>Nombre:</td>
+                        <td><strong>{this.state.oficina.nombre}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Coo. Origen:</td>
+                        <td><strong>{this.state.oficina.ciudad}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Coo.Destino:</td>
+                        <td><strong>{this.state.oficina.direccion}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Origen:</td>
+                        <td><strong>{this.state.oficina.telefono}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Destino:</td>
+                        <td><strong>{this.state.oficina.facebook}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Ciudad Destino:</td>
+                        <td><strong>{this.state.oficina.whatsapp}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Cooperativa:</td>
+                        <td><strong>{cooperativa.nombre}</strong></td>
+                      </tr>
 
-                  <CoopRow coopRowVisibility={true} cooperativa={this.state.oficina.cooperativa}/>
-
-                  </tbody>
-                </Table>
-
-                <AddCoopOficina oficina={this.state.oficina}/>
-
+                      </tbody>
+                    </Table>
+                    <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
+                  </Col>
+                </Row>
               </CardBody>
             </Card>
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }

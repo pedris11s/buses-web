@@ -41,7 +41,6 @@ export default class AddOficina extends React.Component{
   }
 
   handleNombreChange = event => {
-    console.log(this.state.nombre);
     this.setState({ nombre: event.target.value, });
   }
 
@@ -78,7 +77,8 @@ export default class AddOficina extends React.Component{
       direccion: this.state.direccion,
       telefono: this.state.telefono,
       facebook: this.state.facebook,
-      whatsapp: this.state.whatsapp
+      whatsapp: this.state.whatsapp,
+      cooperativa: this.state.coop_off
     }
 
     axios.post(`${API_ROOT}/oficina/`, oficina)
