@@ -234,7 +234,11 @@ const viewOficina = Loadable({
 });
 
 
-
+/*BUSES*/
+const indexBus = Loadable({
+  loader: () => import('./app/bus/indexBus'),
+  loading: Loading,
+});
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -251,6 +255,8 @@ const routes = [
   { path: '/oficinas/view', exact: true, name: 'Oficinas', component: indexOficina },
   { path: '/oficinas/view/add', exact: true, name: 'Adicionar Oficina', component: addOficina },
   { path: '/oficinas/view/:id', exact: true, name: 'Detalles de oficina', component: viewOficina },
+
+  { path: '/buses/view', exact: true, name: 'Buses', component: indexBus },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

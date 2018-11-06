@@ -30,7 +30,7 @@ export default {
     },
     {
       name: 'Buses',
-      url: '/TODO',
+      url: '/buses/view',
       icon: 'fa fa-bus',
     },
     {
