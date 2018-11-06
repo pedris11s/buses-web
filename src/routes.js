@@ -2,6 +2,7 @@ import React from 'react';
 import Loadable from 'react-loadable'
 
 import DefaultLayout from './containers/DefaultLayout';
+import AddBus from "./app/bus/AddBus";
 
 function Loading() {
   return <div>Loading...</div>;
@@ -240,6 +241,11 @@ const indexBus = Loadable({
   loading: Loading,
 });
 
+const addBus = Loadable({
+  loader: () => import('./app/bus/AddBus'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
@@ -257,6 +263,7 @@ const routes = [
   { path: '/oficinas/view/:id', exact: true, name: 'Detalles de oficina', component: viewOficina },
 
   { path: '/buses/view', exact: true, name: 'Buses', component: indexBus },
+  { path: '/buses/view/add', exact: true, name: 'Adicionar bus', component: addBus },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
