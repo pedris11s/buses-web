@@ -2,13 +2,18 @@ import React from 'react';
 import axios from 'axios';
 import {API_ROOT} from "../../config";
 import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import {Redirect} from "react-router-dom";
 
 export default class ListarCooperativas extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      cooperativas: []
+      cooperativas: [],
+      viewRedirect: false
     }
+
+    this.setViewRedirect = this.setViewRedirect.bind(this);
+    this.deleteCoop = this.deleteCoop.bind(this);
   }
 
   componentDidMount(){
@@ -29,6 +34,17 @@ export default class ListarCooperativas extends React.Component{
         //FIXME
         alert("soy un error" + err);
       });
+  }
+
+  setViewRedirect = () => {
+    this.setState({viewRedirect: true});
+  }
+
+  viewCoop = (id) => {
+    //console.log("ENTRE AQUI!!!!");
+    const link = `/coops/view/${id}`;
+    if(this.state.viewRedirect)
+      return <Redirect to={link}/>
   }
 
   render(){
@@ -61,7 +77,8 @@ export default class ListarCooperativas extends React.Component{
                             <td>{coop.provincia}</td>
                             <td>{coop.ciudad}</td>
                             <td>
-                              <Button onClick="" size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                              {this.viewCoop(coop.id)}
+                              <Button onClick={this.setViewRedirect} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                               &nbsp;
                               <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                             </td>
