@@ -246,6 +246,11 @@ const addBus = Loadable({
   loading: Loading,
 });
 
+const viewBus = Loadable({
+  loader: () => import('./app/bus/ViewBus'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
@@ -264,6 +269,7 @@ const routes = [
 
   { path: '/buses/view', exact: true, name: 'Buses', component: indexBus },
   { path: '/buses/view/add', exact: true, name: 'Adicionar bus', component: addBus },
+  { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

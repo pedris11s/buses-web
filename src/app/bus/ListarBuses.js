@@ -13,6 +13,18 @@ export default class ListarBuses extends React.Component{
       viewRedirect: false
     }
     this.deleteBus = this.deleteBus.bind(this);
+    this.viewBus = this.viewBus.bind(this);
+  }
+
+  setViewRedirect = () => {
+    this.setState({viewRedirect: true});
+  }
+
+  viewBus = (id) => {
+    const link = `/buses/view/${id}`;
+    //console.log(link);
+    if(this.state.viewRedirect)
+      return <Redirect to={link}/>
   }
 
   componentDidMount(){
@@ -21,17 +33,6 @@ export default class ListarBuses extends React.Component{
         const b = res.data;
         this.setState({buses: b});
       })
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true})
-  }
-
-  viewBus = (id) => {
-    //console.log("ENTRE AQUI!!!!");
-    const link = `/buses/view/${id}`;
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   deleteBus(id){
@@ -77,7 +78,7 @@ export default class ListarBuses extends React.Component{
                         <td>{bus.marca}</td>
                         <td>
                           {this.viewBus(bus.id)}
-                          <Button onClick={this.setViewRedirect} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                          <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                           &nbsp;
                           <Button onClick={ () => this.deleteBus(bus.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                         </td>

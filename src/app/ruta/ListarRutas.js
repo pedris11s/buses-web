@@ -41,13 +41,6 @@ export default class ListarRutas extends React.Component{
 
     this.deleteRuta = this.deleteRuta.bind(this);
     this.viewRuta = this.viewRuta.bind(this);
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      viewModal: !this.state.viewModal,
-    });
   }
 
   deleteRuta = (id) => {
