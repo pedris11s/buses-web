@@ -18,18 +18,21 @@ export default class ViewOficina extends React.Component{
     axios.get(`${API_ROOT}/oficina/${id}`)
       .then(res => {
         const off = res.data;
-        //console.log(r);
         this.setState({oficina:off});
       });
   }
 
   render(){
 
-    //FIXME cuando se borra la cooperativa asociada se forma locura
-    console.log("hola");
-    console.log(this.state.oficina.cooperativa);
-    console.log("fin");
-    let cooperativa = (this.state.oficina.cooperativa === undefined || this.state.oficina.cooperativa === null || this.state.oficina.cooperativa.length === 0) ? "Desconocida" : this.state.oficina.cooperativa;
+    let cooperativas = (this.state.oficina.cooperativas === undefined ||
+                        this.state.oficina.cooperativas === null ||
+                        this.state.oficina.cooperativas.length === 0) ?
+                          <strong>No asignada</strong>
+                        : this.state.oficina.cooperativas.map(coop =>
+                            <tr>
+                              <td>{coop.nombre}</td>
+                            </tr>
+                          );
 
     return (
       <div className="animated fadeIn">
@@ -43,7 +46,7 @@ export default class ViewOficina extends React.Component{
               <CardBody>
                 <Row>
 
-                  <Col xs="6">
+                  <Col xs="9">
                     <Table responsive striped hover>
                       <tbody>
                       <tr>
@@ -58,13 +61,6 @@ export default class ViewOficina extends React.Component{
                         <td>Direccion:</td>
                         <td><strong>{this.state.oficina.direccion}</strong></td>
                       </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-
-                  <Col xs="6">
-                    <Table responsive striped hover>
-                      <tbody>
                       <tr>
                         <td>Telefono:</td>
                         <td><strong>{this.state.oficina.telefono}</strong></td>
@@ -80,18 +76,25 @@ export default class ViewOficina extends React.Component{
                       </tbody>
                     </Table>
                   </Col>
+
+                  <Col xs="3">
+                    <Card>
+                      <CardHeader className="text-center">
+                        <i className="fa fa-industry"></i> Cooperativas
+                      </CardHeader>
+                      <CardBody className="text-center">
+                        <Table responsive striped hover>
+                          <tbody>
+                            {cooperativas}
+                          </tbody>
+                        </Table>
+                      </CardBody>
+                    </Card>
+                  </Col>
                 </Row>
 
                 <Row>
                   <Col>
-                    <Table responsive striped hover>
-                      <tbody>
-                      <tr>
-                        <td>Cooperativa:</td>
-                        <td><strong>{cooperativa.nombre}</strong></td>
-                      </tr>
-                      </tbody>
-                    </Table>
                     <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
                   </Col>
                 </Row>
