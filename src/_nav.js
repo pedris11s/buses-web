@@ -19,6 +19,11 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
+      name: 'Oicinas',
+      url: '/oficinas/view',
+      icon: 'icon-briefcase',
+    },
+    {
       name: 'Cooperativas',
       url: '/coops/view',
       icon: 'fa fa-industry',
@@ -32,11 +37,6 @@ export default {
       name: 'Buses',
       url: '/buses/view',
       icon: 'fa fa-bus',
-    },
-    {
-      name: 'Oicinas',
-      url: '/oficinas/view',
-      icon: 'icon-briefcase',
     },
     {
       title: true,

@@ -15,10 +15,10 @@ export default class AddRuta extends React.Component{
       coo_destino: '',
       ciudad_origen: '',
       ciudad_destino: '',
-      coop_ruta: '',
-      buses_ruta: [],
+      coop_ruta: [],
+      //buses_ruta: [],
       cooperativas: [],
-      buses: []
+      //buses: []
     }
 
     this.handleNombreChange = this.handleNombreChange.bind(this);
@@ -26,8 +26,7 @@ export default class AddRuta extends React.Component{
     this.handleCooDestinoChange = this.handleCooDestinoChange.bind(this);
     this.handleCiudadOrigenChange = this.handleCiudadOrigenChange.bind(this);
     this.handleCiudadDestinoChange = this.handleCiudadDestinoChange.bind(this);
-    this.handleCoopRutaChange = this.handleCoopRutaChange.bind(this);
-    this.handleBusesRutaChange = this.handleBusesRutaChange.bind(this);
+    this.handleCoopChange = this.handleCoopChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -40,16 +39,6 @@ export default class AddRuta extends React.Component{
             {
               cooperativas: coops,
               coop_ruta: coops[0].id
-            });
-      });
-
-    axios.get(`${API_ROOT}/bus`)
-      .then(res => {
-        const buses = res.data;
-        if(buses.length > 0)
-          this.setState(
-            {
-              buses: buses,
             });
       });
   }
@@ -74,11 +63,7 @@ export default class AddRuta extends React.Component{
     this.setState({ ciudad_destino: event.target.value, });
   }
 
-  handleCoopRutaChange = event => {
-    this.setState({ coop_ruta: event.target.value, });
-  }
-
-  handleBusesRutaChange = event => {
+  handleCoopChange = event => {
     let options = event.target.options;
     let value = [];
     for (let i = 0, size = options.length; i < size; i++) {
@@ -86,7 +71,7 @@ export default class AddRuta extends React.Component{
         value.push(options[i].value);
       }
     }
-    this.setState({buses_ruta: value});
+    this.setState({coop_ruta: value});
   }
 
   handleSubmit = event => {
@@ -98,7 +83,7 @@ export default class AddRuta extends React.Component{
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
       cooperativa: this.state.coop_ruta,
-      buses: this.state.buses_ruta
+      //buses: this.state.buses_ruta
     };
 
     axios.post(`${API_ROOT}/ruta/`, ruta)
@@ -112,7 +97,7 @@ export default class AddRuta extends React.Component{
           ciudad_destino: '',
           ciudad_origen: '',
           coop_ruta: [],
-          buses_ruta: []
+          //buses_ruta: []
         });
         //console.log(this.props.rutas);
         this.props.history.push('/rutas/view');
@@ -160,12 +145,6 @@ export default class AddRuta extends React.Component{
                         <td>Ciudad Destino:</td>
                         <td><Input type="text"  value={this.state.ciudad_destino} onChange={this.handleCiudadDestinoChange} required/></td>
                       </tr>
-                      <tr>
-                        <td>Cooperativa:</td>
-                        <td><Input type="select" name="select-coops" id="select" onChange={this.handleCoopRutaChange} required>
-                          { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
-                        </Input></td>
-                      </tr>
                       </tbody>
                     </Table>
                   </Col>
@@ -173,15 +152,15 @@ export default class AddRuta extends React.Component{
                   <Col xs="3">
                     <Card>
                       <CardHeader className="text-center">
-                        <i className="fa fa-bus"></i> Buses
+                        <i className="fa fa-industry"></i> Cooperativas
                       </CardHeader>
                       <CardBody className="text-center">
-                        <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesRutaChange} required>
-                          { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
+                        <Input type="select" multiple onChange={this.handleCoopChange} required>
+                          { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
                         </Input>
                       </CardBody>
                     </Card>
-
+                    <br/>
                     <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
                   </Col>
                 </Row>

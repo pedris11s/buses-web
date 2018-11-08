@@ -138,8 +138,8 @@ export default class AddCooperativa extends React.Component {
       tipo: this.state.tipo,
       modalidad: this.state.modalidad,
       oficina: this.state.oficina_coop,
-      rutas: this.state.rutas_coop,
-      buses: this.state.buses_coop
+      //rutas: this.state.rutas_coop,
+      //buses: this.state.buses_coop
     }
 
     console.log(cooperativa);
@@ -181,7 +181,7 @@ export default class AddCooperativa extends React.Component {
                   </CardHeader>
                   <CardBody>
                     <Row>
-                      <Col xs="9">
+                      <Col xs="6">
                         <Table responsive striped hover>
                           <tbody>
                           <tr>
@@ -204,6 +204,14 @@ export default class AddCooperativa extends React.Component {
                             <td><Input type="text" value={this.state.ciudad} onChange={this.handleCiudadChange}
                                        required/></td>
                           </tr>
+                          </tbody>
+                        </Table>
+                      </Col>
+
+                      <Col xs="6">
+
+                        <Table responsive striped hover>
+                          <tbody>
                           <tr>
                             <td>Parroquia:</td>
                             <td><Input type="text" value={this.state.parroquia} onChange={this.handleParroquiaChange}
@@ -215,7 +223,7 @@ export default class AddCooperativa extends React.Component {
                               {modalidades.map(mod => (
                                 <option key={mod} value={mod}>{mod}</option>
                               ))}
-                              </Input>
+                            </Input>
                             </td>
                           </tr>
                           <tr>
@@ -242,32 +250,7 @@ export default class AddCooperativa extends React.Component {
                           </tbody>
                         </Table>
                       </Col>
-
-                      <Col xs="3">
-                        <Card>
-                          <CardHeader className="text-center">
-                            <i className="fa fa-bus"></i> Buses
-                          </CardHeader>
-                          <CardBody className="text-center">
-                            <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleBusesChange} required>
-                              { this.state.buses.map( bus => <option key={bus.id} value={bus.id}>{bus.nobus}</option>) }
-                            </Input>
-                          </CardBody>
-                        </Card>
-
-                        <Card>
-                          <CardHeader className="text-center">
-                            <i className="icon-cursor"></i> Rutas
-                          </CardHeader>
-                          <CardBody className="text-center">
-                            <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleRutasChange} required>
-                              { this.state.rutas.map( ruta => <option key={ruta.id} value={ruta.id}>{ruta.nombre}</option>) }
-                            </Input>
-                          </CardBody>
-                        </Card>
-
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                      </Col>
+                      <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
                     </Row>
                   </CardBody>
                 </Card>

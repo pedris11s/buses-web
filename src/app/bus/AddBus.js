@@ -25,7 +25,7 @@ export default class AddBus extends React.Component{
     this.handleMarcaChange = this.handleMarcaChange.bind(this);
     this.handleCondicionChange = this.handleCondicionChange.bind(this);
     this.handleCoopRutaChange = this.handleCoopRutaChange.bind(this);
-    this.handleRutasChange = this.handleRutasChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount(){
@@ -70,16 +70,6 @@ export default class AddBus extends React.Component{
   handleCoopRutaChange = event => {
     this.setState({ coop_bus: event.target.value, });
   }
-  handleRutasChange = event => {
-    let options = event.target.options;
-    let value = [];
-    for (let i = 0, size = options.length; i < size; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    this.setState({rutas_bus: value});
-  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -90,7 +80,7 @@ export default class AddBus extends React.Component{
       marca: this.state.marca,
       condicion: this.state.condicion,
       cooperativa: this.state.coop_bus,
-      rutas: this.state.rutas_bus
+      //rutas: this.state.rutas_bus
     };
     //console.log(bus);
     axios.post(`${API_ROOT}/bus/`, bus)
@@ -128,7 +118,7 @@ export default class AddBus extends React.Component{
                   </CardHeader>
                   <CardBody>
                     <Row>
-                      <Col xs="9">
+                      <Col xs="6">
                         <Table responsive striped hover>
                           <tbody>
                           <tr>
@@ -143,6 +133,13 @@ export default class AddBus extends React.Component{
                             <td>Frecuencia:</td>
                             <td><Input type="text" value={this.state.frecuencia} onChange={this.handleFrecuenciaChange} required/></td>
                           </tr>
+                          </tbody>
+                        </Table>
+                      </Col>
+
+                      <Col xs="6">
+                        <Table responsive striped hover>
+                          <tbody>
                           <tr>
                             <td>Marca:</td>
                             <td><Input type="text" value={this.state.marca} onChange={this.handleMarcaChange} required/></td>
@@ -160,21 +157,7 @@ export default class AddBus extends React.Component{
                           </tbody>
                         </Table>
                       </Col>
-
-                      <Col xs="3">
-                        <Card>
-                          <CardHeader className="text-center">
-                            <i className="icon-cursor"></i> Rutas
-                          </CardHeader>
-                          <CardBody className="text-center">
-                            <Input type="select" name="select-bus" id="multiple-select" multiple onChange={this.handleRutasChange} required>
-                              { this.state.rutas.map( ruta => <option key={ruta.id} value={ruta.id}>{ruta.nombre}</option>) }
-                            </Input>
-                          </CardBody>
-                        </Card>
-
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                      </Col>
+                      <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
                     </Row>
                   </CardBody>
                 </Card>

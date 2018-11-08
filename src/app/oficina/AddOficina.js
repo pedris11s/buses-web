@@ -78,7 +78,7 @@ export default class AddOficina extends React.Component{
       telefono: this.state.telefono,
       facebook: this.state.facebook,
       whatsapp: this.state.whatsapp,
-      cooperativa: this.state.coop_off
+      //cooperativa: this.state.coop_off
     }
 
     axios.post(`${API_ROOT}/oficina/`, oficina)
@@ -153,22 +153,7 @@ export default class AddOficina extends React.Component{
                           </tbody>
                         </Table>
                       </Col>
-                    </Row>
-
-                    <Row>
-                        <Col>
-                          <Table responsive striped hover>
-                            <tbody>
-                            <tr>
-                              <td>Cooperativa:</td>
-                              <td><Input type="select" name="select-coops" id="select" onChange={this.handleCoopChange} required>
-                                { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
-                              </Input></td>
-                            </tr>
-                            </tbody>
-                          </Table>
-                          <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                        </Col>
+                      <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
                     </Row>
                   </CardBody>
                 </Card>
