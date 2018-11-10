@@ -24,6 +24,27 @@ export default class ViewCooperativa extends React.Component{
   render() {
 
     let oficina = (this.state.cooperativa.oficina === undefined || this.state.cooperativa.oficina === null || this.state.cooperativa.oficina.length === 0) ? "Desconocida" : this.state.cooperativa.oficina;
+    let buses = (this.state.cooperativa.buses === undefined ||
+                        this.state.cooperativa.buses === null ||
+                        this.state.cooperativa.buses.length === 0) ?
+                        <strong>No asignado</strong>
+                        : this.state.cooperativa.buses.map(bus =>
+                          <tr>
+                            <td>{bus.nobus}</td>
+                          </tr>
+                        );
+
+    console.log(this.state.cooperativa.rutas);
+    let rutas = (this.state.cooperativa.rutas === undefined ||
+                this.state.cooperativa.rutas === null ||
+                this.state.cooperativa.rutas.length === 0) ?
+                <strong>No asignado</strong>
+                : this.state.cooperativa.rutas.map(ruta =>
+                  <tr>
+                    <td>{ruta.nombre}</td>
+                  </tr>
+                );
+
 
     return (
       <div>
@@ -82,7 +103,11 @@ export default class ViewCooperativa extends React.Component{
                             <i className="fa fa-bus"></i> Buses
                           </CardHeader>
                           <CardBody className="text-center">
-
+                            <Table responsive striped hover>
+                              <tbody>
+                              {buses}
+                              </tbody>
+                            </Table>
                           </CardBody>
                         </Card>
 
@@ -91,7 +116,11 @@ export default class ViewCooperativa extends React.Component{
                             <i className="icon-cursor"></i> Rutas
                           </CardHeader>
                           <CardBody className="text-center">
-
+                            <Table responsive striped hover>
+                              <tbody>
+                                {rutas}
+                              </tbody>
+                            </Table>
                           </CardBody>
                         </Card>
 
