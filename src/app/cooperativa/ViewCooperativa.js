@@ -38,7 +38,7 @@ export default class ViewCooperativa extends React.Component{
     let rutas = (this.state.cooperativa.rutas === undefined ||
                 this.state.cooperativa.rutas === null ||
                 this.state.cooperativa.rutas.length === 0) ?
-                <strong>No asignado</strong>
+                <strong>POR ARREGLAR!!</strong>
                 : this.state.cooperativa.rutas.map(ruta =>
                   <tr>
                     <td>{ruta.nombre}</td>

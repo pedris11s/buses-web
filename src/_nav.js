@@ -19,7 +19,12 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
-      name: 'Oicinas',
+      name: 'Usuarios',
+      url: '/TODO',
+      icon: 'icon-people',
+    },
+    {
+      name: 'Oficinas',
       url: '/oficinas/view',
       icon: 'icon-briefcase',
     },

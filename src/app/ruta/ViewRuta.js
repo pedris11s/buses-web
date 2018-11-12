@@ -25,11 +25,18 @@ export default class ViewRuta extends React.Component{
 
   render(){
 
-    let cooperativa = (this.state.ruta.cooperativa === undefined || this.state.ruta.cooperativa === null) ? "Desconocida" : this.state.ruta.cooperativa;
-    let buses = (this.state.ruta.buses === undefined || this.state.ruta.buses.length === 0) ? "No hay buses." : this.state.ruta.buses;
+    console.log(this.state.ruta.cooperativa);
 
-    console.log("ATRIBUTO BUSES ES UNA DUDA!!!");
-    console.log(this.state.ruta);
+    let cooperativas = (this.state.ruta.cooperativa === undefined ||
+                        this.state.ruta.cooperativa === null ||
+                        this.state.ruta.cooperativa.length === 0) ?
+                        <strong>No asignado</strong>
+                        : this.state.ruta.cooperativa.map(coop =>
+                          <tr>
+                            <td>{coop}</td>
+                          </tr>
+                        );
+    console.log(cooperativas);
 
     return (
       <div className="animated fadeIn">
@@ -65,11 +72,6 @@ export default class ViewRuta extends React.Component{
                         <td>Ciudad Destino:</td>
                         <td><strong>{this.state.ruta.ciudad_destino}</strong></td>
                       </tr>
-                      <tr>
-                        <td>Cooperativa:</td>
-                        <td><strong>{ cooperativa.nombre }</strong></td>
-                      </tr>
-
                       </tbody>
                     </Table>
                   </Col>
@@ -77,10 +79,10 @@ export default class ViewRuta extends React.Component{
                   <Col xs="3">
                     <Card>
                       <CardHeader className="text-center">
-                        <i className="fa fa-bus"></i> Buses
+                        <i className="fa fa-industry"></i> Cooperativas
                       </CardHeader>
                       <CardBody className="text-center">
-                        { buses }
+                        { cooperativas }
                       </CardBody>
                     </Card>
 
