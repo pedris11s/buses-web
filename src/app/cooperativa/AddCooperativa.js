@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardFooter, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
 import axios from "axios";
 import {API_ROOT} from "../../config";
-
+import API from '../../services/api';
 
 
 export default class AddCooperativa extends React.Component {
@@ -39,7 +39,7 @@ export default class AddCooperativa extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/ruta`)
+    /*API.get(`/ruta`)
       .then(res => {
         const r = res.data;
         if(r.length > 0)
@@ -49,7 +49,7 @@ export default class AddCooperativa extends React.Component {
             });
       });
 
-    axios.get(`${API_ROOT}/bus`)
+    API.get(`/bus`)
       .then(res => {
         const buses = res.data;
         if(buses.length > 0)
@@ -57,9 +57,9 @@ export default class AddCooperativa extends React.Component {
             {
               buses: buses,
             });
-      });
+      });*/
 
-    axios.get(`${API_ROOT}/oficina`)
+    API.get(`/oficina`)
       .then(res => {
         const off = res.data;
         if(off.length > 0)
@@ -144,7 +144,7 @@ export default class AddCooperativa extends React.Component {
 
     console.log(cooperativa);
 
-    axios.post(`${API_ROOT}/cooperativa/`, cooperativa)
+    API.post(`/cooperativa/`, cooperativa)
       .then(res => {
         //console.log(res.data);
         this.setState({

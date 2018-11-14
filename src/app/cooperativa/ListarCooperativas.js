@@ -3,6 +3,7 @@ import axios from 'axios';
 import {API_ROOT} from "../../config";
 import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
 import {Redirect} from "react-router-dom";
+import API from '../../services/api';
 
 export default class ListarCooperativas extends React.Component{
   constructor(props){
@@ -17,7 +18,7 @@ export default class ListarCooperativas extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/cooperativa`)
+    API.get(`/cooperativa`)
       .then(res => {
         const coops = res.data;
         this.setState({cooperativas: coops});
@@ -25,7 +26,7 @@ export default class ListarCooperativas extends React.Component{
   }
 
   deleteCoop(id){
-    axios.delete(`${API_ROOT}/cooperativa/${id}`)
+    API.delete(`/cooperativa/${id}`)
       .then(res => {
         const arr = this.state.cooperativas.filter(r => r.id !== id);
         this.setState({cooperativas: arr});

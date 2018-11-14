@@ -3,6 +3,7 @@ import { Button, Table, Card, CardBody, CardFooter, CardHeader, Col, Form, Label
 import axios from "axios";
 import {API_ROOT} from "../../config";
 import {Redirect} from "react-router-dom";
+import API from '../../services/api';
 
 export default class ViewCooperativa extends React.Component{
   constructor(props){
@@ -14,7 +15,7 @@ export default class ViewCooperativa extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    axios.get(`${API_ROOT}/cooperativa/${id}`)
+    API.get(`/cooperativa/${id}`)
       .then(res => {
         const coop = res.data;
         this.setState({ cooperativa: coop});
