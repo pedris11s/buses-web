@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import {API_ROOT} from "../../config";
+import API from '../../services/api';
 
 export default class ViewBus extends React.Component{
 
@@ -15,7 +16,7 @@ export default class ViewBus extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    axios.get(`${API_ROOT}/bus/${id}`)
+    API.get(`/bus/${id}`)
       .then(res => {
         const b = res.data;
         //console.log(r);

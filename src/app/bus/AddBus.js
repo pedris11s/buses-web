@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import {API_ROOT} from "../../config";
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import API from '../../services/api';
 
 export default class AddBus extends React.Component{
   constructor(props){
@@ -29,7 +30,7 @@ export default class AddBus extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/cooperativa`)
+    API.get(`/cooperativa`)
       .then(res => {
         const coop = res.data;
         if(coop.length > 0)
@@ -40,7 +41,7 @@ export default class AddBus extends React.Component{
             });
       });
 
-    axios.get(`${API_ROOT}/ruta`)
+    /*API.get(`/ruta`)
       .then(res => {
         const r = res.data;
         if(r.length > 0)
@@ -48,7 +49,7 @@ export default class AddBus extends React.Component{
             {
               rutas: r
             });
-      });
+      });*/
   }
 
   handleNoBusChange = event => {
@@ -83,7 +84,7 @@ export default class AddBus extends React.Component{
       //rutas: this.state.rutas_bus
     };
     //console.log(bus);
-    axios.post(`${API_ROOT}/bus/`, bus)
+    API.post(`/bus/`, bus)
       .then(res => {
         //this.props.addRuta(ruta);
         //console.log(this.state.buses_ruta);

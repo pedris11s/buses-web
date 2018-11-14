@@ -4,6 +4,7 @@ import {API_ROOT} from "../../config";
 
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import {Redirect} from "react-router-dom";
+import API from '../../services/api';
 
 export default class ListarBuses extends React.Component{
   constructor(props){
@@ -28,7 +29,7 @@ export default class ListarBuses extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/bus`)
+    API.get(`/bus`)
       .then(res => {
         const b = res.data;
         this.setState({buses: b});
@@ -36,7 +37,7 @@ export default class ListarBuses extends React.Component{
   }
 
   deleteBus(id){
-    axios.delete(`${API_ROOT}/bus/${id}`)
+    API.delete(`/bus/${id}`)
       .then(res => {
         const arr = this.state.buses.filter(r => r.id !== id);
         this.setState({buses: arr});
