@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Button, Table, Card, CardBody, CardFooter, CardHeader, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
 import {API_ROOT} from "../../config";
+import API from '../../services/api';
 
 export default class AddOficina extends React.Component{
   constructor(props){
@@ -28,7 +29,7 @@ export default class AddOficina extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/cooperativa`)
+    API.get(`/cooperativa`)
       .then(res => {
         const coops = res.data;
         if(coops.length > 0)
@@ -81,7 +82,7 @@ export default class AddOficina extends React.Component{
       //cooperativa: this.state.coop_off
     }
 
-    axios.post(`${API_ROOT}/oficina/`, oficina)
+    API.post(`/oficina/`, oficina)
       .then(res => {
         //console.log(res.data);
         this.setState({

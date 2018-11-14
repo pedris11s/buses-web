@@ -2,6 +2,7 @@ import React from 'react';
 import { FormGroup, Form, Label, Modal, ModalHeader, Input, ModalBody, Button } from 'reactstrap';
 import {API_ROOT} from "../../config";
 import axios from 'axios';
+import API from '../../services/api';
 
 export default class AddCoopRuta extends React.Component{
 
@@ -17,7 +18,7 @@ export default class AddCoopRuta extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/cooperativa`)
+    API.get(`/cooperativa`)
       .then(res => {
         const coops = res.data;
         //console.log(coops[0]);
@@ -44,7 +45,7 @@ export default class AddCoopRuta extends React.Component{
 
     const id = this.props.oficina.id;
 
-    axios.put(`${API_ROOT}/oficina/${id}`, {
+    API.put(`/oficina/${id}`, {
       cooperativa: this.state.cooperativa
     }).then(res => {
       this.toggle();

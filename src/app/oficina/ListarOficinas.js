@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import {API_ROOT} from "../../config";
 import {Redirect} from "react-router-dom";
+import API from '../../services/api';
 
 export default class ListarOficinas extends React.Component{
 
@@ -18,11 +19,20 @@ export default class ListarOficinas extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/oficina`)
+    API.get('/oficina')
       .then(res => {
         const arr = res.data;
         this.setState({oficinas: arr});
       })
+      .catch(err => {
+        //FIXME
+        alert("soy un error" + err);
+      });
+    /*axios.get(`${API_ROOT}/oficina`)
+      .then(res => {
+        const arr = res.data;
+        this.setState({oficinas: arr});
+      })*/
   }
 
   setViewRedirect = () => {
@@ -37,7 +47,7 @@ export default class ListarOficinas extends React.Component{
   }
 
   deleteOficina(id){
-    axios.delete(`${API_ROOT}/oficina/${id}`)
+    API.delete(`/oficina/${id}`)
       .then(res => {
         const arr = this.state.oficinas.filter(r => r.id !== id);
         this.setState({oficinas: arr});

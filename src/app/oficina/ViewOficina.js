@@ -2,7 +2,10 @@ import React from 'react';
 import axios from "axios";
 import {API_ROOT} from "../../config";
 
+
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
+import API from '../../services/api';
+
 
 export default class ViewOficina extends React.Component{
 
@@ -15,7 +18,7 @@ export default class ViewOficina extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    axios.get(`${API_ROOT}/oficina/${id}`)
+    API.get(`/oficina/${id}`)
       .then(res => {
         const off = res.data;
         this.setState({oficina:off});
