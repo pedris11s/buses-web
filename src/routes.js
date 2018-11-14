@@ -3,6 +3,7 @@ import Loadable from 'react-loadable'
 
 import DefaultLayout from './containers/DefaultLayout';
 import AddBus from "./app/bus/AddBus";
+import ViewRuta from "./app/ruta/ViewRuta";
 
 function Loading() {
   return <div>Loading...</div>;
@@ -197,8 +198,8 @@ const addRuta = Loadable({
   loading: Loading,
 });
 
-const viewRutaContainer = Loadable({
-  loader: () => import('./app/ruta/ViewRutaContainer'),
+const viewRuta = Loadable({
+  loader: () => import('./app/ruta/ViewRuta'),
   loading: Loading,
 });
 
@@ -257,7 +258,7 @@ const routes = [
 
   { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
   { path: '/rutas/view/add', exact: true, name: 'Adicionar ruta', component: addRuta },
-  { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRutaContainer},
+  { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRuta},
 
   { path: '/coops/view', exact: true, name: 'Cooperativas', component: indexCooperativa },
   { path: '/coops/view/add', exact: true, name: 'Adicionar cooperativa', component: addCoop },

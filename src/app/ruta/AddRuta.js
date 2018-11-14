@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import {API_ROOT} from "../../config";
+import API from '../../services/api';
 
 //TODO alert succesfull cuando se adiciona ruta
 
@@ -31,7 +32,7 @@ export default class AddRuta extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/cooperativa`)
+    API.get(`/cooperativa`)
       .then(res => {
         const coops = res.data;
         if(coops.length > 0)
@@ -86,7 +87,7 @@ export default class AddRuta extends React.Component{
       //buses: this.state.buses_ruta
     };
 
-    axios.post(`${API_ROOT}/ruta/`, ruta)
+    API.post(`/ruta/`, ruta)
       .then(res => {
         //this.props.addRuta(ruta);
         //console.log(this.state.buses_ruta);

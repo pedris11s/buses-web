@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import {API_ROOT} from "../../config";
+import API from '../../services/api';
 
 export default class ViewRuta extends React.Component{
 
@@ -15,7 +16,7 @@ export default class ViewRuta extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    axios.get(`${API_ROOT}/ruta/${id}`)
+    API.get(`/ruta/${id}`)
       .then(res => {
         const r = res.data;
         //console.log(r);

@@ -4,6 +4,7 @@ import {API_ROOT} from "../../config";
 import { Redirect } from 'react-router-dom';
 
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import API from '../../services/api';
 
 const RutaRow = props => {
   const ruta = props.ruta;
@@ -44,7 +45,7 @@ export default class ListarRutas extends React.Component{
   }
 
   deleteRuta = (id) => {
-    axios.delete(`${API_ROOT}/ruta/${id}`)
+    API.delete(`/ruta/${id}`)
       .then(res => {
         const arr = this.state.rutas.filter(r => r.id !== id);
         this.setState({rutas: arr});
@@ -68,7 +69,7 @@ export default class ListarRutas extends React.Component{
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/ruta`)
+    API.get(`/ruta`)
       .then(res => {
         //console.log(res.data);
         const rutas = res.data;
