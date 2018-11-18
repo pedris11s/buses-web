@@ -262,7 +262,9 @@ const indexUser = Loadable({
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
+  // { path: '*', redirect: "/dashboard"},
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+
 
   { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
   { path: '/rutas/view/add', exact: true, name: 'Adicionar ruta', component: addRuta },

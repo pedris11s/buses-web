@@ -32,7 +32,8 @@ class Login extends Component {
 
     this.Auth.login(this.state.username,this.state.password)
       .then(res =>{
-        this.props.history.replace('/');
+        if(res.success)
+          this.props.history.replace('/');
       })
       .catch(err =>{
         alert(err);
@@ -57,7 +58,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" onChange={this.handleChange}/>
+                        <Input type="text" placeholder="Username" name="username" onChange={this.handleChange}/>
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -65,7 +66,7 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" onChange={this.handleChange}/>
+                        <Input type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
                       </InputGroup>
                       <Row>
                         <Col>

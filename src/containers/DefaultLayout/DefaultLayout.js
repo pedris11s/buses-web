@@ -30,7 +30,13 @@ const Auth = new AuthService();
 
 class DefaultLayout extends Component {
 
-  action(){
+  componentWillMount(){
+    if(!Auth.loggedIn()) {
+      alert("NO ESTAS LOGUEADO");
+      this.props.history.replace('/login');
+    }
+  }
+  handleLogout(){
     localStorage.removeItem('id_token');
     this.props.history.replace('/login');
   }
@@ -42,7 +48,7 @@ class DefaultLayout extends Component {
           <DefaultHeader />
           <Nav navbar>
             <NavItem className="d-md-down-none">
-              <NavLink href="#" onClick={this.action.bind(this)}><i className="fa fa-sign-out" ></i></NavLink>
+              <NavLink href="#" onClick={this.handleLogout.bind(this)}><i className="fa fa-sign-out" ></i></NavLink>
             </NavItem>
           </Nav>
         </AppHeader>
@@ -65,7 +71,6 @@ class DefaultLayout extends Component {
                       : (null);
                   },
                 )}
-                <Redirect from="/" to="/dashboard" />
               </Switch>
             </Container>
           </main>
