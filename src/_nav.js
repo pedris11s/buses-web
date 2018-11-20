@@ -20,7 +20,7 @@ export default {
     },
     {
       name: 'Usuarios',
-      url: '/TODO',
+      url: '/users/view',
       icon: 'icon-people',
     },
     {

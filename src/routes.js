@@ -252,6 +252,14 @@ const viewBus = Loadable({
   loading: Loading,
 });
 
+
+/*USERS*/
+const indexUser = Loadable({
+  loader: () => import('./app/user/indexUser'),
+  loading: Loading,
+});
+
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Home', component: DefaultLayout },
@@ -271,6 +279,8 @@ const routes = [
   { path: '/buses/view', exact: true, name: 'Buses', component: indexBus },
   { path: '/buses/view/add', exact: true, name: 'Adicionar bus', component: addBus },
   { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
+
+  { path: '/users/view', exact: true, name: 'Users', component: indexUser },
 
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
@@ -310,8 +320,8 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  //{ path: '/users', exact: true,  name: 'Users', component: Users },
+  //{ path: '/users/:id', exact: true, name: 'User Details', component: User },
 ];
 
 export default routes;
