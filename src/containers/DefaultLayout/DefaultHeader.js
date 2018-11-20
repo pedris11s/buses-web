@@ -36,19 +36,14 @@ class DefaultHeader extends Component {
           <NavItem className="d-md-down-none">
             <NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
           </NavItem>
-          <AppHeaderDropdown direction="down">
-            <DropdownToggle nav>
-              <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
-            </DropdownToggle>
-            <DropdownMenu right style={{ right: 'auto' }}>
-              <DropdownItem header tag="div" className="text-center"><strong>Account</strong></DropdownItem>
-              <DropdownItem><i className="fa fa-user"></i> Profile</DropdownItem>
-              <DropdownItem><i className="fa fa-wrench"></i> Settings</DropdownItem>
-              <DropdownItem><i className="fa fa-sign-out"></i> Logout</DropdownItem>
-            </DropdownMenu>
-          </AppHeaderDropdown>
+          <NavItem className="d-md-down-none">
+            <NavLink href="#"><i className="fa fa-user"></i></NavLink>
+          </NavItem>
+          <NavItem className="d-md-down-none">
+            <NavLink href="#"><i className="fa fa-wrench"></i></NavLink>
+          </NavItem>
         </Nav>
-        <AppAsideToggler className="d-md-down-none" />
+        {/*<AppAsideToggler className="d-md-down-none" />*/}
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
       </React.Fragment>
     );

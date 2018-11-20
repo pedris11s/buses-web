@@ -12,8 +12,10 @@ class Login extends Component {
   }
 
   componentWillMount(){
-    if(this.Auth.loggedIn())
+    if(this.Auth.loggedIn()) {
+      //alert("ESTAS LOGUEADO");
       this.props.history.replace('/');
+    }
   }
 
 

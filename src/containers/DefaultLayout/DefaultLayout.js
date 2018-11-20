@@ -22,12 +22,29 @@ import DefaultAside from './DefaultAside';
 import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
 
+import { Button, Nav, NavItem, NavLink} from 'reactstrap';
+
+import AuthService from '../../services/AuthService';
+import withAuth from '../../services/withAuth';
+const Auth = new AuthService();
+
 class DefaultLayout extends Component {
+
+  action(){
+    localStorage.removeItem('id_token');
+    this.props.history.replace('/login');
+  }
+
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
           <DefaultHeader />
+          <Nav navbar>
+            <NavItem className="d-md-down-none">
+              <NavLink href="#" onClick={this.action.bind(this)}><i className="fa fa-sign-out" ></i></NavLink>
+            </NavItem>
+          </Nav>
         </AppHeader>
         <div className="app-body">
           <AppSidebar fixed display="lg">
