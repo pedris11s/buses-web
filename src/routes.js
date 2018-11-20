@@ -262,9 +262,9 @@ const indexUser = Loadable({
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  // { path: '*', redirect: "/dashboard"},
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
 
+  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
 
   { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
   { path: '/rutas/view/add', exact: true, name: 'Adicionar ruta', component: addRuta },
@@ -284,7 +284,8 @@ const routes = [
 
   { path: '/users/view', exact: true, name: 'Users', component: indexUser },
 
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+
+
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },

@@ -6,7 +6,14 @@ import AuthService from '../services/AuthService';
 class Login extends Component {
   constructor(){
     super();
-    this.handleChange = this.handleChange.bind(this);
+
+    this.state = {
+      username: '',
+      password: ''
+    }
+
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.Auth = new AuthService();
   }
@@ -19,12 +26,12 @@ class Login extends Component {
   }
 
 
-  handleChange(e){
-    this.setState(
-      {
-        [e.target.name]: e.target.value
-      }
-    )
+  handleUsernameChange(e){
+    this.setState({ username: e.target.value});
+  }
+
+  handlePasswordChange(e){
+    this.setState({ password: e.target.value});
   }
 
   handleFormSubmit(e){
@@ -34,6 +41,12 @@ class Login extends Component {
       .then(res =>{
         if(res.success)
           this.props.history.replace('/');
+        else{
+          this.setState({
+            username: '',
+            password: ''
+          });
+        }
       })
       .catch(err =>{
         alert(err);
@@ -58,7 +71,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" name="username" onChange={this.handleChange}/>
+                        <Input type="text" placeholder="Username" name="username" value={this.state.username} onChange={this.handleUsernameChange} required/>
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -66,7 +79,7 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" name="password" onChange={this.handleChange}/>
+                        <Input type="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handlePasswordChange} required/>
                       </InputGroup>
                       <Row>
                         <Col>

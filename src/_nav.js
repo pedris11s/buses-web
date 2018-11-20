@@ -4,10 +4,6 @@ export default {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
     },
     {
       title: true,
@@ -43,7 +39,7 @@ export default {
       url: '/buses/view',
       icon: 'fa fa-bus',
     },
-    {
+    /*{
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
@@ -301,6 +297,6 @@ export default {
       url: 'http://coreui.io/pro/react/',
       icon: 'icon-layers',
       variant: 'danger',
-    },
+    },*/
   ],
 };
