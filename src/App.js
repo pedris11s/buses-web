@@ -5,7 +5,6 @@ import './App.scss';
 // Containers
 import { DefaultLayout } from './containers';
 // Pages
-import { Page404, Page500, Register } from './views/Pages';
 import Login from './app/Login';
 
 // import { renderRoutes } from 'react-router-config';

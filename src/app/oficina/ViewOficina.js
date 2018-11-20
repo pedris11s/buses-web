@@ -1,8 +1,4 @@
 import React from 'react';
-import axios from "axios";
-import {API_ROOT} from "../../config";
-
-
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import {
@@ -25,7 +25,6 @@ import DefaultHeader from './DefaultHeader';
 import { Button, Nav, NavItem, NavLink} from 'reactstrap';
 
 import AuthService from '../../services/AuthService';
-import withAuth from '../../services/withAuth';
 const Auth = new AuthService();
 
 class DefaultLayout extends Component {

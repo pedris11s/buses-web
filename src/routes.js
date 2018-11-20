@@ -2,8 +2,6 @@ import React from 'react';
 import Loadable from 'react-loadable'
 
 import DefaultLayout from './containers/DefaultLayout';
-import AddBus from "./app/bus/AddBus";
-import ViewRuta from "./app/ruta/ViewRuta";
 
 function Loading() {
   return <div>Loading...</div>;
@@ -185,7 +183,6 @@ const User = Loadable({
 });
 
 //AQUI EMPIEZA LO MIO
-
 
 /*RUTAS*/
 const indexRuta = Loadable({

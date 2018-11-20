@@ -1,9 +1,6 @@
 import React from 'react';
-import { Button, Table, Card, CardBody, CardFooter, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
-import axios from "axios";
-import {API_ROOT} from "../../config";
+import { Button, Table, Card, CardBody, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
 import API from '../../services/api';
-
 
 export default class AddCooperativa extends React.Component {
   constructor(props) {

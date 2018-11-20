@@ -10,15 +10,13 @@ export default class indexRuta extends React.Component{
       <div>
         <Row>
           <Col>
-
             <div class="pull-right">
-              <a href="#/rutas/view/add" >
+              <a href="/rutas/view/add" >
                 <Button size="sm" color="success"><i className="fa fa-plus-square"></i>&nbsp;Add ruta</Button>
               </a>
             </div>
           </Col>
         </Row>
-
         <br/>
         <ListarRutas/>
       </div>

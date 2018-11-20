@@ -1,35 +1,7 @@
 import React from 'react';
-import axios from 'axios';
-import {API_ROOT} from "../../config";
 import { Redirect } from 'react-router-dom';
-
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
-
-const RutaRow = props => {
-  const ruta = props.ruta;
-  const rutaLink = `#/rutas/view/${ruta.id}`;
-
-  return (
-    <tr>
-      <td>{ruta.nombre}</td>
-      <td>{ruta.coo_origen}</td>
-      <td>{ruta.coo_destino}</td>
-      <td>{ruta.ciudad_origen}</td>
-      <td>{ruta.ciudad_destino}</td>
-      <td>
-        <a href={rutaLink}>
-          <Button size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
-        </a>
-        &nbsp;
-        <a>
-          {/*onClick={() => this.props.deleteRuta(ruta.id)}*/}
-          <Button onClick={ () => this.props.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
-        </a>
-      </td>
-    </tr>
-  );
-}
 
 export default class ListarRutas extends React.Component{
   constructor(props){
@@ -111,9 +83,7 @@ export default class ListarRutas extends React.Component{
                           {this.viewRuta(ruta.id)}
                           <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                         &nbsp;
-                        <a>
                           <Button onClick={ () => this.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
-                        </a>
                       </td>
                     </tr>
                   )}

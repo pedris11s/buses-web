@@ -1,7 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-import { Button, Table, Card, CardBody, CardFooter, CardHeader, Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
-import {API_ROOT} from "../../config";
+import { Button, Table, Card, CardBody, CardHeader, Col, Form, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
 export default class AddOficina extends React.Component{

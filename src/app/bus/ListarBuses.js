@@ -1,7 +1,4 @@
 import React from 'react';
-import axios from 'axios';
-import {API_ROOT} from "../../config";
-
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import {Redirect} from "react-router-dom";
 import API from '../../services/api';
@@ -23,7 +20,6 @@ export default class ListarBuses extends React.Component{
 
   viewBus = (id) => {
     const link = `/buses/view/${id}`;
-    //console.log(link);
     if(this.state.viewRedirect)
       return <Redirect to={link}/>
   }
