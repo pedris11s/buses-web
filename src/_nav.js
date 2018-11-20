@@ -31,7 +31,7 @@ export default {
     {
       name: 'Cooperativas',
       url: '/coops/view',
-      icon: 'fa fa-industry',
+      icon: 'icon-home',
     },
     {
       name: 'Rutas',
