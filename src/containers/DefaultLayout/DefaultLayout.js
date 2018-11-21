@@ -22,7 +22,7 @@ import DefaultAside from './DefaultAside';
 import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
 
-import { Button, Nav, NavItem, NavLink} from 'reactstrap';
+import { Nav, NavItem, NavLink} from 'reactstrap';
 
 import AuthService from '../../services/AuthService';
 const Auth = new AuthService();
@@ -31,12 +31,13 @@ class DefaultLayout extends Component {
 
   componentWillMount(){
     if(!Auth.loggedIn()) {
-      alert("NO ESTAS LOGUEADO");
+      //alert("NO ESTAS LOGUEADO");
       this.props.history.replace('/login');
     }
   }
+
   handleLogout(){
-    localStorage.removeItem('id_token');
+    Auth.logout();
     this.props.history.replace('/login');
   }
 
