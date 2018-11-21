@@ -69,8 +69,8 @@ export default class ListarCooperativas extends React.Component{
                   <tbody>
 
                       {
-                        this.state.cooperativas.map(coop =>
-                          <tr>
+                        this.state.cooperativas.map((coop, index) =>
+                          <tr key={index}>
                             <td>{coop.nombre}</td>
                             <td>{coop.pais}</td>
                             <td>{coop.provincia}</td>

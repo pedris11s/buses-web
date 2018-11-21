@@ -73,7 +73,7 @@ export default class ListarRutas extends React.Component{
                   </thead>
                   <tbody>
                   { this.state.rutas.map( (ruta, index) =>
-                    <tr>
+                    <tr key={index}>
                       <td>{ruta.nombre}</td>
                       <td>{ruta.coo_origen}</td>
                       <td>{ruta.coo_destino}</td>

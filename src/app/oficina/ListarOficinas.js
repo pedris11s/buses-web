@@ -79,7 +79,7 @@ export default class ListarOficinas extends React.Component{
                   <tbody>
                     {
                       this.state.oficinas.map( (oficina, index) => (
-                        <tr>
+                        <tr key={index}>
                           <td>{oficina.nombre}</td>
                           <td>{oficina.ciudad}</td>
                           <td>{oficina.direccion}</td>

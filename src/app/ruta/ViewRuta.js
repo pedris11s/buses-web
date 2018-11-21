@@ -77,7 +77,7 @@ export default class ViewRuta extends React.Component{
                   <Col xs="3">
                     <Card>
                       <CardHeader className="text-center">
-                        <i className="fa fa-industry"></i> Cooperativas
+                        <i className="icon-home"></i> Cooperativas
                       </CardHeader>
                       <CardBody className="text-center">
                         { cooperativas }

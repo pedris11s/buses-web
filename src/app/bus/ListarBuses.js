@@ -67,8 +67,8 @@ export default class ListarBuses extends React.Component{
                   <tbody>
 
                   {
-                    this.state.buses.map(bus =>
-                      <tr>
+                    this.state.buses.map((bus, index) =>
+                      <tr key={index}>
                         <td>{bus.placa}</td>
                         <td>{bus.nobus}</td>
                         <td>{bus.frecuencia}</td>
