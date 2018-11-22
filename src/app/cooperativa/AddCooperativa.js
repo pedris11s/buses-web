@@ -36,26 +36,6 @@ export default class AddCooperativa extends React.Component {
   }
 
   componentDidMount(){
-    /*API.get(`/ruta`)
-      .then(res => {
-        const r = res.data;
-        if(r.length > 0)
-          this.setState(
-            {
-              rutas: r
-            });
-      });
-
-    API.get(`/bus`)
-      .then(res => {
-        const buses = res.data;
-        if(buses.length > 0)
-          this.setState(
-            {
-              buses: buses,
-            });
-      });*/
-
     API.get(`/oficina`)
       .then(res => {
         const off = res.data;
@@ -206,7 +186,6 @@ export default class AddCooperativa extends React.Component {
                       </Col>
 
                       <Col xs="6">
-
                         <Table responsive striped hover>
                           <tbody>
                           <tr>
@@ -247,7 +226,11 @@ export default class AddCooperativa extends React.Component {
                           </tbody>
                         </Table>
                       </Col>
-                      <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                      </Col>
                     </Row>
                   </CardBody>
                 </Card>
