@@ -26,27 +26,36 @@ export default class ViewOficina extends React.Component{
     let cooperativas = (this.state.oficina.cooperativas === undefined ||
                         this.state.oficina.cooperativas === null ||
                         this.state.oficina.cooperativas.length === 0) ?
-                          <strong>No asignada</strong>
+                          <strong>No asignadas</strong>
                         : this.state.oficina.cooperativas.map(coop =>
                             <tr>
-                              <td>{coop.nombre}</td>
+                              <td><a href={`/coops/view/${coop.id}`}>{coop.nombre}</a></td>
                             </tr>
                           );
 
     return (
       <div className="animated fadeIn">
-
         <Row>
           <Col>
+            <div class="pull-right">
+              <a href="">
+                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar oficina</Button>
+              </a>
+            </div>
+          </Col>
+        </Row>
+        <br/>
+
+        <Row>
+          <Col xs="9">
             <Card>
               <CardHeader>
                 <strong><i className="icon-info pr-1"></i>Oficina id: {this.state.oficina.id}</strong>
               </CardHeader>
               <CardBody>
                 <Row>
-
-                  <Col xs="9">
-                    <Table responsive striped hover>
+                  <Col>
+                    <Table responsive striped>
                       <tbody>
                       <tr>
                         <td>Nombre:</td>
@@ -72,31 +81,33 @@ export default class ViewOficina extends React.Component{
                         <td>Whatsapp:</td>
                         <td><strong>{this.state.oficina.whatsapp}</strong></td>
                       </tr>
+                      <tr>
+                        <td>Creada:</td>
+                        <td><strong>{this.state.oficina.createdAt}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Modificada:</td>
+                        <td><strong>{this.state.oficina.updatedAt}</strong></td>
+                      </tr>
                       </tbody>
                     </Table>
                   </Col>
-
-                  <Col xs="3">
-                    <Card>
-                      <CardHeader className="text-center">
-                        <i className="icon-home"></i> Cooperativas
-                      </CardHeader>
-                      <CardBody className="text-center">
-                        <Table responsive striped hover>
-                          <tbody>
-                            {cooperativas}
-                          </tbody>
-                        </Table>
-                      </CardBody>
-                    </Card>
-                  </Col>
                 </Row>
+              </CardBody>
+            </Card>
+          </Col>
 
-                <Row>
-                  <Col>
-                    <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
-                  </Col>
-                </Row>
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="icon-home"></i> Cooperativas
+              </CardHeader>
+              <CardBody className="text-center">
+                <Table responsive hover>
+                  <tbody>
+                  {cooperativas}
+                  </tbody>
+                </Table>
               </CardBody>
             </Card>
           </Col>
