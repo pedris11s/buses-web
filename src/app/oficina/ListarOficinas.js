@@ -66,7 +66,7 @@ export default class ListarOficinas extends React.Component{
                 <i className="icon-briefcase"></i> <strong>Lista de Oficinas</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
                   <tr>
                     <th>Nombre</th>

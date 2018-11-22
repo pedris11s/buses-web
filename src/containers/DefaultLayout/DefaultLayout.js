@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 import {
@@ -25,16 +25,17 @@ import DefaultHeader from './DefaultHeader';
 import { Nav, NavItem, NavLink} from 'reactstrap';
 
 import AuthService from '../../services/AuthService';
+import withAuth from '../../services/withAuth';
 const Auth = new AuthService();
 
 class DefaultLayout extends Component {
 
-  componentWillMount(){
+  /*componentWillMount(){
     if(!Auth.loggedIn()) {
       //alert("NO ESTAS LOGUEADO");
       this.props.history.replace('/login');
     }
-  }
+  }*/
 
   handleLogout(){
     Auth.logout();
@@ -71,7 +72,7 @@ class DefaultLayout extends Component {
                       : (null);
                   },
                 )}
-                {/*<Redirect from="/" to="/dashboard" />*/}
+                <Redirect from="/" to="/dashboard" />
               </Switch>
             </Container>
           </main>
@@ -87,4 +88,4 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+export default withAuth(DefaultLayout);
