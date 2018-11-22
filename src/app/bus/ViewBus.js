@@ -31,16 +31,26 @@ export default class ViewBus extends React.Component{
 
     return (
       <div className="animated fadeIn">
-
         <Row>
           <Col>
+            <div class="pull-right">
+              <a href="" >
+                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar bus</Button>
+              </a>
+            </div>
+          </Col>
+        </Row>
+        <br/>
+
+        <Row>
+          <Col xs="9">
             <Card>
               <CardHeader>
                 <strong><i className="icon-info pr-1"></i>Bus id: {this.state.bus.id}</strong>
               </CardHeader>
               <CardBody>
                 <Row>
-                  <Col xs="9">
+                  <Col >
                     <Table responsive striped hover>
                       <tbody>
                       <tr>
@@ -63,24 +73,29 @@ export default class ViewBus extends React.Component{
                         <td>Cooperativa:</td>
                         <td><strong>{this.state.bus.placa}</strong></td>
                       </tr>
-
+                      <tr>
+                        <td>Creado:</td>
+                        <td><strong>{this.state.bus.createdAt}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Modificado:</td>
+                        <td><strong>{this.state.bus.updatedAt}</strong></td>
+                      </tr>
                       </tbody>
                     </Table>
                   </Col>
-
-                  <Col xs="3">
-                    <Card>
-                      <CardHeader className="text-center">
-                        <i className="icon-cursor"></i> Rutas
-                      </CardHeader>
-                      <CardBody className="text-center">
-
-                      </CardBody>
-                    </Card>
-
-                    <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
-                  </Col>
                 </Row>
+              </CardBody>
+            </Card>
+          </Col>
+
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="icon-cursor"></i> Rutas
+              </CardHeader>
+              <CardBody className="text-center">
+                <strong>POR ARREGLAR!!!</strong>
               </CardBody>
             </Card>
           </Col>

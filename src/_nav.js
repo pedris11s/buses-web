@@ -7,7 +7,7 @@ export default {
     },
     {
       title: true,
-      name: 'Admin',
+      name: 'Administración',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
         attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}

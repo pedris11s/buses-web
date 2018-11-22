@@ -54,7 +54,7 @@ export default class ListarBuses extends React.Component{
                 <i className="fa fa-bus"></i> <strong>Lista de Buses</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
                   <tr>
                     <th>Placa</th>

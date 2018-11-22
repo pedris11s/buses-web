@@ -60,7 +60,7 @@ export default class ListarRutas extends React.Component{
                 <i className="icon-cursor"></i> <strong>Lista de Rutas</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
                   <tr>
                     <th>Nombre</th>

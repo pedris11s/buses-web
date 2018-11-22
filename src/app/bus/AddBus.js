@@ -156,7 +156,11 @@ export default class AddBus extends React.Component{
                           </tbody>
                         </Table>
                       </Col>
-                      <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                      </Col>
                     </Row>
                   </CardBody>
                 </Card>

@@ -56,7 +56,7 @@ export default class ListarCooperativas extends React.Component{
                 <i className="fa fa-industry"></i> <strong>Lista de Cooperativas</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
                   <tr>
                     <th>Nombre</th>
