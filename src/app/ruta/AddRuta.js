@@ -108,64 +108,62 @@ export default class AddRuta extends React.Component{
       <div>
 
       <div className="animated fadeIn">
+        <Form onSubmit={this.handleSubmit} className="form-horizontal">
+          <Row>
+            <Col xs="9">
+              <Card>
+                <CardHeader>
+                  <i className="fa fa-plus-square-o"></i> <strong>Crear Ruta</strong>
+                </CardHeader>
+                <CardBody>
+                  <Row>
+                    <Col>
+                      <Table responsive striped hover>
+                        <tbody>
+                        <tr>
+                          <td>Nombre:</td>
+                          <td><Input type="text" value={this.state.nombre} onChange={this.handleNombreChange} required/></td>
+                        </tr>
+                        <tr>
+                          <td>Coo. Origen:</td>
+                          <td><Input type="text" value={this.state.coo_origen} onChange={this.handleCooOrigenChange} required/></td>
+                        </tr>
+                        <tr>
+                          <td>Coo.Destino:</td>
+                          <td><Input type="text" value={this.state.coo_destino} onChange={this.handleCooDestinoChange} required/></td>
+                        </tr>
+                        <tr>
+                          <td>Ciudad Origen:</td>
+                          <td><Input type="text" value={this.state.ciudad_origen} onChange={this.handleCiudadOrigenChange} required/></td>
+                        </tr>
+                        <tr>
+                          <td>Ciudad Destino:</td>
+                          <td><Input type="text"  value={this.state.ciudad_destino} onChange={this.handleCiudadDestinoChange} required/></td>
+                        </tr>
+                        </tbody>
+                      </Table>
+                    </Col>
+                  </Row>
+                </CardBody>
+              </Card>
+            </Col>
 
-        <Row>
-          <Col>
-            <Form onSubmit={this.handleSubmit} className="form-horizontal">
-
-            <Card>
-              <CardHeader>
-                <i className="fa fa-plus-square-o"></i> <strong>Crear Ruta</strong>
-              </CardHeader>
-              <CardBody>
-                <Row>
-                  <Col xs="9">
-                    <Table responsive striped hover>
-                      <tbody>
-                      <tr>
-                        <td>Nombre:</td>
-                        <td><Input type="text" value={this.state.nombre} onChange={this.handleNombreChange} required/></td>
-                      </tr>
-                      <tr>
-                        <td>Coo. Origen:</td>
-                        <td><Input type="text" value={this.state.coo_origen} onChange={this.handleCooOrigenChange} required/></td>
-                      </tr>
-                      <tr>
-                        <td>Coo.Destino:</td>
-                        <td><Input type="text" value={this.state.coo_destino} onChange={this.handleCooDestinoChange} required/></td>
-                      </tr>
-                      <tr>
-                        <td>Ciudad Origen:</td>
-                        <td><Input type="text" value={this.state.ciudad_origen} onChange={this.handleCiudadOrigenChange} required/></td>
-                      </tr>
-                      <tr>
-                        <td>Ciudad Destino:</td>
-                        <td><Input type="text"  value={this.state.ciudad_destino} onChange={this.handleCiudadDestinoChange} required/></td>
-                      </tr>
-                      </tbody>
-                    </Table>
-                  </Col>
-
-                  <Col xs="3">
-                    <Card>
-                      <CardHeader className="text-center">
-                        <i className="icon-home"></i> Cooperativas
-                      </CardHeader>
-                      <CardBody className="text-center">
-                        <Input type="select" multiple onChange={this.handleCoopChange} required>
-                          { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
-                        </Input>
-                      </CardBody>
-                    </Card>
-                    <br/>
-                    <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
-                  </Col>
-                </Row>
-              </CardBody>
-            </Card>
-            </Form>
-          </Col>
-        </Row>
+            <Col xs="3">
+              <Card>
+                <CardHeader className="text-center">
+                  <i className="icon-home"></i> Cooperativas
+                </CardHeader>
+                <CardBody className="text-center">
+                  <Input type="select" multiple onChange={this.handleCoopChange} required>
+                    { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
+                  </Input>
+                </CardBody>
+              </Card>
+              <br/>
+              <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+            </Col>
+          </Row>
+        </Form>
       </div>
       </div>
     );

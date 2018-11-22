@@ -67,7 +67,7 @@ export default class ViewCooperativa extends React.Component{
                 <CardBody>
                   <Row>
                     <Col>
-                      <Table responsive striped hover>
+                      <Table responsive striped>
                         <tbody>
                         <tr>
                           <td>Nombre:</td>

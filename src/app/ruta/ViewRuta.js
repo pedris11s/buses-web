@@ -31,7 +31,7 @@ export default class ViewRuta extends React.Component{
                         <strong>No asignado</strong>
                         : this.state.ruta.cooperativa.map(coop =>
                           <tr>
-                            <td>{coop}</td>
+                            <td><a href={`/coops/view/${coop}`}>{coop}</a></td>
                           </tr>
                         );
     console.log(cooperativas);
@@ -41,14 +41,25 @@ export default class ViewRuta extends React.Component{
 
         <Row>
           <Col>
+            <div class="pull-right">
+              <a href="" >
+                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar ruta</Button>
+              </a>
+            </div>
+          </Col>
+        </Row>
+        <br/>
+
+        <Row>
+          <Col xs="6">
             <Card>
               <CardHeader>
                 <strong><i className="icon-info pr-1"></i>Ruta id: {this.state.ruta.id}</strong>
               </CardHeader>
               <CardBody>
                 <Row>
-                  <Col xs="9">
-                    <Table responsive striped hover>
+                  <Col>
+                    <Table responsive striped>
                       <tbody>
                       <tr>
                         <td>Nombre:</td>
@@ -70,23 +81,49 @@ export default class ViewRuta extends React.Component{
                         <td>Ciudad Destino:</td>
                         <td><strong>{this.state.ruta.ciudad_destino}</strong></td>
                       </tr>
+                      <tr>
+                        <td>Creada:</td>
+                        <td><strong>{this.state.ruta.createdAt}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Modificada:</td>
+                        <td><strong>{this.state.ruta.updatedAt}</strong></td>
+                      </tr>
                       </tbody>
                     </Table>
                   </Col>
-
-                  <Col xs="3">
-                    <Card>
-                      <CardHeader className="text-center">
-                        <i className="icon-home"></i> Cooperativas
-                      </CardHeader>
-                      <CardBody className="text-center">
-                        { cooperativas }
-                      </CardBody>
-                    </Card>
-
-                    <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
-                  </Col>
                 </Row>
+              </CardBody>
+            </Card>
+          </Col>
+
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="icon-home"></i> Cooperativas
+              </CardHeader>
+              <CardBody className="text-center">
+                <Table responsive hover>
+                  <tbody>
+                    { cooperativas }
+                  </tbody>
+                </Table>
+
+              </CardBody>
+            </Card>
+          </Col>
+
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="fa fa-bus"></i> Buses
+              </CardHeader>
+              <CardBody className="text-center">
+                <Table responsive hover>
+                  <tbody>
+                  <strong>POR ARREGLAR!!!</strong>
+                  </tbody>
+                </Table>
               </CardBody>
             </Card>
           </Col>
