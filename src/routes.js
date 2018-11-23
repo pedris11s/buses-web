@@ -256,11 +256,21 @@ const indexUser = Loadable({
   loading: Loading,
 });
 
+const addUser = Loadable({
+  loader: () => import('./app/user/AddUser'),
+  loading: Loading,
+});
+
+const viewUser = Loadable({
+  loader: () => import('./app/user/ViewUser'),
+  loading: Loading,
+});
+
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
 
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
+  { path: '/', exact: true, name: 'Inicio', component: DefaultLayout },
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
 
   { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
@@ -279,7 +289,9 @@ const routes = [
   { path: '/buses/view/add', exact: true, name: 'Adicionar bus', component: addBus },
   { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
 
-  { path: '/users/view', exact: true, name: 'Users', component: indexUser },
+  { path: '/users/view', exact: true, name: 'Usuarios', component: indexUser },
+  { path: '/users/view/add', exact: true, name: 'Adicionar Administrador', component: addUser },
+  { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
 
 
 
