@@ -97,7 +97,7 @@ export default class AddRuta extends React.Component{
           //buses_ruta: []
         });
         //console.log(this.props.rutas);
-        this.props.history.push('/rutas/view');
+        this.props.history.push('/rutas');
       });
 
 

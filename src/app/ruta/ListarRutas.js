@@ -48,7 +48,7 @@ export default class ListarRutas extends React.Component{
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Coo. Origen</th>
                     <th>Coo. Destino</th>
@@ -59,16 +59,18 @@ export default class ListarRutas extends React.Component{
                   </thead>
                   <tbody>
                   { this.state.rutas.map( (ruta, index) =>
-                    <tr key={index}>
+                    <tr key={index} className="text-center">
                       <td>{ruta.nombre}</td>
                       <td>{ruta.coo_origen}</td>
                       <td>{ruta.coo_destino}</td>
                       <td>{ruta.ciudad_origen}</td>
                       <td>{ruta.ciudad_destino}</td>
                       <td>
-                          <Button href={`/rutas/view/${ruta.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        <Button href={`/rutas/view/${ruta.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
                         &nbsp;
-                          <Button onClick={ () => this.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                        <Button href={`/rutas/edit/${ruta.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                        &nbsp;
+                        <Button onClick={() => this.deleteRuta(ruta.id)} size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                       </td>
                     </tr>
                   )}

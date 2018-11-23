@@ -95,7 +95,7 @@ export default class AddBus extends React.Component{
         });
 
         //console.log(res.data);
-        this.props.history.push('/buses/view');
+        this.props.history.push('/buses');
       });
 
 

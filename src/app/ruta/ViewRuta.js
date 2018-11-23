@@ -42,7 +42,7 @@ export default class ViewRuta extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="" >
+              <a href={`/rutas/edit/${this.state.ruta.id}`} >
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar ruta</Button>
               </a>
             </div>
