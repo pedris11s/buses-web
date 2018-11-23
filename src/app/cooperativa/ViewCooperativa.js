@@ -62,7 +62,7 @@ export default class ViewCooperativa extends React.Component{
             <Col xs={6}>
               <Card>
                 <CardHeader>
-                  <i className="fa fa-plus-square-o"></i> <strong>Crear Cooperativa</strong>
+                  <strong><i className="icon-info pr-1"></i>Cooperativa id: {this.state.cooperativa.id}</strong>
                 </CardHeader>
                 <CardBody>
                   <Row>

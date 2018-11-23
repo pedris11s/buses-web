@@ -23,18 +23,14 @@ export default class ViewBus extends React.Component{
 
   render(){
 
-   /* let cooperativa = (this.state.ruta.cooperativa === undefined || this.state.ruta.cooperativa === null) ? "Desconocida" : this.state.ruta.cooperativa;
-    let buses = (this.state.ruta.buses === undefined || this.state.ruta.buses.length === 0) ? "No hay buses." : this.state.ruta.buses;
-
-    console.log("ATRIBUTO BUSES ES UNA DUDA!!!");
-    console.log(this.state.ruta);*/
+    let cooperativa = (this.state.bus.cooperativa === undefined || this.state.bus.cooperativa === null || this.state.bus.cooperativa.length === 0) ? "Desconocida" : this.state.bus.cooperativa;
 
     return (
       <div className="animated fadeIn">
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="" >
+              <a href={`/buses/edit/${this.state.bus.id}`} >
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar bus</Button>
               </a>
             </div>
@@ -71,7 +67,7 @@ export default class ViewBus extends React.Component{
                       </tr>
                       <tr>
                         <td>Cooperativa:</td>
-                        <td><strong>{this.state.bus.placa}</strong></td>
+                        <td><strong>{(cooperativa.nombre === undefined) ? "(-)" : cooperativa.nombre}</strong></td>
                       </tr>
                       <tr>
                         <td>Creado:</td>

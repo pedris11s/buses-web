@@ -12,6 +12,7 @@ export default class EditBus extends React.Component{
       marca: '',
       condicion: '',
       coop_bus: '',
+      aux_coop_bus: '',
       id: '',
 
       cooperativas: [],
@@ -34,29 +35,36 @@ export default class EditBus extends React.Component{
           this.setState(
             {
               cooperativas: coop,
-              coop_bus: coop[0].id
+              aux_coop_bus: coop[0].id
             });
+
+        const id = this.props.match.params.id.toString();
+        API.get(`/bus/${id}`)
+          .then(res => {
+            const bus = res.data;
+            //console.log(bus);
+            this.setState({
+              placa: bus.placa,
+              nobus: bus.nobus,
+              frecuencia: bus.frecuencia,
+              marca: bus.marca,
+              condicion: bus.condicion,
+              id: bus.id
+            });
+            let cooperativa = (bus.cooperativa === undefined || bus.cooperativa === null || bus.cooperativa.length === 0) ? "Desconocida" : bus.cooperativa;
+            if(cooperativa.id === undefined)
+              this.setState({coop_bus: this.state.aux_coop_bus});
+            else
+              this.setState({coop_bus: cooperativa.id});
+
+            console.log(bus.cooperativa, this.state.coop_bus, this.state.aux_coop_bus);
+          });
       })
       .catch(err => {
         console.log(err);
       });
 
-    const id = this.props.match.params.id.toString();
-    API.get(`/bus/${id}`)
-      .then(res => {
-        const bus = res.data;
-        console.log(bus);
-        this.setState({
-          placa: bus.placa,
-          nobus: bus.nobus,
-          frecuencia: bus.frecuencia,
-          marca: bus.marca,
-          condicion: bus.condicion,
-          id: bus.id
-        });
-        if(bus.cooperativa !== undefined && bus.cooperativa !== null)
-          this.setState({coop_bus: bus.cooperativa.id});
-      });
+
 
   }
 
