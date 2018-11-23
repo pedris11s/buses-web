@@ -232,6 +232,11 @@ const viewOficina = Loadable({
   loading: Loading,
 });
 
+const editOficina = Loadable({
+  loader: () => import('./app/oficina/EditOficina'),
+  loading: Loading,
+});
+
 
 /*BUSES*/
 const indexBus = Loadable({
@@ -299,15 +304,17 @@ const routes = [
   { path: '/coops/view/add', exact: true, name: 'Adicionar cooperativa', component: addCoop },
   { path: '/coops/view/:id', exact: true, name: 'Detalles de cooperativa', component: viewCoop },
 
-  { path: '/oficinas/view', exact: true, name: 'Oficinas', component: indexOficina },
+  { path: '/oficinas/', exact: true, name: 'Oficinas', component: indexOficina },
   { path: '/oficinas/view/add', exact: true, name: 'Adicionar Oficina', component: addOficina },
+  { path: '/oficinas/edit/:id', exact: true, name: 'Editar oficina', component: editOficina },
   { path: '/oficinas/view/:id', exact: true, name: 'Detalles de oficina', component: viewOficina },
 
-  { path: '/buses/view', exact: true, name: 'Buses', component: indexBus },
+
+  { path: '/buses', exact: true, name: 'Buses', component: indexBus },
   { path: '/buses/view/add', exact: true, name: 'Adicionar bus', component: addBus },
   { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
 
-  { path: '/users/view', exact: true, name: 'Usuarios', component: indexUser },
+  { path: '/users', exact: true, name: 'Usuarios', component: indexUser },
   { path: '/users/view/add', exact: true, name: 'Adicionar Administrador', component: addUser },
   { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
 

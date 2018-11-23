@@ -95,7 +95,7 @@ export default class ViewCooperativa extends React.Component{
                         </tr>
                         <tr>
                           <td>Oficina:</td>
-                          <td><strong>{oficina.nombre}</strong></td>
+                          <td><strong>{(oficina.nombre === undefined) ? "(-)" : oficina.nombre}</strong></td>
                         </tr>
                         <tr>
                           <td>Tipo:</td>

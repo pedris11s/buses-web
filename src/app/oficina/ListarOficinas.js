@@ -55,7 +55,7 @@ export default class ListarOficinas extends React.Component{
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Ciudad</th>
                     <th>Direccion</th>
@@ -66,15 +66,17 @@ export default class ListarOficinas extends React.Component{
                   <tbody>
                     {
                       this.state.oficinas.map( (oficina, index) => (
-                        <tr key={index}>
+                        <tr key={index} className="text-center">
                           <td>{oficina.nombre}</td>
                           <td>{oficina.ciudad}</td>
                           <td>{oficina.direccion}</td>
                           <td>{oficina.telefono}</td>
                           <td>
-                            <Button href={`/oficinas/view/${oficina.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                            <Button href={`/oficinas/view/${oficina.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
                             &nbsp;
-                            <Button onClick={() => this.deleteOficina(oficina.id)} size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                            <Button href={`/oficinas/edit/${oficina.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                            &nbsp;
+                            <Button onClick={() => this.deleteOficina(oficina.id)} size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                           </td>
                         </tr>
                       ))}

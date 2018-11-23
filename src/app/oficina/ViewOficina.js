@@ -38,7 +38,7 @@ export default class ViewOficina extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="">
+              <a href={`/oficinas/edit/${this.state.oficina.id}`}>
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar oficina</Button>
               </a>
             </div>

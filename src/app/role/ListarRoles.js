@@ -11,7 +11,6 @@ export default class ListarRoles extends React.Component{
     }
 
     this.deteleRole = this.deteleRole.bind(this);
-    this.viewRole = this.viewRole.bind(this);
   }
 
   deteleRole = (id) => {
