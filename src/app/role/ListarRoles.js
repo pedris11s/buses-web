@@ -8,8 +8,6 @@ export default class ListarRoles extends React.Component{
     super(props);
     this.state = {
       roles: [],
-      viewRedirect: false,
-      viewModal: false
     }
 
     this.deteleRole = this.deteleRole.bind(this);
@@ -26,17 +24,6 @@ export default class ListarRoles extends React.Component{
         //FIXME
         alert("soy un error" + err);
       });
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true});
-  }
-
-  viewRole = (id) => {
-    const link = `/roles/view/${id}`;
-    console.log(link);
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   componentDidMount(){
@@ -70,8 +57,7 @@ export default class ListarRoles extends React.Component{
                     <tr key={index}>
                       <td>{role.name}</td>
                       <td>
-                        {this.viewRole(role.id)}
-                        <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        <Button href={`/roles/view/${role.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                         &nbsp;
                         <Button onClick={ () => this.deteleRole(role.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                       </td>

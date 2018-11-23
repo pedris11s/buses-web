@@ -8,12 +8,9 @@ export default class ListarRutas extends React.Component{
     super(props);
     this.state = {
       rutas: [],
-      viewRedirect: false,
-      viewModal: false
     }
 
     this.deleteRuta = this.deleteRuta.bind(this);
-    this.viewRuta = this.viewRuta.bind(this);
   }
 
   deleteRuta = (id) => {
@@ -27,17 +24,6 @@ export default class ListarRutas extends React.Component{
         //FIXME
         alert("soy un error" + err);
       });
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true});
-  }
-
-  viewRuta = (id) => {
-    //console.log("ENTRE AQUI!!!!");
-    const link = `/rutas/view/${id}`;
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   componentDidMount(){
@@ -80,8 +66,7 @@ export default class ListarRutas extends React.Component{
                       <td>{ruta.ciudad_origen}</td>
                       <td>{ruta.ciudad_destino}</td>
                       <td>
-                          {this.viewRuta(ruta.id)}
-                          <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                          <Button href={`/rutas/view/${ruta.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                         &nbsp;
                           <Button onClick={ () => this.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                       </td>

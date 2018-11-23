@@ -9,11 +9,9 @@ export default class ListarOficinas extends React.Component{
     super(props);
     this.state = {
       oficinas: [],
-      viewRedirect: false
     }
 
     this.deleteOficina = this.deleteOficina.bind(this);
-    this.viewOficina = this.viewOficina.bind(this);
   }
 
   componentDidMount(){
@@ -31,17 +29,6 @@ export default class ListarOficinas extends React.Component{
         const arr = res.data;
         this.setState({oficinas: arr});
       })*/
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true});
-  }
-
-  viewOficina = (id) => {
-    //console.log("ENTRE AQUI!!!!");
-    const link = `/oficinas/view/${id}`;
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   deleteOficina(id){
@@ -85,8 +72,7 @@ export default class ListarOficinas extends React.Component{
                           <td>{oficina.direccion}</td>
                           <td>{oficina.telefono}</td>
                           <td>
-                            {this.viewOficina(oficina.id)}
-                            <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                            <Button href={`/oficinas/view/${oficina.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                             &nbsp;
                             <Button onClick={() => this.deleteOficina(oficina.id)} size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                           </td>

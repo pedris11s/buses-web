@@ -8,10 +8,8 @@ export default class ListarCooperativas extends React.Component{
     super(props);
     this.state = {
       cooperativas: [],
-      viewRedirect: false
     }
 
-    this.setViewRedirect = this.setViewRedirect.bind(this);
     this.deleteCoop = this.deleteCoop.bind(this);
   }
 
@@ -33,17 +31,6 @@ export default class ListarCooperativas extends React.Component{
         //FIXME
         alert("soy un error" + err);
       });
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true});
-  }
-
-  viewCoop = (id) => {
-    //console.log("ENTRE AQUI!!!!");
-    const link = `/coops/view/${id}`;
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   render(){
@@ -76,8 +63,7 @@ export default class ListarCooperativas extends React.Component{
                             <td>{coop.provincia}</td>
                             <td>{coop.ciudad}</td>
                             <td>
-                              {this.viewCoop(coop.id)}
-                              <Button onClick={this.setViewRedirect} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                              <Button href={`/coops/view/${coop.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                               &nbsp;
                               <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                             </td>

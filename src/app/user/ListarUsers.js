@@ -8,12 +8,9 @@ export default class ListarUsers extends React.Component{
     super(props);
     this.state = {
       users: [],
-      viewRedirect: false,
-      viewModal: false
     }
 
     this.deteleUser = this.deleteUser.bind(this);
-    this.viewUser = this.viewUser.bind(this);
   }
 
   deleteUser = (id) => {
@@ -26,17 +23,6 @@ export default class ListarUsers extends React.Component{
         //FIXME
         alert("soy un error" + err);
       });
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true});
-  }
-
-  viewUser = (id) => {
-    //console.log("ENTRE AQUI!!!!");
-    const link = `/users/view/${id}`;
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   componentDidMount(){
@@ -70,8 +56,7 @@ export default class ListarUsers extends React.Component{
                       <td></td>
                       <td></td>
                       <td>
-                        {this.viewUser(user.id)}
-                        <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        <Button href={`/users/view/${user.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
                         &nbsp;
                         <Button onClick={ () => this.deleteUser(user.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
                       </td>
