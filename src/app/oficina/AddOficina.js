@@ -91,7 +91,7 @@ export default class AddOficina extends React.Component{
           facebook: '',
           whatsapp: ''
         })
-        this.props.history.push('/oficinas/view');
+        this.props.history.push('/oficinas');
       })
       .catch(err => {
         console.log(err);

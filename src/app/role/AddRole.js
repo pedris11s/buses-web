@@ -30,7 +30,7 @@ export default class AddRole extends React.Component{
         this.setState({
           name: '',
         })
-        this.props.history.push('/roles/view');
+        this.props.history.push('/roles');
       })
       .catch(err => {
         console.log(err);

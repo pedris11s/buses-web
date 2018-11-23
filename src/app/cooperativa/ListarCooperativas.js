@@ -40,12 +40,12 @@ export default class ListarCooperativas extends React.Component{
           <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-industry"></i> <strong>Lista de Cooperativas</strong>
+                <i className="icon-home"></i> <strong>Lista de Cooperativas</strong>
               </CardHeader>
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Pais</th>
                     <th>Provincia</th>
@@ -57,15 +57,17 @@ export default class ListarCooperativas extends React.Component{
 
                       {
                         this.state.cooperativas.map((coop, index) =>
-                          <tr key={index}>
+                          <tr key={index} className="text-center">
                             <td>{coop.nombre}</td>
                             <td>{coop.pais}</td>
                             <td>{coop.provincia}</td>
                             <td>{coop.ciudad}</td>
                             <td>
-                              <Button href={`/coops/view/${coop.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                              <Button href={`/coops/view/${coop.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
                               &nbsp;
-                              <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                              <Button href={`/coops/edit/${coop.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                              &nbsp;
+                              <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                             </td>
                           </tr>
                       )}

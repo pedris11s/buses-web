@@ -49,7 +49,7 @@ export default class ViewCooperativa extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="" >
+              <a href={`/coops/edit/${this.state.cooperativa.id}`} >
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar cooperativa</Button>
               </a>
             </div>

@@ -16,12 +16,12 @@ export default {
     },
     {
       name: 'Roles',
-      url: '/roles/view',
+      url: '/roles',
       icon: 'icon-options',
     },
     {
       name: 'Usuarios',
-      url: '/users/view',
+      url: '/users',
       icon: 'icon-people',
     },
     {
@@ -40,17 +40,17 @@ export default {
     },
     {
       name: 'Cooperativas',
-      url: '/coops/view',
+      url: '/coops',
       icon: 'icon-home',
     },
     {
       name: 'Rutas',
-      url: '/rutas/view',
+      url: '/rutas',
       icon: 'icon-cursor',
     },
     {
       name: 'Buses',
-      url: '/buses/view',
+      url: '/buses',
       icon: 'fa fa-bus',
     },
     /*{

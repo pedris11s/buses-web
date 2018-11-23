@@ -88,16 +88,7 @@ export default class EditOficina extends React.Component{
     const id = this.state.id.toString();
     API.put(`/oficina/${id}`, oficina)
       .then(res => {
-        //console.log(res.data);
-        this.setState({
-          nombre: '',
-          ciudad: '',
-          direccion: '',
-          telefono: '',
-          facebook: '',
-          whatsapp: ''
-        })
-        this.props.history.push('/oficinas');
+        this.props.history.push(`/oficinas/view/${id}`);
       })
       .catch(err => {
         console.log(err);
@@ -162,7 +153,7 @@ export default class EditOficina extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>

@@ -216,6 +216,11 @@ const viewCoop = Loadable({
   loading: Loading,
 });
 
+const editCoop = Loadable({
+  loader: () => import('./app/cooperativa/EditCooperativa'),
+  loading: Loading,
+});
+
 /*OFICINAS*/
 const indexOficina = Loadable({
   loader: () => import('./app/oficina/indexOficina'),
@@ -287,22 +292,20 @@ const viewRole = Loadable({
   loading: Loading,
 });
 
-
-
-
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
 
   { path: '/', exact: true, name: 'Inicio', component: DefaultLayout },
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
 
-  { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
+  { path: '/rutas', exact: true, name: 'Rutas', component: indexRuta },
   { path: '/rutas/view/add', exact: true, name: 'Adicionar ruta', component: addRuta },
   { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRuta},
 
-  { path: '/coops/view', exact: true, name: 'Cooperativas', component: indexCooperativa },
+  { path: '/coops', exact: true, name: 'Cooperativas', component: indexCooperativa },
   { path: '/coops/view/add', exact: true, name: 'Adicionar cooperativa', component: addCoop },
   { path: '/coops/view/:id', exact: true, name: 'Detalles de cooperativa', component: viewCoop },
+  { path: '/coops/edit/:id', exact: true, name: 'Editar cooperativa', component: editCoop },
 
   { path: '/oficinas/', exact: true, name: 'Oficinas', component: indexOficina },
   { path: '/oficinas/view/add', exact: true, name: 'Adicionar Oficina', component: addOficina },
@@ -319,7 +322,7 @@ const routes = [
   { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
 
 
-  { path: '/roles/view', exact: true, name: 'Roles', component: indexRole },
+  { path: '/roles', exact: true, name: 'Roles', component: indexRole },
   { path: '/roles/view/add', exact: true, name: 'Adicionar Rol', component: addRole },
   { path: '/roles/view/:id', exact: true, name: 'Detalles de rol', component: viewRole },
 

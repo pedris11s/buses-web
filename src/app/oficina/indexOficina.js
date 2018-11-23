@@ -10,7 +10,7 @@ export default class indexOficina extends React.Component{
           <Col>
             <div class="pull-right">
               <a href="/oficinas/view/add" >
-                <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Add oficina</Button>
+                <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar oficina</Button>
               </a>
             </div>
           </Col>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
-export default class AddCooperativa extends React.Component {
+export default class EditCooperativa extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,13 +13,10 @@ export default class AddCooperativa extends React.Component {
       parroquia: '',
       tipo: 'Publica',//radio -> string
       modalidad: 'internacional',//select
-      rutas_coop: [],//muliple select
-      buses_coop: [],//multiple select
       oficina_coop: '',//select
+      id: '',
 
       oficinas: [],
-      rutas: [],
-      buses: []
     }
 
     this.handleNombreChange = this.handleNombreChange.bind(this);
@@ -30,8 +27,6 @@ export default class AddCooperativa extends React.Component {
     this.handleModalidadChange = this.handleModalidadChange.bind(this);
     this.handleOficinaChange = this.handleOficinaChange.bind(this);
     this.handleTipoChange = this.handleTipoChange.bind(this);
-    this.handleBusesChange = this.handleBusesChange.bind(this);
-    this.handleRutasChange = this.handleRutasChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -45,6 +40,26 @@ export default class AddCooperativa extends React.Component {
               oficinas: off,
               oficina_coop: off[0].id
             });
+      });
+
+    const id = this.props.match.params.id.toString();
+    API.get(`/cooperativa/${id}`)
+      .then(res => {
+        const coop = res.data;
+        console.log(coop);
+        this.setState({
+          nombre: coop.nombre,
+          pais: coop.pais,
+          ciudad: coop.ciudad,
+          provincia: coop.provincia,
+          parroquia: coop.parroquia,
+          tipo: coop.tipo,//radio -> string
+          modalidad: coop.modalidad,//select
+          id: coop.id
+        });
+
+        if(coop.oficina !== undefined && coop.oficina !== null)
+          this.setState({oficina_coop: coop.oficina.id});
       });
   }
 
@@ -81,28 +96,6 @@ export default class AddCooperativa extends React.Component {
     this.setState({tipo: event.target.value});
   }
 
-  handleBusesChange = event => {
-    let options = event.target.options;
-    let value = [];
-    for (let i = 0, size = options.length; i < size; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    this.setState({buses_coop: value});
-  }
-
-  handleRutasChange = event => {
-    let options = event.target.options;
-    let value = [];
-    for (let i = 0, size = options.length; i < size; i++) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    this.setState({rutas_coop: value});
-  }
-
   handleSubmit = event => {
     event.preventDefault();
 
@@ -115,25 +108,14 @@ export default class AddCooperativa extends React.Component {
       tipo: this.state.tipo,
       modalidad: this.state.modalidad,
       oficina: this.state.oficina_coop,
-      //rutas: this.state.rutas_coop,
-      //buses: this.state.buses_coop
     }
 
-    console.log(cooperativa);
+    //console.log(cooperativa);
 
-    API.post(`/cooperativa/`, cooperativa)
+    const id = this.state.id.toString();
+    API.put(`/cooperativa/${id}`, cooperativa)
       .then(res => {
-        //console.log(res.data);
-        this.setState({
-          nombre: '',
-          pais: '',
-          provincia: '',
-          ciudad: '',
-          parroquia: '',
-          tipo: 'Publica',
-          modalidad: 'internacional'
-        })
-        this.props.history.push('/coops');
+        this.props.history.replace(`/coops/view/${id}`);
       })
       .catch(err => {
         console.log(err);
@@ -145,7 +127,7 @@ export default class AddCooperativa extends React.Component {
     let modalidades = [
       'internacional', 'interprovincial', 'intercantonal', 'intraparroquial', 'urbanos'
     ]
-
+    //console.log(this.state.oficina_coop);
     return (
       <div>
         <div className="animated fadeIn">
@@ -154,7 +136,7 @@ export default class AddCooperativa extends React.Component {
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear Cooperativa</strong>
+                    <i className="icon-pencil"></i> <strong>Editar Cooperativa</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -195,7 +177,7 @@ export default class AddCooperativa extends React.Component {
                           </tr>
                           <tr>
                             <td>Modalidad:</td>
-                            <td><Input type="select" onChange={ this.handleModalidadChange } required>
+                            <td><Input type="select" value={this.state.modalidad} onChange={ this.handleModalidadChange } required>
                               {modalidades.map(mod => (
                                 <option key={mod} value={mod}>{mod}</option>
                               ))}
@@ -204,7 +186,7 @@ export default class AddCooperativa extends React.Component {
                           </tr>
                           <tr>
                             <td>Oficina:</td>
-                            <td><Input type="select" onChange={this.handleOficinaChange} required>
+                            <td><Input type="select" value={this.state.oficina_coop} onChange={this.handleOficinaChange} required>
                               { this.state.oficinas.map( off => <option key={off.id} value={off.id}>{off.nombre}</option>) }
                             </Input></td>
                           </tr>
@@ -229,7 +211,7 @@ export default class AddCooperativa extends React.Component {
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>
