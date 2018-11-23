@@ -10,7 +10,7 @@ export default class indexCooperativa extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/coops/view/add" >
+              <a href="/coops/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar cooperativa</Button>
               </a>
             </div>

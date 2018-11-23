@@ -9,7 +9,7 @@ export default class indexRole extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/roles/view/add" >
+              <a href="/roles/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar role</Button>
               </a>
             </div>

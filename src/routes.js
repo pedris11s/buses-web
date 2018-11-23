@@ -299,31 +299,31 @@ const routes = [
   { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
 
   { path: '/rutas', exact: true, name: 'Rutas', component: indexRuta },
-  { path: '/rutas/view/add', exact: true, name: 'Adicionar ruta', component: addRuta },
+  { path: '/rutas/add', exact: true, name: 'Adicionar ruta', component: addRuta },
   { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRuta},
 
   { path: '/coops', exact: true, name: 'Cooperativas', component: indexCooperativa },
-  { path: '/coops/view/add', exact: true, name: 'Adicionar cooperativa', component: addCoop },
+  { path: '/coops/add', exact: true, name: 'Adicionar cooperativa', component: addCoop },
   { path: '/coops/view/:id', exact: true, name: 'Detalles de cooperativa', component: viewCoop },
   { path: '/coops/edit/:id', exact: true, name: 'Editar cooperativa', component: editCoop },
 
   { path: '/oficinas/', exact: true, name: 'Oficinas', component: indexOficina },
-  { path: '/oficinas/view/add', exact: true, name: 'Adicionar Oficina', component: addOficina },
+  { path: '/oficinas/add', exact: true, name: 'Adicionar Oficina', component: addOficina },
   { path: '/oficinas/edit/:id', exact: true, name: 'Editar oficina', component: editOficina },
   { path: '/oficinas/view/:id', exact: true, name: 'Detalles de oficina', component: viewOficina },
 
 
   { path: '/buses', exact: true, name: 'Buses', component: indexBus },
-  { path: '/buses/view/add', exact: true, name: 'Adicionar bus', component: addBus },
+  { path: '/buses/add', exact: true, name: 'Adicionar bus', component: addBus },
   { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
 
   { path: '/users', exact: true, name: 'Usuarios', component: indexUser },
-  { path: '/users/view/add', exact: true, name: 'Adicionar Administrador', component: addUser },
+  { path: '/users/add', exact: true, name: 'Adicionar Administrador', component: addUser },
   { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
 
 
   { path: '/roles', exact: true, name: 'Roles', component: indexRole },
-  { path: '/roles/view/add', exact: true, name: 'Adicionar Rol', component: addRole },
+  { path: '/roles/add', exact: true, name: 'Adicionar Rol', component: addRole },
   { path: '/roles/view/:id', exact: true, name: 'Detalles de rol', component: viewRole },
 
   { path: '/theme', exact: true, name: 'Theme', component: Colors },

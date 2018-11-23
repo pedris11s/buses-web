@@ -9,7 +9,7 @@ export default class indexBus extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/buses/view/add" >
+              <a href="/buses/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar bus</Button>
               </a>
             </div>
