@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import API from '../../services/api';
 
-export default class AddBus extends React.Component{
+export default class EditBus extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -12,10 +12,9 @@ export default class AddBus extends React.Component{
       marca: '',
       condicion: '',
       coop_bus: '',
-      rutas_bus: [],
+      id: '',
 
       cooperativas: [],
-      rutas: []
     }
 
     this.handleNoBusChange = this.handleNoBusChange.bind(this);
@@ -37,17 +36,28 @@ export default class AddBus extends React.Component{
               cooperativas: coop,
               coop_bus: coop[0].id
             });
+      })
+      .catch(err => {
+        console.log(err);
       });
 
-    /*API.get(`/ruta`)
+    const id = this.props.match.params.id.toString();
+    API.get(`/bus/${id}`)
       .then(res => {
-        const r = res.data;
-        if(r.length > 0)
-          this.setState(
-            {
-              rutas: r
-            });
-      });*/
+        const bus = res.data;
+        console.log(bus);
+        this.setState({
+          placa: bus.placa,
+          nobus: bus.nobus,
+          frecuencia: bus.frecuencia,
+          marca: bus.marca,
+          condicion: bus.condicion,
+          id: bus.id
+        });
+        if(bus.cooperativa !== undefined && bus.cooperativa !== null)
+          this.setState({coop_bus: bus.cooperativa.id});
+      });
+
   }
 
   handleNoBusChange = event => {
@@ -79,17 +89,15 @@ export default class AddBus extends React.Component{
       marca: this.state.marca,
       condicion: this.state.condicion,
       cooperativa: this.state.coop_bus,
-      //rutas: this.state.rutas_bus
     };
-    //console.log(bus);
-    API.post(`/bus/`, bus)
+    const id = this.state.id.toString();
+    API.put(`/bus/${id}`, bus)
       .then(res => {
-        this.props.history.push('/buses');
+        this.props.history.push(`/buses/view/${id}`);
       })
       .catch(err => {
         console.log(err);
       });
-
   }
 
   render(){
@@ -104,7 +112,7 @@ export default class AddBus extends React.Component{
 
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear Bus</strong>
+                    <i className="icon-pencil"></i> <strong>Editar Bus</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -140,7 +148,7 @@ export default class AddBus extends React.Component{
                           </tr>
                           <tr>
                             <td>Cooperativa:</td>
-                            <td><Input type="select" name="select-coops" id="select" onChange={this.handleCoopRutaChange} required>
+                            <td><Input type="select" value={this.state.coop_bus} name="select-coops" id="select" onChange={this.handleCoopRutaChange} required>
                               { this.state.cooperativas.map( coop => <option key={coop.id} value={coop.id}>{coop.nombre}</option>) }
                             </Input></td>
                           </tr>
@@ -150,7 +158,7 @@ export default class AddBus extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>

@@ -44,7 +44,7 @@ export default class ListarBuses extends React.Component{
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Placa</th>
                     <th>No. Bus</th>
                     <th>Frecuencia</th>
@@ -56,15 +56,17 @@ export default class ListarBuses extends React.Component{
 
                   {
                     this.state.buses.map((bus, index) =>
-                      <tr key={index}>
+                      <tr key={index} className="text-center">
                         <td>{bus.placa}</td>
                         <td>{bus.nobus}</td>
                         <td>{bus.frecuencia}</td>
                         <td>{bus.marca}</td>
                         <td>
-                          <Button href={`/buses/view/${bus.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
-                          &nbsp;
-                          <Button onClick={ () => this.deleteBus(bus.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                          <Button href={`/buses/view/${bus.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
+                            &nbsp;
+                          <Button href={`/buses/edit/${bus.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                            &nbsp;
+                          <Button onClick={ () => this.deleteBus(bus.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                         </td>
                       </tr>
                     )}

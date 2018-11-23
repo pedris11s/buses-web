@@ -265,6 +265,12 @@ const viewBus = Loadable({
 });
 
 
+const editBus = Loadable({
+  loader: () => import('./app/bus/EditBus'),
+  loading: Loading,
+});
+
+
 /*USERS*/
 const indexUser = Loadable({
   loader: () => import('./app/user/indexUser'),
@@ -322,6 +328,7 @@ const routes = [
   { path: '/buses', exact: true, name: 'Buses', component: indexBus },
   { path: '/buses/add', exact: true, name: 'Adicionar bus', component: addBus },
   { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
+  { path: '/buses/edit/:id', exact: true, name: 'Editar bus', component: editBus },
 
   { path: '/users', exact: true, name: 'Usuarios', component: indexUser },
   { path: '/users/add', exact: true, name: 'Adicionar Administrador', component: addUser },
