@@ -7,7 +7,7 @@ export default {
     },
     {
       title: true,
-      name: 'Administración',
+      name: 'Admin',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
         attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
@@ -15,9 +15,23 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
+      name: 'Roles',
+      url: '/roles/view',
+      icon: 'icon-options',
+    },
+    {
       name: 'Usuarios',
       url: '/users/view',
       icon: 'icon-people',
+    },
+    {
+      title: true,
+      name: 'Negocio',
+      wrapper: {            // optional wrapper object
+        element: '',        // required valid HTML5 element tag
+        attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
+      },
+      class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
       name: 'Oficinas',

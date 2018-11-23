@@ -266,6 +266,24 @@ const viewUser = Loadable({
   loading: Loading,
 });
 
+/*ROLES*/
+const indexRole = Loadable({
+  loader: () => import('./app/role/indexRole'),
+  loading: Loading,
+});
+
+const addRole = Loadable({
+  loader: () => import('./app/role/AddRole'),
+  loading: Loading,
+});
+
+const viewRole = Loadable({
+  loader: () => import('./app/role/ViewRole'),
+  loading: Loading,
+});
+
+
+
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
@@ -294,6 +312,9 @@ const routes = [
   { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
 
 
+  { path: '/roles/view', exact: true, name: 'Roles', component: indexRole },
+  { path: '/roles/view/add', exact: true, name: 'Adicionar Rol', component: addRole },
+  { path: '/roles/view/:id', exact: true, name: 'Detalles de rol', component: viewRole },
 
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
