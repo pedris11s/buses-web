@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
 import ListarUsers from "./ListarUsers";
 import ListarSuperUsers from "./ListarSuperUsers";
@@ -10,9 +11,9 @@ export default class indexUser extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/users/add" >
+              <Link to="/users/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar admin user</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

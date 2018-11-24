@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
 
@@ -46,7 +46,7 @@ export default class ListarSuperUsers extends React.Component{
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Username</th>
                     <th>Rol</th>
                     <th>Actions</th>
@@ -54,13 +54,13 @@ export default class ListarSuperUsers extends React.Component{
                   </thead>
                   <tbody>
                   { this.state.users.map( (user, index) =>
-                    <tr key={index}>
+                    <tr key={index} className="text-center">
                       <td>{user.username}</td>
                       <td>{user.role}</td>
                       <td>
-                        <Button href={`/users/view/${user.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        <Link to={`/users/view/${user.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;
-                        <Button onClick={ () => this.deleteUser(user.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                        <Button onClick={ () => this.deleteUser(user.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                       </td>
                     </tr>
                   )}

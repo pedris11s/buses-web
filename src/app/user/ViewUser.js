@@ -24,7 +24,7 @@ export default class ViewUser extends React.Component{
 
     return (
       <div className="animated fadeIn">
-        <Row>
+        {/*<Row>
           <Col>
             <div class="pull-right">
               <a href="">
@@ -33,10 +33,10 @@ export default class ViewUser extends React.Component{
             </div>
           </Col>
         </Row>
-        <br/>
+        <br/>*/}
 
         <Row>
-          <Col>
+          <Col xs={6}>
             <Card>
               <CardHeader>
                 <strong><i className="icon-info pr-1"></i>Usuario id: {this.state.user.id}</strong>
