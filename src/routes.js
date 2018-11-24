@@ -303,6 +303,11 @@ const viewRole = Loadable({
   loading: Loading,
 });
 
+const editRole = Loadable({
+  loader: () => import('./app/role/EditRole'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
 
@@ -338,6 +343,7 @@ const routes = [
   { path: '/roles', exact: true, name: 'Roles', component: indexRole },
   { path: '/roles/add', exact: true, name: 'Adicionar Rol', component: addRole },
   { path: '/roles/view/:id', exact: true, name: 'Detalles de rol', component: viewRole },
+  { path: '/roles/edit/:id', exact: true, name: 'Editar rol', component: editRole },
 
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },

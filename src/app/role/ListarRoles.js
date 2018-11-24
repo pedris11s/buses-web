@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
 
@@ -46,19 +46,21 @@ export default class ListarRoles extends React.Component{
               <CardBody>
                 <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
                   { this.state.roles.map( (role, index) =>
-                    <tr key={index}>
+                    <tr key={index} className="text-center">
                       <td>{role.name}</td>
                       <td>
-                        <Button href={`/roles/view/${role.id}`} size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        <Link to={`/roles/view/${role.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;
-                        <Button onClick={ () => this.deteleRole(role.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
+                        <Link to={`/roles/edit/${role.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
+                        &nbsp;
+                        <Button onClick={ () => this.deteleRole(role.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                       </td>
                     </tr>
                   )}
