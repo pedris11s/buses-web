@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ViewRuta extends React.Component{
 
   constructor(props){
@@ -14,11 +17,12 @@ export default class ViewRuta extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/ruta/${id}`)
+    API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const r = res.data;
-        //console.log(r);
-        this.setState({ ruta: r});
+        this.setState({ ruta: res.data});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -35,7 +39,6 @@ export default class ViewRuta extends React.Component{
                             <td><a href={`/coops/view/${coop}`}>{coop}</a></td>
                           </tr>
                         );
-    console.log(cooperativas);
 
     return (
       <div className="animated fadeIn">

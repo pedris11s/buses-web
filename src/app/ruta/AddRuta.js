@@ -1,7 +1,9 @@
 import React from 'react';
-
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import API from '../../services/api';
+
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class AddRuta extends React.Component{
   constructor(props){
@@ -13,9 +15,7 @@ export default class AddRuta extends React.Component{
       ciudad_origen: '',
       ciudad_destino: '',
       coop_ruta: [],
-      //buses_ruta: [],
       cooperativas: [],
-      //buses: []
     }
 
     this.handleNombreChange = this.handleNombreChange.bind(this);
@@ -28,7 +28,7 @@ export default class AddRuta extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coops = res.data;
         if(coops.length > 0)
@@ -37,6 +37,9 @@ export default class AddRuta extends React.Component{
               cooperativas: coops,
               coop_ruta: coops[0].id
             });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -83,10 +86,8 @@ export default class AddRuta extends React.Component{
       //buses: this.state.buses_ruta
     };
 
-    API.post(`/ruta/`, ruta)
+    API.post(`/ruta/`, ruta, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //this.props.addRuta(ruta);
-        //console.log(this.state.buses_ruta);
         this.setState({
           nombre: '',
           coo_origen: '',
@@ -94,10 +95,11 @@ export default class AddRuta extends React.Component{
           ciudad_destino: '',
           ciudad_origen: '',
           coop_ruta: [],
-          //buses_ruta: []
         });
-        //console.log(this.props.rutas);
         this.props.history.push('/rutas');
+      })
+      .catch(err => {
+        console.log(err);
       });
 
 

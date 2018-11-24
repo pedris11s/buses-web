@@ -23,7 +23,7 @@ export default class ListarOficinas extends React.Component{
         this.setState({oficinas: res.data});
       })
       .catch(err => {
-        console(err);
+        console.log(err);
       });
   }
 
@@ -34,7 +34,7 @@ export default class ListarOficinas extends React.Component{
         this.setState({oficinas: arr});
       })
       .catch(err => {
-        console(err);
+        console.log(err);
       });
   }
 

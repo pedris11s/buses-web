@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ListarRutas extends React.Component{
   constructor(props){
     super(props);
@@ -13,26 +16,24 @@ export default class ListarRutas extends React.Component{
     this.deleteRuta = this.deleteRuta.bind(this);
   }
 
-  deleteRuta = (id) => {
-    API.delete(`/ruta/${id}`)
+  componentDidMount(){
+    API.get(`/ruta`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const arr = this.state.rutas.filter(r => r.id !== id);
-        this.setState({rutas: arr});
-        //console.log(this.state.rutas);
+        this.setState({ rutas: res.data });
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        console.log(err);
       });
   }
 
-  componentDidMount(){
-    API.get(`/ruta`)
+  deleteRuta = (id) => {
+    API.delete(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
-        const rutas = res.data;
-        this.setState({ rutas });
-        //this.props.setRutas(rutas);
+        const arr = this.state.rutas.filter(r => r.id !== id);
+        this.setState({rutas: arr});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

@@ -1,7 +1,9 @@
 import React from 'react';
-
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import API from '../../services/api';
+
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class EditRuta extends React.Component{
   constructor(props){
@@ -27,7 +29,7 @@ export default class EditRuta extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coops = res.data;
         if(coops.length > 0)
@@ -35,13 +37,15 @@ export default class EditRuta extends React.Component{
             {
               cooperativas: coops,
             });
-      });
+      })
+      .catch(err => {
+        console.log(err);
+      });;
 
     const id = this.props.match.params.id.toString();
-    API.get(`/ruta/${id}`)
+    API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const ruta = res.data;
-        //console.log(ruta.cooperativa);
         this.setState(
           {
             nombre: ruta.nombre,
@@ -52,9 +56,10 @@ export default class EditRuta extends React.Component{
             coop_ruta: ruta.cooperativa,
             id: ruta.id
           });
-        // if(ruta.cooperativa !== undefined && ruta.cooperativa !== null && ruta.cooperativa.length !== 0)
-        //   this.setState({coop_ruta: ruta.cooperativa});
-      });
+      })
+      .catch(err => {
+        console.log(err);
+      });;
   }
 
   handleNombreChange = event => {
@@ -100,8 +105,7 @@ export default class EditRuta extends React.Component{
     };
 
     const id = this.state.id.toString();
-    //console.log(`/ruta/${id}`);
-    API.put(`/ruta/${id}`, ruta)
+    API.put(`/ruta/${id}`, ruta, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.push(`/rutas/view/${id}`);
       })
