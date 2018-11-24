@@ -3,6 +3,9 @@ import { Button, Table, Card, CardBody, CardHeader, Col, Form, Row } from 'react
 import API from '../../services/api';
 import {Link} from 'react-router-dom';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ViewCooperativa extends React.Component{
   constructor(props){
     super(props);
@@ -13,10 +16,13 @@ export default class ViewCooperativa extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/cooperativa/${id}`)
+    API.get(`/cooperativa/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coop = res.data;
         this.setState({ cooperativa: coop});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

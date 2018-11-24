@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class EditCooperativa extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +34,7 @@ export default class EditCooperativa extends React.Component {
   }
 
   componentDidMount(){
-    API.get(`/oficina`)
+    API.get(`/oficina`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const off = res.data;
         if(off.length > 0)
@@ -40,13 +43,15 @@ export default class EditCooperativa extends React.Component {
               oficinas: off,
               oficina_coop: off[0].id
             });
+      })
+      .catch(err => {
+        console.log(err);
       });
 
     const id = this.props.match.params.id.toString();
-    API.get(`/cooperativa/${id}`)
+    API.get(`/cooperativa/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coop = res.data;
-        console.log(coop);
         this.setState({
           nombre: coop.nombre,
           pais: coop.pais,
@@ -56,10 +61,13 @@ export default class EditCooperativa extends React.Component {
           tipo: coop.tipo,//radio -> string
           modalidad: coop.modalidad,//select
           id: coop.id
-        });
+        })
 
         if(coop.oficina !== undefined && coop.oficina !== null)
           this.setState({oficina_coop: coop.oficina.id});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -110,10 +118,8 @@ export default class EditCooperativa extends React.Component {
       oficina: this.state.oficina_coop,
     }
 
-    //console.log(cooperativa);
-
     const id = this.state.id.toString();
-    API.put(`/cooperativa/${id}`, cooperativa)
+    API.put(`/cooperativa/${id}`, cooperativa, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.replace(`/coops/view/${id}`);
       })

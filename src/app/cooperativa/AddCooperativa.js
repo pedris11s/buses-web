@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Label, FormGroup, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class AddCooperativa extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +39,7 @@ export default class AddCooperativa extends React.Component {
   }
 
   componentDidMount(){
-    API.get(`/oficina`)
+    API.get(`/oficina`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const off = res.data;
         if(off.length > 0)
@@ -45,6 +48,9 @@ export default class AddCooperativa extends React.Component {
               oficinas: off,
               oficina_coop: off[0].id
             });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -115,29 +121,15 @@ export default class AddCooperativa extends React.Component {
       tipo: this.state.tipo,
       modalidad: this.state.modalidad,
       oficina: this.state.oficina_coop,
-      //rutas: this.state.rutas_coop,
-      //buses: this.state.buses_coop
     }
 
-    console.log(cooperativa);
-
-    API.post(`/cooperativa/`, cooperativa)
+    API.post(`/cooperativa/`, cooperativa, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
-        this.setState({
-          nombre: '',
-          pais: '',
-          provincia: '',
-          ciudad: '',
-          parroquia: '',
-          tipo: 'Publica',
-          modalidad: 'internacional'
-        })
         this.props.history.push('/coops');
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
 
   render() {

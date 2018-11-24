@@ -3,6 +3,9 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap'
 import {Link} from "react-router-dom";
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ListarCooperativas extends React.Component{
   constructor(props){
     super(props);
@@ -14,22 +17,24 @@ export default class ListarCooperativas extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coops = res.data;
         this.setState({cooperativas: coops});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
   deleteCoop(id){
-    API.delete(`/cooperativa/${id}`)
+    API.delete(`/cooperativa/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const arr = this.state.cooperativas.filter(r => r.id !== id);
         this.setState({cooperativas: arr});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        console(err);
       });
   }
 
