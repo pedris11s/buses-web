@@ -3,6 +3,9 @@ import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 import {Link} from 'react-router-dom';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ViewOficina extends React.Component{
 
   constructor(props){
@@ -14,10 +17,12 @@ export default class ViewOficina extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/oficina/${id}`)
+    API.get(`/oficina/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const off = res.data;
-        this.setState({oficina:off});
+        this.setState({oficina:res.data});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

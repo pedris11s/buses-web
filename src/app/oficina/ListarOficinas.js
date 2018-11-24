@@ -3,6 +3,8 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap'
 import {Link} from "react-router-dom";
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class ListarOficinas extends React.Component{
 
@@ -16,31 +18,23 @@ export default class ListarOficinas extends React.Component{
   }
 
   componentDidMount(){
-    API.get('/oficina')
+    API.get('/oficina', { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const arr = res.data;
-        this.setState({oficinas: arr});
+        this.setState({oficinas: res.data});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        console(err);
       });
-    /*axios.get(`${API_ROOT}/oficina`)
-      .then(res => {
-        const arr = res.data;
-        this.setState({oficinas: arr});
-      })*/
   }
 
   deleteOficina(id){
-    API.delete(`/oficina/${id}`)
+    API.delete(`/oficina/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const arr = this.state.oficinas.filter(r => r.id !== id);
         this.setState({oficinas: arr});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        console(err);
       });
   }
 

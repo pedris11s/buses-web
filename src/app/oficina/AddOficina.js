@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class AddOficina extends React.Component{
   constructor(props){
     super(props);
@@ -27,7 +30,7 @@ export default class AddOficina extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coops = res.data;
         if(coops.length > 0)
@@ -36,6 +39,9 @@ export default class AddOficina extends React.Component{
               cooperativas: coops,
               coop_off: coops[0].id
             });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -80,7 +86,7 @@ export default class AddOficina extends React.Component{
       //cooperativa: this.state.coop_off
     }
 
-    API.post(`/oficina/`, oficina)
+    API.post(`/oficina/`, oficina, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         //console.log(res.data);
         this.setState({

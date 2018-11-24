@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class EditOficina extends React.Component{
   constructor(props){
     super(props);
@@ -28,7 +31,7 @@ export default class EditOficina extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/oficina/${id}`)
+    API.get(`/oficina/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const oficina = res.data;
         this.setState({
@@ -41,6 +44,9 @@ export default class EditOficina extends React.Component{
           id: oficina.id
         });
         console.log(this.state.oficina);
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -86,7 +92,7 @@ export default class EditOficina extends React.Component{
     }
 
     const id = this.state.id.toString();
-    API.put(`/oficina/${id}`, oficina)
+    API.put(`/oficina/${id}`, oficina, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.push(`/oficinas/view/${id}`);
       })
