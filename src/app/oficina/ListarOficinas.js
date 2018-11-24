@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import { Alert, Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import {Link} from "react-router-dom";
 import API from '../../services/api';
 
@@ -12,6 +12,9 @@ export default class ListarOficinas extends React.Component{
     super(props);
     this.state = {
       oficinas: [],
+
+      alertVisible: false,
+      alertText: ''
     }
 
     this.deleteOficina = this.deleteOficina.bind(this);
@@ -23,7 +26,10 @@ export default class ListarOficinas extends React.Component{
         this.setState({oficinas: res.data});
       })
       .catch(err => {
-        console.log(err);
+        this.setState({
+          alertVisible: true,
+          alertText: err.toString()
+        });
       });
   }
 
@@ -34,13 +40,23 @@ export default class ListarOficinas extends React.Component{
         this.setState({oficinas: arr});
       })
       .catch(err => {
-        console.log(err);
+        this.setState({
+          alertVisible: true,
+          alertText: err.toString()
+        });
       });
+  }
+
+  dissmissAlert(){
+    this.setState({alertVisible: false});
   }
 
   render(){
     return (
       <div className="animated fadeIn">
+        <Alert isOpen={this.state.alertVisible} toggle={this.dissmissAlert.bind(this)} color="danger" className="text-center">
+          {this.state.alertText}
+        </Alert>
         <Row>
           <Col>
             <Card>
