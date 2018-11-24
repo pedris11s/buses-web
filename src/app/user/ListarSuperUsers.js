@@ -1,7 +1,10 @@
 import React from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
+
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class ListarSuperUsers extends React.Component{
   constructor(props){
@@ -10,27 +13,26 @@ export default class ListarSuperUsers extends React.Component{
       users: [],
     }
 
-    this.deteleUser = this.deleteUser.bind(this);
+    this.deleteUser = this.deleteUser.bind(this);
+  }
+
+  componentDidMount(){
+    API.get(`/user`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        //console.log(res.data);
+        const u = res.data;
+        this.setState({ users: u });
+      });
   }
 
   deleteUser = (id) => {
-    API.delete(`/user/${id}`)
+    API.delete(`/user/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const arr = this.state.users.filter(r => r.id !== id);
         this.setState({users: arr});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
-      });
-  }
-
-  componentDidMount(){
-    API.get(`/user`)
-      .then(res => {
-        //console.log(res.data);
-        const u = res.data;
-        this.setState({ users: u });
+        console.log(err);
       });
   }
 

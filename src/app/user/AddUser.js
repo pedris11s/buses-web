@@ -2,7 +2,10 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
-export default class AddOficina extends React.Component{
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
+export default class AddUser extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -19,7 +22,7 @@ export default class AddOficina extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/role`)
+    API.get(`/role`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         console.log(res.data);
         const arr = res.data;
@@ -29,7 +32,10 @@ export default class AddOficina extends React.Component{
               roles: arr,
               role_user: arr[0].id
             });
-      });
+      })
+      .catch(err => {
+        console.log(err);
+      });;
   }
 
   handleUsernameChange = event => {
@@ -53,9 +59,8 @@ export default class AddOficina extends React.Component{
       role_user: this.state.role,
     }
 
-    API.post(`/user/`, user)
+    API.post(`/user/`, user, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
         this.setState({
           username: '',
           password: '',
@@ -64,7 +69,7 @@ export default class AddOficina extends React.Component{
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
 
   render(){

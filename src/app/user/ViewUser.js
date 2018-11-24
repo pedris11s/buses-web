@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ViewUser extends React.Component{
 
   constructor(props){
@@ -13,10 +16,13 @@ export default class ViewUser extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/user/${id}`)
+    API.get(`/user/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const u = res.data;
         this.setState({user:u});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
