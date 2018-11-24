@@ -1,7 +1,6 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 import ListarRutas from './ListarRutas';
-
 import { Button, Row, Col } from 'reactstrap';
 
 export default class indexRuta extends React.Component{
@@ -11,9 +10,9 @@ export default class indexRuta extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/rutas/add" >
+              <Link to="/rutas/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar ruta</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

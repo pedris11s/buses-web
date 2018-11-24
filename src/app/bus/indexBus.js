@@ -1,5 +1,6 @@
 import React from 'react';
 import ListarBuses from "./ListarBuses";
+import {Link} from "react-router-dom";
 import { Button, Row, Col } from 'reactstrap';
 
 export default class indexBus extends React.Component{
@@ -9,9 +10,9 @@ export default class indexBus extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/buses/add" >
+              <Link to="/buses/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar bus</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

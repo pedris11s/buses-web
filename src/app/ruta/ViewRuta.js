@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 
@@ -42,9 +43,9 @@ export default class ViewRuta extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href={`/rutas/edit/${this.state.ruta.id}`} >
+              <Link to={`/rutas/edit/${this.state.ruta.id}`} >
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar ruta</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

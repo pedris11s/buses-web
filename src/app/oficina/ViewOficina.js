@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
-
+import {Link} from 'react-router-dom';
 
 export default class ViewOficina extends React.Component{
 
@@ -38,9 +38,9 @@ export default class ViewOficina extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href={`/oficinas/edit/${this.state.oficina.id}`}>
+              <Link to={`/oficinas/edit/${this.state.oficina.id}`}>
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar oficina</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

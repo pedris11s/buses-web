@@ -1,7 +1,7 @@
 import React from 'react';
-
 import ListarCooperativas from "./ListarCooperativas";
 import { Button, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 export default class indexCooperativa extends React.Component{
   render(){
@@ -10,9 +10,9 @@ export default class indexCooperativa extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/coops/add" >
+              <Link to="/coops/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar cooperativa</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

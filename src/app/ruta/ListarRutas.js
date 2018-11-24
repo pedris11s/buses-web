@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
 
@@ -66,9 +66,9 @@ export default class ListarRutas extends React.Component{
                       <td>{ruta.ciudad_origen}</td>
                       <td>{ruta.ciudad_destino}</td>
                       <td>
-                        <Button href={`/rutas/view/${ruta.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
+                        <Link to={`/rutas/view/${ruta.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;
-                        <Button href={`/rutas/edit/${ruta.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                        <Link to={`/rutas/edit/${ruta.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
                         &nbsp;
                         <Button onClick={() => this.deleteRuta(ruta.id)} size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                       </td>

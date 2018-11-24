@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
-import {Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import API from '../../services/api';
+
 
 export default class ListarOficinas extends React.Component{
 
@@ -72,9 +73,9 @@ export default class ListarOficinas extends React.Component{
                           <td>{oficina.direccion}</td>
                           <td>{oficina.telefono}</td>
                           <td>
-                            <Button href={`/oficinas/view/${oficina.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
+                            <Link to={`/oficinas/view/${oficina.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                             &nbsp;
-                            <Button href={`/oficinas/edit/${oficina.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                            <Link to={`/oficinas/edit/${oficina.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
                             &nbsp;
                             <Button onClick={() => this.deleteOficina(oficina.id)} size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                           </td>

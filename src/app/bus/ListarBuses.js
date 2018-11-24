@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
-import {Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import API from '../../services/api';
 
 export default class ListarBuses extends React.Component{
@@ -62,9 +62,9 @@ export default class ListarBuses extends React.Component{
                         <td>{bus.frecuencia}</td>
                         <td>{bus.marca}</td>
                         <td>
-                          <Button href={`/buses/view/${bus.id}`} size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button>
+                          <Link to={`/buses/view/${bus.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                             &nbsp;
-                          <Button href={`/buses/edit/${bus.id}`} size="sm" color="success"><i className="icon-pencil"></i></Button>
+                          <Link to={`/buses/edit/${bus.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
                             &nbsp;
                           <Button onClick={ () => this.deleteBus(bus.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                         </td>

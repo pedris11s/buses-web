@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import ListarOficinas from "./ListarOficinas";
 import { Button, Row, Col } from 'reactstrap';
 
@@ -9,9 +10,9 @@ export default class indexOficina extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href="/oficinas/add" >
+              <Link to="/oficinas/add" >
                 <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar oficina</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>

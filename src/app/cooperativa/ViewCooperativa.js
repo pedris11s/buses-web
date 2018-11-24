@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Row } from 'reactstrap';
 import API from '../../services/api';
+import {Link} from 'react-router-dom';
 
 export default class ViewCooperativa extends React.Component{
   constructor(props){
@@ -49,9 +50,9 @@ export default class ViewCooperativa extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
-              <a href={`/coops/edit/${this.state.cooperativa.id}`} >
+              <Link to={`/coops/edit/${this.state.cooperativa.id}`} >
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar cooperativa</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>
