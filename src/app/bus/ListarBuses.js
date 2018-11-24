@@ -3,6 +3,9 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap'
 import {Link} from "react-router-dom";
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ListarBuses extends React.Component{
   constructor(props){
     super(props);
@@ -13,22 +16,23 @@ export default class ListarBuses extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/bus`)
+    API.get(`/bus`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const b = res.data;
-        this.setState({buses: b});
+        this.setState({buses: res.data});
       })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   deleteBus(id){
-    API.delete(`/bus/${id}`)
+    API.delete(`/bus/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const arr = this.state.buses.filter(r => r.id !== id);
         this.setState({buses: arr});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        console.log(err);
       });
   }
 

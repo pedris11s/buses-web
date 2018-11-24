@@ -3,6 +3,9 @@ import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 import {Link} from 'react-router-dom';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class ViewBus extends React.Component{
 
   constructor(props){
@@ -14,11 +17,14 @@ export default class ViewBus extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/bus/${id}`)
+    API.get(`/bus/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const b = res.data;
         //console.log(r);
         this.setState({ bus: b});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

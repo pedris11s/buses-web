@@ -2,6 +2,9 @@ import React from 'react';
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class EditBus extends React.Component{
   constructor(props){
     super(props);
@@ -28,7 +31,7 @@ export default class EditBus extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coop = res.data;
         if(coop.length > 0)
@@ -39,7 +42,7 @@ export default class EditBus extends React.Component{
             });
 
         const id = this.props.match.params.id.toString();
-        API.get(`/bus/${id}`)
+        API.get(`/bus/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
           .then(res => {
             const bus = res.data;
             //console.log(bus);
@@ -58,14 +61,11 @@ export default class EditBus extends React.Component{
               this.setState({coop_bus: cooperativa.id});
 
             console.log(bus.cooperativa, this.state.coop_bus, this.state.aux_coop_bus);
-          });
+          })
       })
       .catch(err => {
         console.log(err);
       });
-
-
-
   }
 
   handleNoBusChange = event => {
@@ -99,7 +99,7 @@ export default class EditBus extends React.Component{
       cooperativa: this.state.coop_bus,
     };
     const id = this.state.id.toString();
-    API.put(`/bus/${id}`, bus)
+    API.put(`/bus/${id}`, bus, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.push(`/buses/view/${id}`);
       })

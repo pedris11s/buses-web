@@ -2,6 +2,9 @@ import React from 'react';
 import { Table, Form, Input, Button, Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class AddBus extends React.Component{
   constructor(props){
     super(props);
@@ -28,7 +31,7 @@ export default class AddBus extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coop = res.data;
         if(coop.length > 0)
@@ -37,17 +40,10 @@ export default class AddBus extends React.Component{
               cooperativas: coop,
               coop_bus: coop[0].id
             });
+      })
+      .catch(err => {
+        console.log(err);
       });
-
-    /*API.get(`/ruta`)
-      .then(res => {
-        const r = res.data;
-        if(r.length > 0)
-          this.setState(
-            {
-              rutas: r
-            });
-      });*/
   }
 
   handleNoBusChange = event => {
@@ -82,7 +78,7 @@ export default class AddBus extends React.Component{
       //rutas: this.state.rutas_bus
     };
     //console.log(bus);
-    API.post(`/bus/`, bus)
+    API.post(`/bus/`, bus, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.push('/buses');
       })
