@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class ViewRole extends React.Component{
 
@@ -15,25 +17,18 @@ export default class ViewRole extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/role/${id}`)
+    API.get(`/role/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const r = res.data;
         this.setState({role:r});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
   render(){
 
-    /*let cooperativas = (this.state.oficina.cooperativas === undefined ||
-      this.state.oficina.cooperativas === null ||
-      this.state.oficina.cooperativas.length === 0) ?
-      <strong>No asignadas</strong>
-      : this.state.oficina.cooperativas.map(coop =>
-        <tr>
-          <td><a href={`/coops/view/${coop.id}`}>{coop.nombre}</a></td>
-        </tr>
-      );
-    */
     return (
       <div className="animated fadeIn">
         <Row>

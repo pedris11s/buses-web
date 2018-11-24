@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class EditRole extends React.Component{
   constructor(props){
     super(props);
@@ -15,10 +18,13 @@ export default class EditRole extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    API.get(`/role/${id}`)
+    API.get(`/role/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const r = res.data;
         this.setState({ name: r.name });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -33,13 +39,13 @@ export default class EditRole extends React.Component{
       name: this.state.name,
     }
     const id = this.props.match.params.id.toString();
-    API.put(`/role/${id}`, role)
+    API.put(`/role/${id}`, role, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.push(`/roles/view/${id}`);
       })
       .catch(err => {
         console.log(err);
-      })
+      });
   }
 
   render(){

@@ -2,6 +2,9 @@ import React from 'react';
 import { Button, Table, Card, CardBody, CardHeader, Col, Form, Input, Row } from 'reactstrap';
 import API from '../../services/api';
 
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
+
 export default class AddRole extends React.Component{
   constructor(props){
     super(props);
@@ -24,9 +27,8 @@ export default class AddRole extends React.Component{
       name: this.state.name,
     }
 
-    API.post(`/role/`, role)
+    API.post(`/role/`, role, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
         this.setState({
           name: '',
         })
