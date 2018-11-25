@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Alert, Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 
 import AuthService from '../services/AuthService';
 
@@ -9,8 +9,11 @@ class Login extends Component {
 
     this.state = {
       username: '',
-      password: ''
-    }
+      password: '',
+
+      alertVisible: false,
+      alertText: ''
+    };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -20,7 +23,6 @@ class Login extends Component {
 
   componentWillMount(){
     if(this.Auth.loggedIn()) {
-      //alert("ESTAS LOGUEADO");
       this.props.history.replace('/');
     }
   }
@@ -48,9 +50,16 @@ class Login extends Component {
           });
         }
       })
-      .catch(err =>{
-        alert(err);
-      })
+      .catch(err => {
+        this.setState({
+          alertVisible: true,
+          alertText: err.toString()
+        });
+      });
+  }
+
+  dissmissAlert(){
+    this.setState({alertVisible: false});
   }
 
   render() {
@@ -59,6 +68,9 @@ class Login extends Component {
         <Container>
           <Row className="justify-content-center">
             <Col md="4">
+              <Alert isOpen={this.state.alertVisible} toggle={this.dissmissAlert.bind(this)} color="danger" className="text-center">
+                {this.state.alertText}
+              </Alert>
               <CardGroup>
                 <Card className="p-4">
                   <CardBody>
