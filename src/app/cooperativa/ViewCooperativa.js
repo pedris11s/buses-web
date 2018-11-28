@@ -35,7 +35,7 @@ export default class ViewCooperativa extends React.Component{
                         <strong>No asignados</strong>
                         : this.state.cooperativa.buses.map(bus =>
                           <tr>
-                            <td><a href={`/buses/view/${bus.id}`}>{bus.nobus}</a></td>
+                            <td><Link to={`/buses/view/${bus.id}`}>{bus.nobus}</Link></td>
                           </tr>
                         );
 
