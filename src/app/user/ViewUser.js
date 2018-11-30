@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
+import {Link} from 'react-router-dom';
 
 import AuthService from '../../services/AuthService';
 const auth = new AuthService();
@@ -19,6 +20,7 @@ export default class ViewUser extends React.Component{
     API.get(`/user/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const u = res.data;
+        console.log(res.data);
         this.setState({user:u});
       })
       .catch(err => {
@@ -27,19 +29,20 @@ export default class ViewUser extends React.Component{
   }
 
   render(){
+    let role = (this.state.user.role === undefined || this.state.user.role === null ) ? "Desconocida" : this.state.user.role;
 
     return (
       <div className="animated fadeIn">
-        {/*<Row>
+        <Row>
           <Col>
             <div class="pull-right">
-              <a href="">
+              <Link to={`/users/edit/${this.state.user.id}`}>
                 <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar usuario</Button>
-              </a>
+              </Link>
             </div>
           </Col>
         </Row>
-        <br/>*/}
+        <br/>
 
         <Row>
           <Col xs={6}>
@@ -66,7 +69,7 @@ export default class ViewUser extends React.Component{
                       </tr>
                       <tr>
                         <td>Rol:</td>
-                        <td><strong>{this.state.user.role}</strong></td>
+                        <td><strong>{role.name}</strong></td>
                       </tr>
                       <tr>
                         <td>Creado:</td>

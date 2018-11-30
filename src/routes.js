@@ -287,6 +287,11 @@ const viewUser = Loadable({
   loading: Loading,
 });
 
+const editUser = Loadable({
+  loader: () => import('./app/user/EditUser'),
+  loading: Loading,
+});
+
 /*ROLES*/
 const indexRole = Loadable({
   loader: () => import('./app/role/indexRole'),
@@ -338,6 +343,7 @@ const routes = [
   { path: '/users', exact: true, name: 'Usuarios', component: indexUser },
   { path: '/users/add', exact: true, name: 'Adicionar Administrador', component: addUser },
   { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
+  { path: '/users/edit/:id', exact: true, name: 'Editar usuario', component: editUser },
 
 
   { path: '/roles', exact: true, name: 'Roles', component: indexRole },

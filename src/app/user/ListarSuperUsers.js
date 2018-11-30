@@ -58,9 +58,11 @@ export default class ListarSuperUsers extends React.Component{
                   { this.state.users.map( (user, index) =>
                     <tr key={index} className="text-center">
                       <td>{user.username}</td>
-                      <td>{user.role}</td>
+                      <td>{(user.role === null || user.role.name === undefined) ? "-" : user.role.name}</td>
                       <td>
                         <Link to={`/users/view/${user.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
+                        &nbsp;
+                        <Link to={`/users/edit/${user.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
                         &nbsp;
                         <Button onClick={ () => this.deleteUser(user.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
                       </td>

@@ -5,7 +5,7 @@ import API from '../../services/api';
 import AuthService from '../../services/AuthService';
 const auth = new AuthService();
 
-export default class AddUser extends React.Component{
+export default class EditUser extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -22,20 +22,33 @@ export default class AddUser extends React.Component{
   }
 
   componentDidMount(){
+
     API.get(`/role`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         console.log(res.data);
         const arr = res.data;
-        if(arr.length > 0)
           this.setState(
             {
               roles: arr,
-              role_user: arr[0].id
             });
       })
       .catch(err => {
         console.log(err);
-      });;
+      });
+
+    const id = this.props.match.params.id.toString();
+    API.get(`/user/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        const user = res.data;
+        console.log(user.role.id);
+        this.setState({
+          username: user.username,
+          role_user: user.role.id
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   handleUsernameChange = event => {
@@ -53,18 +66,15 @@ export default class AddUser extends React.Component{
   handleSubmit = event => {
     event.preventDefault();
 
-    console.log(this.state.role_user);
     const user = {
       username: this.state.username,
-      password: this.state.password,
       role: this.state.role_user,
     }
 
-    console.log(user);
-
-    API.post(`/user/`, user, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+    const id = this.props.match.params.id.toString();
+    API.put(`/user/${id}`, user, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        this.props.history.push('/users');
+        this.props.history.push(`/users/view/${id}`);
       })
       .catch(err => {
         console.log(err);
@@ -80,11 +90,11 @@ export default class AddUser extends React.Component{
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear usuario</strong>
+                    <i className="icon-pencil"></i> <strong>Editar usuario</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
-                      <Col xs="4">
+                      <Col xs="6">
                         <Table responsive striped hover>
                           <tbody>
                           <tr>
@@ -95,23 +105,12 @@ export default class AddUser extends React.Component{
                         </Table>
                       </Col>
 
-                      <Col xs="4">
-                        <Table responsive striped hover>
-                          <tbody>
-                          <tr>
-                            <td>Password:</td>
-                            <td><Input type="text" value={this.state.password} onChange={this.handlePasswordChange} required/></td>
-                          </tr>
-                          </tbody>
-                        </Table>
-                      </Col>
-
-                      <Col xs="4">
+                      <Col xs="6">
                         <Table responsive striped hover>
                           <tbody>
                           <tr>
                             <td>Rol:</td>
-                            <td><Input type="select" onChange={this.handleRoleChange} required>
+                            <td><Input type="select" value={this.state.role_user} onChange={this.handleRoleChange} required>
                               { this.state.roles.map( r => <option key={r.id} value={r.id}>{r.name}</option>) }
                             </Input></td>
                           </tr>
@@ -122,7 +121,7 @@ export default class AddUser extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>
