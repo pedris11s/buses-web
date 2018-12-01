@@ -28,15 +28,15 @@ class DefaultHeader extends Component {
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
         <Nav className="ml-auto" navbar>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="fa fa-user"></i></NavLink>
-          </NavItem>
-          <NavItem className="d-md-down-none">
-            <NavLink href="#"><i className="fa fa-wrench"></i></NavLink>
-          </NavItem>
+          {/*<NavItem className="d-md-down-none">*/}
+            {/*<NavLink href="#"><i className="icon-bell"></i><Badge pill color="danger">5</Badge></NavLink>*/}
+          {/*</NavItem>*/}
+          {/*<NavItem className="d-md-down-none">*/}
+            {/*<NavLink href="#"><i className="fa fa-user"></i></NavLink>*/}
+          {/*</NavItem>*/}
+          {/*<NavItem className="d-md-down-none">*/}
+            {/*<NavLink href="#"><i className="fa fa-wrench"></i></NavLink>*/}
+          {/*</NavItem>*/}
         </Nav>
         {/*<AppAsideToggler className="d-md-down-none" />*/}
         {/*<AppAsideToggler className="d-lg-none" mobile />*/}
