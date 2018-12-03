@@ -11,15 +11,15 @@ export default class AuthService {
 
   login(username, password) {
     // Get a token from api server using the fetch api
-    return this.fetch(`${this.domain}/auth/login`, {
+    return this.fetch(`${this.domain}/auth/local`, {
       method: 'POST',
       body: JSON.stringify({
         username,
         password
       })
     }).then(res => {
-      if(res.success){
-        this.setToken(res.token) // Setting the token in localStorage
+      if(res.autologinToken){
+        this.setToken(res.autologinToken) // Setting the token in localStorage
       }
       return Promise.resolve(res);
     }).catch(err => {
@@ -49,17 +49,17 @@ export default class AuthService {
 
   setToken(idToken) {
     // Saves user token to localStorage
-    localStorage.setItem('id_token', idToken)
+    localStorage.setItem('autologinToken', idToken)
   }
 
   getToken() {
     // Retrieves the user token from localStorage
-    return localStorage.getItem('id_token')
+    return localStorage.getItem('autologinToken')
   }
 
   logout() {
     // Clear user token and profile data from localStorage
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('autologinToken');
   }
 
   getProfile() {

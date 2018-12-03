@@ -6,6 +6,7 @@ import './App.scss';
 import { DefaultLayout } from './containers';
 // Pages
 import Login from './app/Login';
+import Register from './app/Register';
 
 // import { renderRoutes } from 'react-router-config';
 
@@ -15,6 +16,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
+            <Route exact path="/register" name="Login Page" component={Register} />
             <Route path="/" name="Home" component={DefaultLayout} />
           </Switch>
         </BrowserRouter>
