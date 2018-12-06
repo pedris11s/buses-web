@@ -23,7 +23,7 @@ export default class AuthService {
       }
       return Promise.resolve(res);
     }).catch(err => {
-      alert(err);
+      console.log(err);
     })
   }
 

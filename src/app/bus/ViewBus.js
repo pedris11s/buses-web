@@ -98,7 +98,7 @@ export default class ViewBus extends React.Component{
                 <i className="icon-cursor"></i> Rutas
               </CardHeader>
               <CardBody className="text-center">
-                <strong>POR ARREGLAR!!!</strong>
+                <strong>TODO!!!</strong>
               </CardBody>
             </Card>
           </Col>

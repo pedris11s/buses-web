@@ -32,7 +32,7 @@ export default class ViewCooperativa extends React.Component{
     let buses = (this.state.cooperativa.buses === undefined ||
                         this.state.cooperativa.buses === null ||
                         this.state.cooperativa.buses.length === 0) ?
-                        <strong>No asignados</strong>
+                        <strong>No asignados.</strong>
                         : this.state.cooperativa.buses.map(bus =>
                           <tr>
                             <td><Link to={`/buses/view/${bus.id}`}>{bus.nobus}</Link></td>
@@ -43,10 +43,10 @@ export default class ViewCooperativa extends React.Component{
     let rutas = (this.state.cooperativa.rutas === undefined ||
                 this.state.cooperativa.rutas === null ||
                 this.state.cooperativa.rutas.length === 0) ?
-                <strong>POR ARREGLAR!!</strong>
+                <strong>No asignadas.</strong>
                 : this.state.cooperativa.rutas.map(ruta =>
                   <tr>
-                    <td>{ruta.nombre}</td>
+                    <td><Link to={`/rutas/view/${ruta.id}`}>{ruta.nombre}</Link></td>
                   </tr>
                 );
 

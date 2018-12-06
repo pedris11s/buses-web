@@ -57,6 +57,9 @@ class Login extends Component {
         }
       })
       .catch(err => {
+        if(err.toString() === "TypeError: res is undefined")
+          err = "Network error.";
+
         this.setState({
           alertVisible: true,
           alertText: err.toString()

@@ -82,7 +82,7 @@ export default class AddRuta extends React.Component{
       coo_destino: this.state.coo_destino,
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
-      cooperativa: this.state.coop_ruta,
+      cooperativas: this.state.coop_ruta,
       //buses: this.state.buses_ruta
     };
 

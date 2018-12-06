@@ -29,6 +29,16 @@ export default class ViewRole extends React.Component{
 
   render(){
 
+    let users = (this.state.role.users === undefined ||
+                this.state.role.users === null ||
+                this.state.role.users.length === 0) ?
+                <strong>No asignados.</strong>
+                : this.state.role.users.map(user =>
+                  <tr>
+                    <td><Link to={`/users/view/${user.id}`}>{user.username}</Link></td>
+                  </tr>
+                );
+
     return (
       <div className="animated fadeIn">
         <Row>
@@ -81,6 +91,7 @@ export default class ViewRole extends React.Component{
               <CardBody className="text-center">
                 <Table responsive hover>
                   <tbody>
+                  {users}
                   </tbody>
                 </Table>
               </CardBody>

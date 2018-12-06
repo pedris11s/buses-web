@@ -28,18 +28,17 @@ export default class ViewRuta extends React.Component{
 
   render(){
 
-    console.log(this.state.ruta.cooperativa);
-
-    let cooperativas = (this.state.ruta.cooperativa === undefined ||
-                        this.state.ruta.cooperativa === null ||
-                        this.state.ruta.cooperativa.length === 0) ?
-                        <strong>No asignado</strong>
-                        : this.state.ruta.cooperativa.map(coop =>
+    let cooperativas = (this.state.ruta.cooperativas === undefined ||
+                        this.state.ruta.cooperativas === null ||
+                        this.state.ruta.cooperativas.length === 0) ?
+                        <strong>No asignadas.</strong>
+                        : this.state.ruta.cooperativas.map(coop =>
                           <tr>
-                            <td><a href={`/coops/view/${coop}`}>{coop}</a></td>
+                            <td><Link to={`/coops/view/${coop.id}`}>{coop.nombre}</Link></td>
                           </tr>
                         );
 
+    //console.log(this.state.ruta.cooperativas);
     return (
       <div className="animated fadeIn">
 
@@ -125,7 +124,7 @@ export default class ViewRuta extends React.Component{
               <CardBody className="text-center">
                 <Table responsive hover>
                   <tbody>
-                  <strong>POR ARREGLAR!!!</strong>
+                  <strong>TODO!!!</strong>
                   </tbody>
                 </Table>
               </CardBody>
