@@ -18,11 +18,11 @@ npm install
 npm start
 ```
 
-## Licence
-
-Private Code. © WankarTech 2018
-
 ## Author
 
     Pedro Torres Paredes 
     - Twitter: @pedris11s
+
+## Licence
+
+Private Code. © WankarTech 2018
