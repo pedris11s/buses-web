@@ -17,10 +17,10 @@ export default class ListarSuperUsers extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/user`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+    API.get(`/user/list`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
-        const u = res.data;
+        const u = res.data.users;
+        // console.log(u);
         this.setState({ users: u });
       });
   }
@@ -37,6 +37,9 @@ export default class ListarSuperUsers extends React.Component{
   }
 
   render(){
+
+    //this.state.users.map(user => console.log(user));
+
     return (
       <div class="animated fadeIn">
         <Row>
@@ -58,7 +61,9 @@ export default class ListarSuperUsers extends React.Component{
                   { this.state.users.map( (user, index) =>
                     <tr key={index} className="text-center">
                       <td>{user.username}</td>
+                      {/*(user.role === null || user.role === undefined)*/}
                       <td>{(user.role === null || user.role.name === undefined) ? "-" : user.role.name}</td>
+                      {/*<td>{user.role}</td>*/}
                       <td>
                         <Link to={`/users/view/${user.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;
