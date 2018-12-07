@@ -9,6 +9,7 @@ git clone http://git.kimirik.com/tazpro/buses-web.git
 2. Install dependencies
 
 ```
+cd buses-web
 npm install
 ```
 
