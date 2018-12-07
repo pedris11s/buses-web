@@ -44,7 +44,7 @@ export default class ListarRoles extends React.Component{
     return (
       <div class="animated fadeIn">
         <Row>
-          <Col xs={4}>
+          <Col>
             <Card>
               <CardHeader>
                 <i className="icon-options"></i> <strong>Lista de Roles</strong>

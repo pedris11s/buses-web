@@ -21,22 +21,13 @@ export default class ListarOficinas extends React.Component{
   }
 
   componentDidMount(){
-    API.get('/oficina', { headers: {
-        "Access-Control-Allow-Headers": ["origin", "content-type", "accept", "authorization"],
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Credentials": true,
-        "Authorization" : `Bearer ${auth.getToken()}`,
-      }})
+    API.get(`/oficina`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        this.setState({oficinas: res.data});
+        const off = res.data;
+        this.setState({oficinas: off});
       })
       .catch(err => {
-        this.setState({
-          alertVisible: true,
-          alertText: err.toString()
-        });
+        console.log(err);
       });
   }
 
