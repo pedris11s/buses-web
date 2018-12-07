@@ -57,7 +57,11 @@ export default class ViewUser extends React.Component{
                       <tbody>
                       <tr>
                         <td>Nombre:</td>
-                        <td><strong>{ (this.state.user.nombre === undefined) ? "-" :  this.state.user.nombre}</strong></td>
+                        <td><strong>{ (this.state.user.name === "") ? "-" :  this.state.user.name}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Apellidos:</td>
+                        <td><strong>{ (this.state.user.lastName === "") ? "-" :  this.state.user.lastName}</strong></td>
                       </tr>
                       <tr>
                         <td>Username:</td>
@@ -65,7 +69,7 @@ export default class ViewUser extends React.Component{
                       </tr>
                       <tr>
                         <td>Email:</td>
-                        <td><strong>{ (this.state.user.email === undefined) ? "-" :  this.state.user.email}</strong></td>
+                        <td><strong>{ (this.state.user.email === "") ? "-" :  this.state.user.email}</strong></td>
                       </tr>
                       <tr>
                         <td>Rol:</td>

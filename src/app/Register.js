@@ -10,6 +10,8 @@ class Register extends Component {
       username: '',
       email: '',
       password: '',
+      name: '',
+      lastname: '',
 
       alertVisible: false,
       alertText: ''
@@ -18,6 +20,8 @@ class Register extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
@@ -33,6 +37,14 @@ class Register extends Component {
     this.setState({ password: e.target.value});
   }
 
+  handleNameChange(e){
+    this.setState({ name: e.target.value});
+  }
+
+  handleLastNameChange(e){
+    this.setState({ lastname: e.target.value});
+  }
+
 
   handleFormSubmit(e){
     e.preventDefault();
@@ -40,7 +52,9 @@ class Register extends Component {
     const user = {
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
+      name: this.state.name,
+      lastname: this.state.lastname
     }
 
     console.log(user);
@@ -65,6 +79,22 @@ class Register extends Component {
                   <Form onSubmit={this.handleFormSubmit}>
                     <h1>Register</h1>
                     <p className="text-muted">Create your account</p>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-user"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="text" placeholder="Name" autoComplete="name" value={this.state.name} onChange={this.handleNameChange}/>
+                    </InputGroup>
+                    <InputGroup className="mb-3">
+                      <InputGroupAddon addonType="prepend">
+                        <InputGroupText>
+                          <i className="icon-user"></i>
+                        </InputGroupText>
+                      </InputGroupAddon>
+                      <Input type="text" placeholder="Lastname" autoComplete="lastname" value={this.state.lastname} onChange={this.handleLastNameChange}/>
+                    </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>

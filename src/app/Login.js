@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 import AuthService from '../services/AuthService';
 
@@ -116,6 +117,12 @@ class Login extends Component {
                       <Row>
                         <Col>
                           <Button type="submit" color="success" block><i className="fa fa-sign-in"></i> Login</Button>
+                        </Col>
+                      </Row>
+                      <br/>
+                      <Row>
+                        <Col>
+                          <Link to={'/register'}><Button color="secondary" block><i className="icon-user-following"></i> Register</Button></Link>
                         </Col>
                       </Row>
                     </Form>
