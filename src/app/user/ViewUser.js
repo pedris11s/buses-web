@@ -29,7 +29,7 @@ export default class ViewUser extends React.Component{
   }
 
   render(){
-    let role = (this.state.user.role === undefined || this.state.user.role === null ) ? "Desconocida" : this.state.user.role;
+    let role = (this.state.user.role === undefined || this.state.user.role === null ) ? "-" : this.state.user.role;
 
     return (
       <div className="animated fadeIn">

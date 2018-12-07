@@ -21,6 +21,7 @@ export default class ListarRoles extends React.Component{
       .then(res => {
         //console.log(res.data);
         const r = res.data;
+        console.log(r);
         this.setState({ roles: r });
       })
       .catch(err => {
