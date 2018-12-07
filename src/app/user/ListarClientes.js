@@ -6,7 +6,7 @@ import API from '../../services/api';
 import AuthService from '../../services/AuthService';
 const auth = new AuthService();
 
-export default class ListarSuperUsers extends React.Component{
+export default class ListarClientes extends React.Component{
   constructor(props){
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ export default class ListarSuperUsers extends React.Component{
     API.get(`/user/list`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const u = res.data.users;
-        const arr = u.filter(r => r.role.name !== 'cliente');
+        const arr = u.filter(r => r.role.name !== 'root' && r.role.name !== 'admin');
         this.setState({ users: arr });
       });
   }
@@ -46,24 +46,24 @@ export default class ListarSuperUsers extends React.Component{
           <Col>
             <Card>
               <CardHeader>
-                <i className="icon-people"></i> <strong>Lista de Super Usuarios</strong>
+                <i className="icon-screen-smartphone"></i> <strong>Lista de Clientes</strong>
               </CardHeader>
               <CardBody>
                 <Table responsive hover>
                   <thead>
                   <tr className="text-center">
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
                     <th>Username</th>
-                    <th>Rol</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
                   { this.state.users.map( (user, index) =>
                     <tr key={index} className="text-center">
+                      <td>{user.name}</td>
+                      <td>{user.lastName}</td>
                       <td>{user.username}</td>
-                      {/*(user.role === null || user.role === undefined)*/}
-                      <td>{(user.role === null || user.role.name === undefined) ? "-" : user.role.name}</td>
-                      {/*<td>{user.role}</td>*/}
                       <td>
                         <Link to={`/users/view/${user.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;

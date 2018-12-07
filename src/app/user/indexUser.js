@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import ListarUsers from "./ListarUsers";
+import ListarClientes from "./ListarClientes";
 import ListarSuperUsers from "./ListarSuperUsers";
 
 export default class indexUser extends React.Component{
@@ -19,7 +19,7 @@ export default class indexUser extends React.Component{
         </Row>
         <br/>
         <ListarSuperUsers/>
-        <ListarUsers/>
+        <ListarClientes/>
       </div>
     )
   }
