@@ -4,6 +4,7 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap'
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
+import BadgeRole from "../BadgeRole";
 const auth = new AuthService();
 
 export default class ListarRoles extends React.Component{
@@ -60,7 +61,7 @@ export default class ListarRoles extends React.Component{
                   <tbody>
                   { this.state.roles.map( (role, index) =>
                     <tr key={index} className="text-center">
-                      <td>{role.name}</td>
+                      <td><BadgeRole role={role.name}/></td>
                       <td>
                         <Link to={`/roles/view/${role.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;

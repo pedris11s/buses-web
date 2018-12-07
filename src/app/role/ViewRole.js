@@ -4,6 +4,7 @@ import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
+import BadgeRole from "../BadgeRole";
 const auth = new AuthService();
 
 export default class ViewRole extends React.Component{
@@ -65,7 +66,7 @@ export default class ViewRole extends React.Component{
                       <tbody>
                       <tr>
                         <td>Nombre:</td>
-                        <td><strong>{this.state.role.name}</strong></td>
+                        <td><strong><BadgeRole role={this.state.role.name}/></strong></td>
                       </tr>
                       <tr>
                         <td>Creada:</td>

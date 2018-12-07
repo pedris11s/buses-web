@@ -4,6 +4,7 @@ import API from '../../services/api';
 import {Link} from 'react-router-dom';
 
 import AuthService from '../../services/AuthService';
+import BadgeRole from "../BadgeRole";
 const auth = new AuthService();
 
 export default class ViewUser extends React.Component{
@@ -73,7 +74,7 @@ export default class ViewUser extends React.Component{
                       </tr>
                       <tr>
                         <td>Rol:</td>
-                        <td><strong>{role.name}</strong></td>
+                        <td><strong><BadgeRole role={role.name}/></strong></td>
                       </tr>
                       <tr>
                         <td>Creado:</td>

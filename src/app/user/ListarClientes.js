@@ -4,6 +4,7 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap'
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
+import BadgeRole from "../BadgeRole";
 const auth = new AuthService();
 
 export default class ListarClientes extends React.Component{
@@ -46,7 +47,7 @@ export default class ListarClientes extends React.Component{
           <Col>
             <Card>
               <CardHeader>
-                <i className="icon-screen-smartphone"></i> <strong>Lista de Clientes</strong>
+                <i className="icon-screen-smartphone"></i> <strong>Lista de Clientes</strong> <div className="pull-right"><BadgeRole role={'cliente'}/></div>
               </CardHeader>
               <CardBody>
                 <Table responsive hover>

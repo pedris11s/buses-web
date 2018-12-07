@@ -2,6 +2,7 @@ import React from 'react';
 import {Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
+import BadgeRole from '../BadgeRole';
 
 import AuthService from '../../services/AuthService';
 const auth = new AuthService();
@@ -62,7 +63,8 @@ export default class ListarSuperUsers extends React.Component{
                     <tr key={index} className="text-center">
                       <td>{user.username}</td>
                       {/*(user.role === null || user.role === undefined)*/}
-                      <td>{(user.role === null || user.role.name === undefined) ? "-" : user.role.name}</td>
+                      {/*<td>{(user.role === null || user.role.name === undefined) ? "-" : user.role.name}</td>*/}
+                      <td> <BadgeRole role={user.role.name}/> </td>
                       {/*<td>{user.role}</td>*/}
                       <td>
                         <Link to={`/users/view/${user.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
