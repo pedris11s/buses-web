@@ -11,7 +11,7 @@ export default class indexBus extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to="/buses/add" >
-                <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar bus</Button>
+                <Button size="sm" color="primary"><i className="fa fa-plus"></i>&nbsp;Adicionar bus</Button>
               </Link>
             </div>
           </Col>

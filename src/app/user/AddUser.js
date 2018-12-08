@@ -80,7 +80,7 @@ export default class AddUser extends React.Component{
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear usuario</strong>
+                    <i className="fa fa-plus"></i> <strong>Adicionar usuario</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -122,7 +122,7 @@ export default class AddUser extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
+                        <Button type="submit" color="primary" block><i className="fa fa-plus"></i> Adicionar</Button>
                       </Col>
                     </Row>
                   </CardBody>

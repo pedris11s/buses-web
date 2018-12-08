@@ -12,7 +12,7 @@ export default class indexUser extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to="/users/add" >
-                <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar admin user</Button>
+                <Button size="sm" color="primary"><i className="fa fa-plus"></i>&nbsp;Adicionar admin user</Button>
               </Link>
             </div>
           </Col>

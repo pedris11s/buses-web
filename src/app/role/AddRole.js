@@ -48,7 +48,7 @@ export default class AddRole extends React.Component{
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear rol</strong>
+                    <i className="fa fa-plus"></i> <strong>Adicionar rol</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -65,7 +65,7 @@ export default class AddRole extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
+                        <Button type="submit" color="primary" block><i className="fa fa-plus"></i> Adicionar</Button>
                       </Col>
                     </Row>
                   </CardBody>

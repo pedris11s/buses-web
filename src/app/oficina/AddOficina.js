@@ -117,7 +117,7 @@ export default class AddOficina extends React.Component{
 
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear Oficina</strong>
+                    <i className="fa fa-plus"></i> <strong>Adicionar Oficina</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -162,7 +162,7 @@ export default class AddOficina extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
+                        <Button type="submit" color="primary" block><i className="fa fa-plus"></i> Adicionar</Button>
                       </Col>
                     </Row>
                   </CardBody>

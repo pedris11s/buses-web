@@ -11,7 +11,7 @@ export default class indexRole extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to="/roles/add" >
-                <Button size="sm" color="primary"><i className="fa fa-plus-square"></i>&nbsp;Adicionar role</Button>
+                <Button size="sm" color="primary"><i className="fa fa-plus"></i>&nbsp;Adicionar role</Button>
               </Link>
             </div>
           </Col>

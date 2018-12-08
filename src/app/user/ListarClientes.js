@@ -21,7 +21,7 @@ export default class ListarClientes extends React.Component{
     API.get(`/user/list`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const u = res.data.users;
-        const arr = u.filter(r => r.role.name !== 'root' && r.role.name !== 'admin');
+        const arr = u.filter(r => r.role.name === 'cliente');
         this.setState({ users: arr });
       });
   }

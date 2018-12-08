@@ -100,7 +100,7 @@ export default class AddBus extends React.Component{
 
                 <Card>
                   <CardHeader>
-                    <i className="fa fa-plus-square-o"></i> <strong>Crear Bus</strong>
+                    <i className="fa fa-plus"></i> <strong>Adicionar Bus</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -146,7 +146,7 @@ export default class AddBus extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
+                        <Button type="submit" color="primary" block><i className="fa fa-plus"></i> Adicionar</Button>
                       </Col>
                     </Row>
                   </CardBody>

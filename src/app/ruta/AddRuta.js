@@ -115,7 +115,7 @@ export default class AddRuta extends React.Component{
             <Col xs="9">
               <Card>
                 <CardHeader>
-                  <i className="fa fa-plus-square-o"></i> <strong>Crear Ruta</strong>
+                  <i className="fa fa-plus"></i> <strong>Adicionar Ruta</strong>
                 </CardHeader>
                 <CardBody>
                   <Row>
@@ -162,7 +162,7 @@ export default class AddRuta extends React.Component{
                 </CardBody>
               </Card>
               <br/>
-              <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
+              <Button type="submit" color="primary" block><i className="fa fa-plus"></i> Adicionar</Button>
             </Col>
           </Row>
         </Form>
