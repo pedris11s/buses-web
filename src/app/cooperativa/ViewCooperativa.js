@@ -4,6 +4,7 @@ import API from '../../services/api';
 import {Link} from 'react-router-dom';
 
 import AuthService from '../../services/AuthService';
+import LikeButton from "../utils/LikeButton";
 const auth = new AuthService();
 
 export default class ViewCooperativa extends React.Component{
@@ -56,6 +57,8 @@ export default class ViewCooperativa extends React.Component{
         <Row>
           <Col>
             <div class="pull-right">
+              <LikeButton/>
+              &nbsp;
               <Link to={`/coops/edit/${this.state.cooperativa.id}`} >
                 <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar cooperativa</Button>
               </Link>

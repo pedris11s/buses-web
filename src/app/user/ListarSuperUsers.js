@@ -2,7 +2,7 @@ import React from 'react';
 import {Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
 import API from '../../services/api';
-import BadgeRole from '../BadgeRole';
+import BadgeRole from '../utils/BadgeRole';
 
 import AuthService from '../../services/AuthService';
 const auth = new AuthService();

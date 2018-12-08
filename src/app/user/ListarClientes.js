@@ -4,7 +4,7 @@ import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap'
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
-import BadgeRole from "../BadgeRole";
+import BadgeRole from "../utils/BadgeRole";
 const auth = new AuthService();
 
 export default class ListarClientes extends React.Component{

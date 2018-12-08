@@ -4,7 +4,7 @@ import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
-import BadgeRole from "../BadgeRole";
+import BadgeRole from "../utils/BadgeRole";
 const auth = new AuthService();
 
 export default class ViewRole extends React.Component{
