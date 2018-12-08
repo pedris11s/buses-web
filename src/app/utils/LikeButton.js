@@ -8,12 +8,10 @@ const auth = new AuthService();
 export default class LikeButton extends React.Component{
   constructor(props){
     super(props);
-
     this.state = {
       icon: '',
       color: '',
-    }
-
+    };
     this.buttonAction = this.buttonAction.bind(this);
   }
 
@@ -23,16 +21,12 @@ export default class LikeButton extends React.Component{
         let users = res.data.users.filter(r => r.id === auth.getProfile().id);
         console.log(users, res.data.users);
         if(users.length > 0) {
-          console.log("dislike");
-
           this.setState({
             icon: 'fa fa-thumbs-o-down',
             color: 'dark',
           });
-
         }
         else {
-          console.log("like");
           this.setState({
             icon: 'fa fa-thumbs-o-up',
             color: 'light',
