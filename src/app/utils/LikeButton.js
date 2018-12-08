@@ -16,7 +16,7 @@ export default class LikeButton extends React.Component{
   }
 
   componentDidMount(){
-    API.get(`/cooperativa/${this.props.coopId}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+    API.get(`/${this.props.modelo}/${this.props.id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         let users = res.data.users.filter(r => r.id === auth.getProfile().id);
         console.log(users, res.data.users);
@@ -43,11 +43,13 @@ export default class LikeButton extends React.Component{
     let action = (this.state.color === 'dark') ? 'dislike' : 'like';
     let data = {
       userId: auth.getProfile().id,
-      coopId: this.props.coopId,
+      modeloId: this.props.id,
       action: action
     };
 
-    API.put(`/cooperativa/vote`, data, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+    console.log(data);
+
+    API.put(`/${this.props.modelo}/vote`, data, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         if (action === 'like')
           this.setState({

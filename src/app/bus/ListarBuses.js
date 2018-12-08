@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
+import LikeButton from "../utils/LikeButton";
 const auth = new AuthService();
 
 export default class ListarBuses extends React.Component{
@@ -66,6 +67,8 @@ export default class ListarBuses extends React.Component{
                         <td>{bus.frecuencia}</td>
                         <td>{bus.marca}</td>
                         <td>
+                          <LikeButton id={bus.id} modelo={'bus'}/>
+                            &nbsp;
                           <Link to={`/buses/view/${bus.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                             &nbsp;
                           <Link to={`/buses/edit/${bus.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
