@@ -5,24 +5,25 @@ export default class BadgeRole extends React.Component{
 
   render(){
 
-    let badge = '';
-    let role = this.props.role;
-    console.log(role);
+    let color = '', role = this.props.role;
     switch(role){
       case 'root':
-        badge = <Badge className="mr-1" color="dark" pill>{role}</Badge>
+        color = "dark";
         break;
       case 'admin':
-        badge = <Badge className="mr-1" color="info" pill>{role}</Badge>
+        color = "info"
         break;
       case 'cliente':
-        badge = <Badge className="mr-1" color="success" pill>{role}</Badge>
+        color = "success"
+        break;
+      default:
+        color = "light"
         break;
     }
 
     return(
       <div>
-        {badge}
+        <Badge className="mr-1" color={color} pill>{role}</Badge>
       </div>
   )};
 }
