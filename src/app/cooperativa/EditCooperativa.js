@@ -142,7 +142,7 @@ export default class EditCooperativa extends React.Component {
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
                 <Card>
                   <CardHeader>
-                    <i className="icon-pencil"></i> <strong>Editar Cooperativa</strong>
+                    <i className="cui-pencil"></i> <strong>Editar Cooperativa</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -217,7 +217,7 @@ export default class EditCooperativa extends React.Component {
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
+                        <Button type="submit" color="success" block><i className="cui-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>

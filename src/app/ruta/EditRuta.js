@@ -124,7 +124,7 @@ export default class EditRuta extends React.Component{
               <Col xs="9">
                 <Card>
                   <CardHeader>
-                    <i className="icon-pencil"></i> <strong>Editar Ruta</strong>
+                    <i className="cui-pencil"></i> <strong>Editar Ruta</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -171,7 +171,7 @@ export default class EditRuta extends React.Component{
                   </CardBody>
                 </Card>
                 <br/>
-                <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
+                <Button type="submit" color="success" block><i className="cui-pencil"></i> Editar</Button>
               </Col>
             </Row>
           </Form>

@@ -46,7 +46,7 @@ export default class ViewRole extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to={`/roles/edit/${this.state.role.id}`}>
-                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar rol</Button>
+                <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar rol</Button>
               </Link>
             </div>
           </Col>

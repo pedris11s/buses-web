@@ -38,7 +38,7 @@ export default class ViewUser extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to={`/users/edit/${this.state.user.id}`}>
-                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar usuario</Button>
+                <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar usuario</Button>
               </Link>
             </div>
           </Col>

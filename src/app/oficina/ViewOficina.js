@@ -44,7 +44,7 @@ export default class ViewOficina extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to={`/oficinas/edit/${this.state.oficina.id}`}>
-                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar oficina</Button>
+                <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar oficina</Button>
               </Link>
             </div>
           </Col>

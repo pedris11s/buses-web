@@ -38,7 +38,7 @@ export default class ViewBus extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to={`/buses/edit/${this.state.bus.id}`} >
-                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar bus</Button>
+                <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar bus</Button>
               </Link>
             </div>
           </Col>

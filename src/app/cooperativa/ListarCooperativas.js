@@ -70,9 +70,9 @@ export default class ListarCooperativas extends React.Component{
                             <td>
                               <Link to={`/coops/view/${coop.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                               &nbsp;
-                              <Link to={`/coops/edit/${coop.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
+                              <Link to={`/coops/edit/${coop.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
                               &nbsp;
-                              <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
+                              <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger"><i className="cui-trash"></i></Button>
                             </td>
                           </tr>
                       )}

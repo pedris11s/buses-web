@@ -46,7 +46,7 @@ export default class ViewRuta extends React.Component{
           <Col>
             <div class="pull-right">
               <Link to={`/rutas/edit/${this.state.ruta.id}`} >
-                <Button size="sm" color="success"><i className="icon-pencil"></i>&nbsp;Editar ruta</Button>
+                <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar ruta</Button>
               </Link>
             </div>
           </Col>

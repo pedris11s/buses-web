@@ -90,7 +90,7 @@ export default class EditUser extends React.Component{
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
                 <Card>
                   <CardHeader>
-                    <i className="icon-pencil"></i> <strong>Editar usuario</strong>
+                    <i className="cui-pencil"></i> <strong>Editar usuario</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -121,7 +121,7 @@ export default class EditUser extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
+                        <Button type="submit" color="success" block><i className="cui-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>

@@ -114,7 +114,7 @@ export default class EditOficina extends React.Component{
 
                 <Card>
                   <CardHeader>
-                    <i className="icon-pencil"></i> <strong>Editar Oficina</strong>
+                    <i className="cui-pencil"></i> <strong>Editar Oficina</strong>
                   </CardHeader>
                   <CardBody>
                     <Row>
@@ -159,7 +159,7 @@ export default class EditOficina extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="success" block><i className="icon-pencil"></i> Editar</Button>
+                        <Button type="submit" color="success" block><i className="cui-pencil"></i> Editar</Button>
                       </Col>
                     </Row>
                   </CardBody>

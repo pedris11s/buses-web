@@ -68,9 +68,9 @@ export default class ListarBuses extends React.Component{
                         <td>
                           <Link to={`/buses/view/${bus.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                             &nbsp;
-                          <Link to={`/buses/edit/${bus.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
+                          <Link to={`/buses/edit/${bus.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
                             &nbsp;
-                          <Button onClick={ () => this.deleteBus(bus.id) } size="sm" color="danger"><i className="fa fa-trash"></i></Button>
+                          <Button onClick={ () => this.deleteBus(bus.id) } size="sm" color="danger"><i className="cui-trash"></i></Button>
                         </td>
                       </tr>
                     )}

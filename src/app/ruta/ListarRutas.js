@@ -69,9 +69,9 @@ export default class ListarRutas extends React.Component{
                       <td>
                         <Link to={`/rutas/view/${ruta.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;
-                        <Link to={`/rutas/edit/${ruta.id}`}><Button size="sm" color="success"><i className="icon-pencil"></i></Button></Link>
+                        <Link to={`/rutas/edit/${ruta.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
                         &nbsp;
-                        <Button onClick={() => this.deleteRuta(ruta.id)} size="sm" color="danger"><i className="fa fa-trash"></i></Button>
+                        <Button onClick={() => this.deleteRuta(ruta.id)} size="sm" color="danger"><i className="cui-trash"></i></Button>
                       </td>
                     </tr>
                   )}
