@@ -5,8 +5,8 @@ import './App.scss';
 // Containers
 import { DefaultLayout } from './containers';
 // Pages
-import Login from './app/Login';
-import Register from './app/Register';
+import Login from './app/auth/Login';
+import Register from './app/auth/Register';
 
 // import { renderRoutes } from 'react-router-config';
 

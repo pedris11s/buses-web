@@ -19,7 +19,7 @@ export default class LikeButton extends React.Component{
     API.get(`/${this.props.modelo}/${this.props.id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         let users = res.data.users.filter(r => r.id === auth.getProfile().id);
-        console.log(users, res.data.users);
+        //console.log(users, res.data.users);
         if(users.length > 0) {
           this.setState({
             icon: 'fa fa-thumbs-o-down',
@@ -47,7 +47,7 @@ export default class LikeButton extends React.Component{
       action: action
     };
 
-    console.log(data);
+    //console.log(data);
 
     API.put(`/${this.props.modelo}/vote`, data, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {

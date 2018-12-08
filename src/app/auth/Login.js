@@ -3,7 +3,7 @@ import { Alert, Button, Card, CardBody, CardGroup, Col, Container, Form, Input, 
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 
-import AuthService from '../services/AuthService';
+import AuthService from '../../services/AuthService';
 
 class Login extends Component {
   constructor(){

@@ -20,9 +20,7 @@ export default class ListarRoles extends React.Component{
   componentDidMount(){
     API.get(`/role`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
         const r = res.data;
-        console.log(r);
         this.setState({ roles: r });
       })
       .catch(err => {
