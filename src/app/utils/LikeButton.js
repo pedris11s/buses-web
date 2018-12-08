@@ -1,38 +1,79 @@
 import React from 'react';
 import {Button} from "reactstrap";
+import API from '../../services/api';
+
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class LikeButton extends React.Component{
   constructor(props){
-    super();
+    super(props);
 
     this.state = {
       icon: '',
-      color: ''
+      color: '',
     }
 
     this.buttonAction = this.buttonAction.bind(this);
-    this.like = this.like.bind(this);
   }
-
-  //this.props.cooperativa && this.props.user
 
   componentDidMount(){
+    API.get(`/cooperativa/${this.props.coopId}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        let users = res.data.users.filter(r => r.id === auth.getProfile().id);
+        console.log(users, res.data.users);
+        if(users.length > 0) {
+          console.log("dislike");
 
+          this.setState({
+            icon: 'fa fa-thumbs-o-down',
+            color: 'dark',
+          });
 
-  }
-
-  like(){
-    let user = this.props.user, coop = this.props.cooperativa;
-    alert("hola");
+        }
+        else {
+          console.log("like");
+          this.setState({
+            icon: 'fa fa-thumbs-o-up',
+            color: 'light',
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   buttonAction(){
-    this.like();
+
+    let action = (this.state.color === 'dark') ? 'dislike' : 'like';
+    let data = {
+      userId: auth.getProfile().id,
+      coopId: this.props.coopId,
+      action: action
+    };
+
+    API.put(`/cooperativa/vote`, data, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        if (action === 'like')
+          this.setState({
+            color: 'dark',
+            icon: 'fa fa-thumbs-o-down'
+          });
+        else
+          this.setState({
+            color: 'light',
+            icon: 'fa fa-thumbs-o-up'
+          });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render(){
     return (
-      <Button onClick={() => this.buttonAction()} size="sm" color="light"><i className="fa fa-thumbs-o-up"></i></Button>
+      <Button onClick={() => this.buttonAction()} size="sm" color={this.state.color}><i className={this.state.icon}></i></Button>
     )
   }
 }

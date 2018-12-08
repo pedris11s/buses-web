@@ -40,7 +40,6 @@ export default class ViewCooperativa extends React.Component{
                           </tr>
                         );
 
-    console.log(this.state.cooperativa.rutas);
     let rutas = (this.state.cooperativa.rutas === undefined ||
                 this.state.cooperativa.rutas === null ||
                 this.state.cooperativa.rutas.length === 0) ?
@@ -51,14 +50,11 @@ export default class ViewCooperativa extends React.Component{
                   </tr>
                 );
 
-
     return (
       <div>
         <Row>
           <Col>
             <div class="pull-right">
-              <LikeButton/>
-              &nbsp;
               <Link to={`/coops/edit/${this.state.cooperativa.id}`} >
                 <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar cooperativa</Button>
               </Link>

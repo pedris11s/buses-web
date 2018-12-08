@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 import API from '../../services/api';
 
 import AuthService from '../../services/AuthService';
+import LikeButton from "../utils/LikeButton";
 const auth = new AuthService();
 
 export default class ListarCooperativas extends React.Component{
@@ -73,6 +74,8 @@ export default class ListarCooperativas extends React.Component{
                               <Link to={`/coops/edit/${coop.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
                               &nbsp;
                               <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger"><i className="cui-trash"></i></Button>
+                              &nbsp;
+                              <LikeButton coopId={coop.id}/>
                             </td>
                           </tr>
                       )}
