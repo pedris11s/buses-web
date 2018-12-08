@@ -53,7 +53,7 @@ export default class ListarBuses extends React.Component{
                     <th>No. Bus</th>
                     <th>Frecuencia</th>
                     <th>Marca</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>

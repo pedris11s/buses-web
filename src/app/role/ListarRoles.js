@@ -55,7 +55,7 @@ export default class ListarRoles extends React.Component{
                   <thead>
                   <tr className="text-center">
                     <th>Nombre</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>

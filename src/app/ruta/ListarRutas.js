@@ -55,7 +55,7 @@ export default class ListarRutas extends React.Component{
                     <th>Coo. Destino</th>
                     <th>Ciudad Origen</th>
                     <th>Ciudad Destino</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>

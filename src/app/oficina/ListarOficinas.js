@@ -69,7 +69,7 @@ export default class ListarOficinas extends React.Component{
                     <th>Ciudad</th>
                     <th>Direccion</th>
                     <th>Telefono</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>

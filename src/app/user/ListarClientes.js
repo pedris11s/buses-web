@@ -56,7 +56,7 @@ export default class ListarClientes extends React.Component{
                     <th>Nombre</th>
                     <th>Apellidos</th>
                     <th>Username</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>

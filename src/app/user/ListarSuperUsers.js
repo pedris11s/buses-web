@@ -55,7 +55,7 @@ export default class ListarSuperUsers extends React.Component{
                   <tr className="text-center">
                     <th>Username</th>
                     <th>Rol</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>

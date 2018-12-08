@@ -55,7 +55,7 @@ export default class ListarCooperativas extends React.Component{
                     <th>Pais</th>
                     <th>Provincia</th>
                     <th>Ciudad</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
