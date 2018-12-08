@@ -162,7 +162,7 @@ export default class AddRuta extends React.Component{
                 </CardBody>
               </Card>
               <br/>
-              <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+              <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
             </Col>
           </Row>
         </Form>

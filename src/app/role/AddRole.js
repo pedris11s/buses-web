@@ -65,7 +65,7 @@ export default class AddRole extends React.Component{
                     </Row>
                     <Row>
                       <Col>
-                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Submit</Button>
+                        <Button type="submit" color="primary" block><i className="fa fa-dot-circle-o"></i> Adicionar</Button>
                       </Col>
                     </Row>
                   </CardBody>
