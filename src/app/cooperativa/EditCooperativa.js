@@ -44,27 +44,25 @@ export default class EditCooperativa extends React.Component {
               oficina_coop: off[0].id
             });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .then(() => {
+        const id = this.props.match.params.id.toString();
+        API.get(`/cooperativa/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+          .then(res => {
+            const coop = res.data;
+            this.setState({
+              nombre: coop.nombre,
+              pais: coop.pais,
+              ciudad: coop.ciudad,
+              provincia: coop.provincia,
+              parroquia: coop.parroquia,
+              tipo: coop.tipo,//radio -> string
+              modalidad: coop.modalidad,//select
+              id: coop.id
+            });
 
-    const id = this.props.match.params.id.toString();
-    API.get(`/cooperativa/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
-      .then(res => {
-        const coop = res.data;
-        this.setState({
-          nombre: coop.nombre,
-          pais: coop.pais,
-          ciudad: coop.ciudad,
-          provincia: coop.provincia,
-          parroquia: coop.parroquia,
-          tipo: coop.tipo,//radio -> string
-          modalidad: coop.modalidad,//select
-          id: coop.id
-        })
-
-        if(coop.oficina !== undefined && coop.oficina !== null)
-          this.setState({oficina_coop: coop.oficina.id});
+            if(coop.oficina !== undefined && coop.oficina !== null)
+              this.setState({oficina_coop: coop.oficina.id});
+          });
       })
       .catch(err => {
         console.log(err);

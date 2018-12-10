@@ -22,6 +22,7 @@ export default class ListarSuperUsers extends React.Component{
       .then(res => {
         const u = res.data.users;
         const arr = u.filter(r => r.role.name !== 'cliente');
+        console.log(arr);
         this.setState({ users: arr });
       });
   }

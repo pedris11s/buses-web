@@ -16,13 +16,9 @@ export default class AddCooperativa extends React.Component {
       parroquia: '',
       tipo: 'Publica',//radio -> string
       modalidad: 'internacional',//select
-      rutas_coop: [],//muliple select
-      buses_coop: [],//multiple select
       oficina_coop: '',//select
 
       oficinas: [],
-      rutas: [],
-      buses: []
     }
 
     this.handleNombreChange = this.handleNombreChange.bind(this);

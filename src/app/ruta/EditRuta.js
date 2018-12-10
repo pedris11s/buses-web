@@ -15,7 +15,9 @@ export default class EditRuta extends React.Component{
       ciudad_origen: '',
       ciudad_destino: '',
       coop_ruta: [],
+      bus_ruta: '',
       cooperativas: [],
+      buses: [],
       id: ''
     }
 
@@ -25,6 +27,7 @@ export default class EditRuta extends React.Component{
     this.handleCiudadOrigenChange = this.handleCiudadOrigenChange.bind(this);
     this.handleCiudadDestinoChange = this.handleCiudadDestinoChange.bind(this);
     this.handleCoopChange = this.handleCoopChange.bind(this);
+    this.handleBusChange = this.handleBusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -32,34 +35,52 @@ export default class EditRuta extends React.Component{
     API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coops = res.data;
-        if(coops.length > 0)
-          this.setState(
-            {
-              cooperativas: coops,
-            });
-      })
-      .catch(err => {
-        console.log(err);
-      });;
+        this.setState({cooperativas: coops});
+      }).then(() => {
+        API.get(`/bus`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+          .then(res => {
+            const b = res.data;
+            if(b.length > 0)
+              this.setState(
+                {
+                  buses: b,
+                  bus_ruta: b[0].id
+                });
+          }).then(() => {
+          const id = this.props.match.params.id.toString();
+            API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+              .then(res => {
+                const ruta = res.data;
+                this.setState(
+                  {
+                    nombre: ruta.nombre,
+                    coo_origen: ruta.coo_origen,
+                    coo_destino: ruta.coo_destino,
+                    ciudad_origen: ruta.ciudad_origen,
+                    ciudad_destino: ruta.ciudad_destino,
+                    bus_ruta: ruta.bus.id,
+                    id: ruta.id
+                  });
 
-    const id = this.props.match.params.id.toString();
-    API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
-      .then(res => {
-        const ruta = res.data;
-        this.setState(
-          {
-            nombre: ruta.nombre,
-            coo_origen: ruta.coo_origen,
-            coo_destino: ruta.coo_destino,
-            ciudad_origen: ruta.ciudad_origen,
-            ciudad_destino: ruta.ciudad_destino,
-            coop_ruta: ruta.cooperativa,
-            id: ruta.id
-          });
+                let arr = ruta.cooperativas, coops = [];
+                for(let i = 0; i < arr.length; i++)
+                  coops.push(arr[i].id);
+                this.setState({coop_ruta: coops})
+
+                if(ruta.bus !== undefined && ruta.bus !== null)
+                  this.setState({bus: ruta.bus.id});
+
+                console.log(this.state.coop_ruta)
+              });
+        });
       })
       .catch(err => {
         console.log(err);
       });;
+  }
+
+  handleBusChange = event => {
+    this.setState({ bus_ruta: event.target.value, });
   }
 
   handleNombreChange = event => {
@@ -101,7 +122,8 @@ export default class EditRuta extends React.Component{
       coo_destino: this.state.coo_destino,
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
-      cooperativa: this.state.coop_ruta,
+      cooperativas: this.state.coop_ruta,
+      bus: this.state.bus_ruta
     };
 
     const id = this.state.id.toString();
@@ -160,6 +182,16 @@ export default class EditRuta extends React.Component{
               </Col>
 
               <Col xs="3">
+                <Card>
+                  <CardHeader className="text-center">
+                    <i className="fa fa-bus"></i> Bus
+                  </CardHeader>
+                  <CardBody className="text-center">
+                    <Input type="select" value={this.state.bus_ruta} onChange={this.handleBusChange} required>
+                      { this.state.buses.map( b => <option key={b.id} value={b.id}>{b.nobus}</option>) }
+                    </Input>
+                  </CardBody>
+                </Card>
                 <Card>
                   <CardHeader className="text-center">
                     <i className="icon-home"></i> Cooperativas

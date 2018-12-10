@@ -30,7 +30,8 @@ export default class ViewBus extends React.Component{
 
   render(){
 
-    let cooperativa = (this.state.bus.cooperativa === undefined || this.state.bus.cooperativa === null || this.state.bus.cooperativa.length === 0) ? "Desconocida" : this.state.bus.cooperativa;
+    let cooperativa = (this.state.bus.cooperativa === undefined || this.state.bus.cooperativa === null || this.state.bus.cooperativa.length === 0) ? "(-)" : this.state.bus.cooperativa;
+    let ruta = (this.state.bus.ruta === undefined || this.state.bus.ruta === null || this.state.bus.ruta === '' || this.state.bus.ruta.length === 0) ? "(-)" : this.state.bus.ruta;
 
     return (
       <div className="animated fadeIn">
@@ -73,6 +74,10 @@ export default class ViewBus extends React.Component{
                         <td><strong>{this.state.bus.marca}</strong></td>
                       </tr>
                       <tr>
+                        <td>Ruta:</td>
+                        <td><strong>{(ruta[0].nombre === undefined) ? "(-)" : ruta[0].nombre}</strong></td>
+                      </tr>
+                      <tr>
                         <td>Cooperativa:</td>
                         <td><strong>{(cooperativa.nombre === undefined) ? "(-)" : cooperativa.nombre}</strong></td>
                       </tr>
@@ -88,17 +93,6 @@ export default class ViewBus extends React.Component{
                     </Table>
                   </Col>
                 </Row>
-              </CardBody>
-            </Card>
-          </Col>
-
-          <Col xs="3">
-            <Card>
-              <CardHeader className="text-center">
-                <i className="icon-cursor"></i> Rutas
-              </CardHeader>
-              <CardBody className="text-center">
-                <strong>TODO!!!</strong>
               </CardBody>
             </Card>
           </Col>

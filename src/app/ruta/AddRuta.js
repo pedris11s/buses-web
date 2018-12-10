@@ -14,8 +14,10 @@ export default class AddRuta extends React.Component{
       coo_destino: '',
       ciudad_origen: '',
       ciudad_destino: '',
+      bus_ruta: '',
       coop_ruta: [],
       cooperativas: [],
+      buses: [],
     }
 
     this.handleNombreChange = this.handleNombreChange.bind(this);
@@ -24,6 +26,7 @@ export default class AddRuta extends React.Component{
     this.handleCiudadOrigenChange = this.handleCiudadOrigenChange.bind(this);
     this.handleCiudadDestinoChange = this.handleCiudadDestinoChange.bind(this);
     this.handleCoopChange = this.handleCoopChange.bind(this);
+    this.handleBusChange = this.handleBusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -36,6 +39,20 @@ export default class AddRuta extends React.Component{
             {
               cooperativas: coops,
               coop_ruta: coops[0].id
+            });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    API.get(`/bus`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        const b = res.data;
+        if(b.length > 0)
+          this.setState(
+            {
+              buses: b,
+              bus_ruta: b[0].id
             });
       })
       .catch(err => {
@@ -63,6 +80,10 @@ export default class AddRuta extends React.Component{
     this.setState({ ciudad_destino: event.target.value, });
   }
 
+  handleBusChange = event => {
+    this.setState({ bus_ruta: event.target.value, });
+  }
+
   handleCoopChange = event => {
     let options = event.target.options;
     let value = [];
@@ -83,19 +104,11 @@ export default class AddRuta extends React.Component{
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
       cooperativas: this.state.coop_ruta,
-      //buses: this.state.buses_ruta
+      bus: this.state.bus_ruta,
     };
 
     API.post(`/ruta/`, ruta, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        this.setState({
-          nombre: '',
-          coo_origen: '',
-          coo_destino: '',
-          ciudad_destino: '',
-          ciudad_origen: '',
-          coop_ruta: [],
-        });
         this.props.history.push('/rutas');
       })
       .catch(err => {
@@ -151,6 +164,18 @@ export default class AddRuta extends React.Component{
             </Col>
 
             <Col xs="3">
+
+              <Card>
+                <CardHeader className="text-center">
+                  <i className="fa fa-bus"></i> Bus
+                </CardHeader>
+                <CardBody className="text-center">
+                  <Input type="select" onChange={this.handleBusChange} required>
+                    { this.state.buses.map( b => <option key={b.id} value={b.id}>{b.nobus}</option>) }
+                  </Input>
+                </CardBody>
+              </Card>
+
               <Card>
                 <CardHeader className="text-center">
                   <i className="icon-home"></i> Cooperativas
@@ -161,7 +186,7 @@ export default class AddRuta extends React.Component{
                   </Input>
                 </CardBody>
               </Card>
-              <br/>
+
               <Button type="submit" color="primary" block><i className="fa fa-plus"></i> Adicionar</Button>
             </Col>
           </Row>
