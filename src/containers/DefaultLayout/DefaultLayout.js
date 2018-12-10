@@ -49,7 +49,7 @@ class DefaultLayout extends Component {
           <DefaultHeader />
           <Nav navbar>
             <NavItem className="d-md-down-none">
-              <NavLink href="#" onClick={this.handleLogout.bind(this)}><i className="fa fa-sign-out" ></i></NavLink>
+              <NavLink href="#" onClick={this.handleLogout.bind(this)}><i className="fa fa-sign-out" ></i> Salir&nbsp;&nbsp;&nbsp;&nbsp;</NavLink>
             </NavItem>
           </Nav>
         </AppHeader>

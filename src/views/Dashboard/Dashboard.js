@@ -22,7 +22,9 @@ import {
 } from 'reactstrap';
 import Widget03 from '../../views/Widgets/Widget03'
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities'
+import { getStyle, hexToRgba } from '@coreui/coreui/dist/js/coreui-utilities';
+import {Link} from 'react-router-dom';
+
 
 const brandPrimary = getStyle('--primary')
 const brandSuccess = getStyle('--success')
@@ -482,71 +484,79 @@ class Dashboard extends Component {
       <div className="animated fadeIn">
         <Row>
           <Col xs="6" sm="6" lg="3">
-            <div className="brand-card">
-              <div className="brand-card-header bg-twitter">
-                <i className="icon-briefcase"></i>
-                <div className="chart-wrapper">
-                  <Line data={makeSocialBoxData(0)} options={socialChartOpts} height={90} />
+            <Link to={'/oficinas'}>
+              <div className="brand-card">
+                <div className="brand-card-header bg-twitter">
+                  <i className="icon-briefcase"></i>
+                  <div className="chart-wrapper">
+                    <Line data={makeSocialBoxData(0)} options={socialChartOpts} height={90} />
+                  </div>
+                </div>
+                <div className="brand-card-body">
+                  <div>
+                    <div className="text-value">12</div>
+                    <div className="text-uppercase text-muted small">Oficinas</div>
+                  </div>
                 </div>
               </div>
-              <div className="brand-card-body">
-                <div>
-                  <div className="text-value">12</div>
-                  <div className="text-uppercase text-muted small">Oficinas</div>
-                </div>
-              </div>
-            </div>
+            </Link>
           </Col>
 
           <Col xs="6" sm="6" lg="3">
-            <div className="brand-card">
-              <div className="brand-card-header bg-twitter">
-                <i className="icon-home"></i>
-                <div className="chart-wrapper">
-                  <Line data={makeSocialBoxData(1)} options={socialChartOpts} height={90} />
+            <Link to={'/coops'}>
+              <div className="brand-card">
+                <div className="brand-card-header bg-twitter">
+                  <i className="icon-home"></i>
+                  <div className="chart-wrapper">
+                    <Line data={makeSocialBoxData(1)} options={socialChartOpts} height={90} />
+                  </div>
+                </div>
+                <div className="brand-card-body">
+                  <div>
+                    <div className="text-value">23</div>
+                    <div className="text-uppercase text-muted small">Cooperativas</div>
+                  </div>
                 </div>
               </div>
-              <div className="brand-card-body">
-                <div>
-                  <div className="text-value">23</div>
-                  <div className="text-uppercase text-muted small">Cooperativas</div>
-                </div>
-              </div>
-            </div>
+            </Link>
           </Col>
 
           <Col xs="6" sm="6" lg="3">
-            <div className="brand-card">
-              <div className="brand-card-header bg-linkedin">
-                <i className="icon-cursor"></i>
-                <div className="chart-wrapper">
-                  <Line data={makeSocialBoxData(2)} options={socialChartOpts} height={90} />
+            <Link to={'/buses'}>
+              <div className="brand-card">
+                <div className="brand-card-header bg-google-plus">
+                  <i className="fa fa-bus"></i>
+                  <div className="chart-wrapper">
+                    <Line data={makeSocialBoxData(3)} options={socialChartOpts} height={90} />
+                  </div>
+                </div>
+                <div className="brand-card-body">
+                  <div>
+                    <div className="text-value">431</div>
+                    <div className="text-uppercase text-muted small">Buses</div>
+                  </div>
                 </div>
               </div>
-              <div className="brand-card-body">
-                <div>
-                  <div className="text-value">100+</div>
-                  <div className="text-uppercase text-muted small">Rutas</div>
-                </div>
-              </div>
-            </div>
+            </Link>
           </Col>
 
           <Col xs="6" sm="6" lg="3">
-            <div className="brand-card">
-              <div className="brand-card-header bg-google-plus">
-                <i className="fa fa-bus"></i>
-                <div className="chart-wrapper">
-                  <Line data={makeSocialBoxData(3)} options={socialChartOpts} height={90} />
+            <Link to={'/rutas'}>
+              <div className="brand-card">
+                <div className="brand-card-header bg-linkedin">
+                  <i className="icon-cursor"></i>
+                  <div className="chart-wrapper">
+                    <Line data={makeSocialBoxData(2)} options={socialChartOpts} height={90} />
+                  </div>
+                </div>
+                <div className="brand-card-body">
+                  <div>
+                    <div className="text-value">100+</div>
+                    <div className="text-uppercase text-muted small">Rutas</div>
+                  </div>
                 </div>
               </div>
-              <div className="brand-card-body">
-                <div>
-                  <div className="text-value">431</div>
-                  <div className="text-uppercase text-muted small">Buses</div>
-                </div>
-              </div>
-            </div>
+            </Link>
           </Col>
         </Row>
 

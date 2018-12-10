@@ -117,7 +117,7 @@ const Charts = Loadable({
   loading: Loading,
 });
 
-const Dashboard = Loadable({
+const DashboardOficial = Loadable({
   loader: () => import('./views/Dashboard'),
   loading: Loading,
 });
@@ -313,6 +313,13 @@ const editRole = Loadable({
   loading: Loading,
 });
 
+
+/*DASHBOARD*/
+const Dashboard = Loadable({
+  loader: () => import('./app/utils/Dashboard'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
 
@@ -390,6 +397,7 @@ const routes = [
   { path: '/charts', name: 'Charts', component: Charts },
   { path: '/mojon', exact: true,  name: 'Users', component: Users },
   { path: '/mojon/:id', exact: true, name: 'User Details', component: User },
+  { path: '/pizarra', exact: true, name: 'Dashboard', component: DashboardOficial },
 ];
 
 export default routes;
