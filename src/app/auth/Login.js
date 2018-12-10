@@ -43,6 +43,7 @@ class Login extends Component {
 
     this.Auth.login(this.state.username,this.state.password)
       .then(res =>{
+        console.log(res);
         if(res.username) {
           this.props.history.replace('/');
         }
