@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
 import logo from '../../assets/img/brand/logoPRO1.png'
-import sygnet from '../../assets/img/brand/sygnet.svg'
+import logoside from '../../assets/img/brand/logoproicono.png'
 
 const propTypes = {
   children: PropTypes.node,
@@ -22,8 +22,8 @@ class DefaultHeader extends Component {
       <React.Fragment>
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         <AppNavbarBrand
-          full={{ src: logo, width: 100, height: 40, alt: 'CoreUI Logo' }}
-          minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
+          full={{ src: logo, width: 100, height: 40, alt: 'Poder3.0 Logo' }}
+          minimized={{ src: logoside, width: 50, height: 40, alt: 'Poder3.0 Logo' }}
         />
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
