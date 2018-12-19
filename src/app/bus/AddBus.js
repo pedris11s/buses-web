@@ -15,7 +15,7 @@ export default class AddBus extends React.Component{
       marca: '',
       condicion: '',
       coop_bus: '',
-      rutas_bus: [],
+      ruta_bus: '',
 
       cooperativas: [],
       rutas: []
@@ -27,6 +27,7 @@ export default class AddBus extends React.Component{
     this.handleMarcaChange = this.handleMarcaChange.bind(this);
     this.handleCondicionChange = this.handleCondicionChange.bind(this);
     this.handleCoopRutaChange = this.handleCoopRutaChange.bind(this);
+    this.handleBusRutaChange = this.handleBusRutaChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -40,6 +41,18 @@ export default class AddBus extends React.Component{
               cooperativas: coop,
               coop_bus: coop[0].id
             });
+      })
+      .then(() => {
+        API.get(`/ruta`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+          .then(res => {
+            const arr = res.data;
+            if(arr.length > 0)
+              this.setState(
+                {
+                  rutas: arr,
+                  ruta_bus: arr[0].id
+                });
+          })
       })
       .catch(err => {
         console.log(err);
@@ -66,6 +79,11 @@ export default class AddBus extends React.Component{
     this.setState({ coop_bus: event.target.value, });
   }
 
+  handleBusRutaChange = event => {
+    this.setState({ ruta_bus: event.target.value, });
+  }
+  handleBusRutaChange
+
   handleSubmit = event => {
     event.preventDefault();
     const bus = {
@@ -75,6 +93,7 @@ export default class AddBus extends React.Component{
       marca: this.state.marca,
       condicion: this.state.condicion,
       cooperativa: this.state.coop_bus,
+      ruta: this.state.ruta_bus,
       //rutas: this.state.rutas_bus
     };
     //console.log(bus);
@@ -95,7 +114,7 @@ export default class AddBus extends React.Component{
         <div className="animated fadeIn">
 
           <Row>
-            <Col>
+            <Col xs={9}>
               <Form onSubmit={this.handleSubmit} className="form-horizontal">
 
                 <Card>
@@ -152,6 +171,19 @@ export default class AddBus extends React.Component{
                   </CardBody>
                 </Card>
               </Form>
+            </Col>
+            <Col xs="3">
+
+              <Card>
+                <CardHeader className="text-center">
+                  <i className="icon-cursor"></i> Ruta
+                </CardHeader>
+                <CardBody className="text-center">
+                  <Input type="select" onChange={this.handleBusRutaChange}  required>
+                    { this.state.rutas.map( b => <option key={b.id} value={b.id}>{b.nombre}</option>) }
+                  </Input>
+                </CardBody>
+              </Card>
             </Col>
           </Row>
         </div>

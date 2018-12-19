@@ -44,15 +44,16 @@ export default {
       icon: 'icon-home',
     },
     {
-      name: 'Buses',
-      url: '/buses',
-      icon: 'fa fa-bus',
-    },
-    {
       name: 'Rutas',
       url: '/rutas',
       icon: 'icon-cursor',
     },
+    {
+      name: 'Buses',
+      url: '/buses',
+      icon: 'fa fa-bus',
+    },
+
     /*{
       title: true,
       name: 'Theme',

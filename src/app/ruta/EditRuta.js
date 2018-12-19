@@ -15,9 +15,7 @@ export default class EditRuta extends React.Component{
       ciudad_origen: '',
       ciudad_destino: '',
       coop_ruta: [],
-      bus_ruta: '',
       cooperativas: [],
-      buses: [],
       id: ''
     }
 
@@ -34,46 +32,63 @@ export default class EditRuta extends React.Component{
   componentDidMount(){
     API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const coops = res.data;
-        this.setState({cooperativas: coops});
-      }).then(() => {
-        API.get(`/bus`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
-          .then(res => {
-            const b = res.data;
-            if(b.length > 0)
-              this.setState(
-                {
-                  buses: b,
-                  bus_ruta: b[0].id
-                });
-          }).then(() => {
-          const id = this.props.match.params.id.toString();
-            API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
-              .then(res => {
-                const ruta = res.data;
-                this.setState(
-                  {
-                    nombre: ruta.nombre,
-                    coo_origen: ruta.coo_origen,
-                    coo_destino: ruta.coo_destino,
-                    ciudad_origen: ruta.ciudad_origen,
-                    ciudad_destino: ruta.ciudad_destino,
-                    bus_ruta: ruta.bus.id,
-                    id: ruta.id
-                  });
-
-                let arr = ruta.cooperativas, coops = [];
-                for(let i = 0; i < arr.length; i++)
-                  coops.push(arr[i].id);
-                this.setState({coop_ruta: coops})
-
-                if(ruta.bus !== undefined && ruta.bus !== null)
-                  this.setState({bus: ruta.bus.id});
-
-                console.log(this.state.coop_ruta)
-              });
-        });
+          this.setState({cooperativas: res.data});
       })
+      .catch(err => {
+        console.log(err);
+      });;
+
+    const id = this.props.match.params.id.toString();
+    API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        const ruta = res.data;
+        this.setState(
+          {
+            nombre: ruta.nombre,
+            coo_origen: ruta.coo_origen,
+            coo_destino: ruta.coo_destino,
+            ciudad_origen: ruta.ciudad_origen,
+            ciudad_destino: ruta.ciudad_destino,
+            coop_ruta: ruta.cooperativa,
+            id: ruta.id
+          });
+      }).then(() => {
+      API.get(`/bus`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+        .then(res => {
+          const b = res.data;
+          if(b.length > 0)
+            this.setState(
+              {
+                buses: b,
+                bus_ruta: b[0].id
+              });
+        }).then(() => {
+        const id = this.props.match.params.id.toString();
+        API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+          .then(res => {
+            const ruta = res.data;
+            this.setState(
+              {
+                nombre: ruta.nombre,
+                coo_origen: ruta.coo_origen,
+                coo_destino: ruta.coo_destino,
+                ciudad_origen: ruta.ciudad_origen,
+                ciudad_destino: ruta.ciudad_destino,
+                id: ruta.id
+              });
+
+            let arr = ruta.cooperativas, coops = [];
+            for(let i = 0; i < arr.length; i++)
+              coops.push(arr[i].id);
+            this.setState({coop_ruta: coops})
+
+            if(ruta.bus !== undefined && ruta.bus !== null)
+              this.setState({bus: ruta.bus.id});
+
+            console.log(this.state.coop_ruta)
+          });
+      });
+    })
       .catch(err => {
         console.log(err);
       });;
@@ -123,7 +138,6 @@ export default class EditRuta extends React.Component{
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
       cooperativas: this.state.coop_ruta,
-      bus: this.state.bus_ruta
     };
 
     const id = this.state.id.toString();
@@ -184,16 +198,6 @@ export default class EditRuta extends React.Component{
               <Col xs="3">
                 <Card>
                   <CardHeader className="text-center">
-                    <i className="fa fa-bus"></i> Bus
-                  </CardHeader>
-                  <CardBody className="text-center">
-                    <Input type="select" value={this.state.bus_ruta} onChange={this.handleBusChange} required>
-                      { this.state.buses.map( b => <option key={b.id} value={b.id}>{b.nobus}</option>) }
-                    </Input>
-                  </CardBody>
-                </Card>
-                <Card>
-                  <CardHeader className="text-center">
                     <i className="icon-home"></i> Cooperativas
                   </CardHeader>
                   <CardBody className="text-center">
@@ -212,3 +216,4 @@ export default class EditRuta extends React.Component{
     );
   }
 }
+

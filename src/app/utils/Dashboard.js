@@ -73,14 +73,14 @@ export default class Dashboard extends React.Component{
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Link to={'/buses'}>
-              <Widget header={this.state.buses.length} mainText="Buses" icon="fa fa-bus" color="success" variant="2" />
+            <Link to={'/rutas'}>
+              <Widget header={this.state.rutas.length} mainText="Rutas" icon="icon-cursor" color="warning" variant="2" />
             </Link>
           </Col>
 
           <Col xs="12" sm="6" lg="3">
-            <Link to={'/rutas'}>
-              <Widget header={this.state.rutas.length} mainText="Rutas" icon="icon-cursor" color="warning" variant="2" />
+            <Link to={'/buses'}>
+              <Widget header={this.state.buses.length} mainText="Buses" icon="fa fa-bus" color="success" variant="2" />
             </Link>
           </Col>
         </Row>

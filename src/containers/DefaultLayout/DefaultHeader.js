@@ -30,7 +30,7 @@ class DefaultHeader extends Component {
     API.get(`/user/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const u = res.data;
-        console.log(res.data);
+        //console.log(res.data);
         this.setState({user:u});
       })
       .catch(err => {

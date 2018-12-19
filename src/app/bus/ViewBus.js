@@ -75,7 +75,7 @@ export default class ViewBus extends React.Component{
                       </tr>
                       <tr>
                         <td>Ruta:</td>
-                        <td><strong>{(ruta[0].nombre === undefined) ? "(-)" : ruta[0].nombre}</strong></td>
+                        <td><strong>{(ruta.nombre === undefined) ? "(-)" : ruta.nombre}</strong></td>
                       </tr>
                       <tr>
                         <td>Cooperativa:</td>

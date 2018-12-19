@@ -39,7 +39,7 @@ export default class ListarRutas extends React.Component{
 
   render(){
     return (
-      <div class="animated fadeIn">
+      <div className="animated fadeIn">
         <Row>
           <Col>
             <Card>

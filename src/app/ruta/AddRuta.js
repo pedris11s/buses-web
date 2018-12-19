@@ -104,7 +104,6 @@ export default class AddRuta extends React.Component{
       ciudad_origen: this.state.ciudad_origen,
       ciudad_destino: this.state.ciudad_destino,
       cooperativas: this.state.coop_ruta,
-      bus: this.state.bus_ruta,
     };
 
     API.post(`/ruta/`, ruta, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
@@ -164,17 +163,6 @@ export default class AddRuta extends React.Component{
             </Col>
 
             <Col xs="3">
-
-              <Card>
-                <CardHeader className="text-center">
-                  <i className="fa fa-bus"></i> Bus
-                </CardHeader>
-                <CardBody className="text-center">
-                  <Input type="select" onChange={this.handleBusChange} required>
-                    { this.state.buses.map( b => <option key={b.id} value={b.id}>{b.nobus}</option>) }
-                  </Input>
-                </CardBody>
-              </Card>
 
               <Card>
                 <CardHeader className="text-center">

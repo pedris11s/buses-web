@@ -29,7 +29,15 @@ export default class ViewRuta extends React.Component{
   render(){
 
 
-    let bus = (this.state.ruta.bus === undefined || this.state.ruta.bus === null || this.state.ruta.bus === '' || this.state.ruta.bus.length === 0) ? "(-)" : this.state.ruta.bus;
+    let buses = (this.state.ruta.buses === undefined ||
+                        this.state.ruta.buses === null ||
+                        this.state.ruta.buses.length === 0) ?
+                        <strong>No asignados.</strong>
+                        : this.state.ruta.buses.map(b =>
+                          <tr>
+                            <td><Link to={`/buses/view/${b.id}`}>{b.nobus}</Link></td>
+                          </tr>
+                        );
     let cooperativas = (this.state.ruta.cooperativas === undefined ||
                         this.state.ruta.cooperativas === null ||
                         this.state.ruta.cooperativas.length === 0) ?
@@ -87,10 +95,6 @@ export default class ViewRuta extends React.Component{
                         <td><strong>{this.state.ruta.ciudad_destino}</strong></td>
                       </tr>
                       <tr>
-                        <td>Bus:</td>
-                        <td><strong>{bus.nobus}</strong></td>
-                      </tr>
-                      <tr>
                         <td>Creada:</td>
                         <td><strong>{this.state.ruta.createdAt}</strong></td>
                       </tr>
@@ -114,6 +118,21 @@ export default class ViewRuta extends React.Component{
                 <Table responsive hover>
                   <tbody>
                     { cooperativas }
+                  </tbody>
+                </Table>
+
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="fa fa-bus"></i> Buses
+              </CardHeader>
+              <CardBody className="text-center">
+                <Table responsive hover>
+                  <tbody>
+                  { buses }
                   </tbody>
                 </Table>
 
