@@ -36,7 +36,8 @@ export default class ViewRole extends React.Component{
                 <strong>No asignados.</strong>
                 : this.state.role.users.map(user =>
                   <tr>
-                    <td><Link to={`/users/view/${user.id}`}>{user.username}</Link></td>
+                    <td>{user.username}</td>
+                    <td><Link to={`/users/view/${user.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
                   </tr>
                 );
 

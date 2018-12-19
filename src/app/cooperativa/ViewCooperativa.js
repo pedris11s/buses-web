@@ -36,7 +36,8 @@ export default class ViewCooperativa extends React.Component{
                         <strong>No asignados.</strong>
                         : this.state.cooperativa.buses.map(bus =>
                           <tr>
-                            <td><Link to={`/buses/view/${bus.id}`}>{bus.nobus}</Link></td>
+                            <td>{bus.nobus}</td>
+                            <td><Link to={`/buses/view/${bus.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
                           </tr>
                         );
 
@@ -46,7 +47,8 @@ export default class ViewCooperativa extends React.Component{
                 <strong>No asignadas.</strong>
                 : this.state.cooperativa.rutas.map(ruta =>
                   <tr>
-                    <td><Link to={`/rutas/view/${ruta.id}`}>{ruta.nombre}</Link></td>
+                    <td>{ruta.nombre}</td>
+                    <td><Link to={`/rutas/view/${ruta.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
                   </tr>
                 );
 
@@ -144,7 +146,7 @@ export default class ViewCooperativa extends React.Component{
                   <i className="icon-cursor"></i> Rutas
                 </CardHeader>
                 <CardBody className="text-center">
-                  <Table responsive striped hover>
+                  <Table responsive hover>
                     <tbody>
                     {rutas}
                     </tbody>

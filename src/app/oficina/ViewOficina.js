@@ -34,7 +34,8 @@ export default class ViewOficina extends React.Component{
                           <strong>No asignadas</strong>
                         : this.state.oficina.cooperativas.map(coop =>
                             <tr>
-                              <td><a href={`/coops/view/${coop.id}`}>{coop.nombre}</a></td>
+                              <td>{coop.nombre}</td>
+                              <td><Link to={`/coops/view/${coop.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
                             </tr>
                           );
 

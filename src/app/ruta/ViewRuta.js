@@ -35,7 +35,8 @@ export default class ViewRuta extends React.Component{
                         <strong>No asignados.</strong>
                         : this.state.ruta.buses.map(b =>
                           <tr>
-                            <td><Link to={`/buses/view/${b.id}`}>{b.nobus}</Link></td>
+                            <td>{b.nobus}</td>
+                            <td><Link to={`/buses/view/${b.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
                           </tr>
                         );
     let cooperativas = (this.state.ruta.cooperativas === undefined ||
@@ -44,7 +45,8 @@ export default class ViewRuta extends React.Component{
                         <strong>No asignadas.</strong>
                         : this.state.ruta.cooperativas.map(coop =>
                           <tr>
-                            <td><Link to={`/coops/view/${coop.id}`}>{coop.nombre}</Link></td>
+                            <td>{coop.nombre}</td>
+                            <td><Link to={`/coops/view/${coop.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
                           </tr>
                         );
 

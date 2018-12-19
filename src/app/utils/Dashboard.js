@@ -110,7 +110,7 @@ export default class Dashboard extends React.Component{
                         <td>
                           <div><Link to={`/coops/view/${coop.id}`}>{coop.nombre}</Link></div>
                           <div className="small text-muted">
-                            <span>New</span> | Registered: Jan 1, 2015
+                            <span>{coop.oficina.nombre}</span> | {coop.ciudad}
                           </div>
                         </td>
                         <td className="text-center">
@@ -148,7 +148,7 @@ export default class Dashboard extends React.Component{
                         <td>
                           <div><Link to={`/buses/view/${bus.id}`}>{bus.nobus}</Link></div>
                           <div className="small text-muted">
-                            <span>New</span> | Registered: Jan 1, 2015
+                            <span>{bus.ruta.nombre}</span> | {bus.cooperativa.nombre}
                           </div>
                         </td>
                         <td className="text-center">
