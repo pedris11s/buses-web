@@ -67,7 +67,7 @@ export default class ListarBuses extends React.Component{
                         <td>{bus.frecuencia}</td>
                         <td>{bus.marca}</td>
                         <td>
-                          <LikeButton id={bus.id} modelo={'bus'}/>
+                          {/*<LikeButton id={bus.id} modelo={'bus'}/>*/}
                             &nbsp;
                           <Link to={`/buses/view/${bus.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                             &nbsp;

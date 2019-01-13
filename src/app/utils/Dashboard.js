@@ -3,6 +3,7 @@ import Widget from "./Widget";
 import {Row, Col, Progress, Table, CardBody, Card} from 'reactstrap';
 import {Link} from "react-router-dom";
 import API from "../../services/api";
+import StarRating from 'react-star-rating-component';
 
 import AuthService from '../../services/AuthService';
 const auth = new AuthService();
@@ -114,7 +115,7 @@ export default class Dashboard extends React.Component{
                           </div>
                         </td>
                         <td className="text-center">
-                          <i className="fa fa-thumbs-o-up"></i><span> {coop.likes}</span>
+                          <i className="fa fa-star"></i><span> {coop.likes}</span>
                         </td>
                       </tr>
                     )}
@@ -152,7 +153,7 @@ export default class Dashboard extends React.Component{
                           </div>
                         </td>
                         <td className="text-center">
-                          <i className="fa fa-thumbs-o-up"></i><span> {bus.likes}</span>
+                          <i className="fa fa-star"></i><span> {bus.likes}</span>
                         </td>
                       </tr>
                     )}
