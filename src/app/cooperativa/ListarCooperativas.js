@@ -69,7 +69,7 @@ export default class ListarCooperativas extends React.Component{
                             <td>{coop.provincia}</td>
                             <td>{coop.ciudad}</td>
                             <td>
-                              {/*<LikeButton id={coop.id} modelo={'cooperativa'}/>*/}
+                              <LikeButton id={coop.id} modelo={'cooperativa'}/>
                               &nbsp;
                               <Link to={`/coops/view/${coop.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                               &nbsp;

@@ -53,6 +53,11 @@ export default {
       url: '/buses',
       icon: 'fa fa-bus',
     },
+    {
+      name: 'Denuncias',
+      url: '/denuncias',
+      icon: 'fa fa-warning',
+    },
 
     /*{
       title: true,

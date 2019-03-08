@@ -320,6 +320,17 @@ const Dashboard = Loadable({
   loading: Loading,
 });
 
+/*DENUNCIA*/
+const indexDenuncia = Loadable({
+  loader: () => import('./app/denuncia/indexDenuncia'),
+  loading: Loading,
+});
+
+const viewDenuncia = Loadable({
+  loader: () => import('./app/denuncia/ViewDenuncia'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
 
@@ -357,6 +368,9 @@ const routes = [
   { path: '/roles/add', exact: true, name: 'Adicionar Rol', component: addRole },
   { path: '/roles/view/:id', exact: true, name: 'Detalles de rol', component: viewRole },
   { path: '/roles/edit/:id', exact: true, name: 'Editar rol', component: editRole },
+
+  { path: '/denuncias', exact: true, name: 'Denuncias', component: indexDenuncia },
+  { path: '/denuncias/view/:id', exact: true, name: 'Detalles de denuncia', component: viewDenuncia },
 
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
