@@ -117,7 +117,7 @@ const Charts = Loadable({
   loading: Loading,
 });
 
-const Dashboard = Loadable({
+const DashboardOficial = Loadable({
   loader: () => import('./views/Dashboard'),
   loading: Loading,
 });
@@ -184,7 +184,6 @@ const User = Loadable({
 
 //AQUI EMPIEZA LO MIO
 
-
 /*RUTAS*/
 const indexRuta = Loadable({
   loader: () => import('./app/ruta/indexRuta'),
@@ -196,8 +195,13 @@ const addRuta = Loadable({
   loading: Loading,
 });
 
-const viewRutaContainer = Loadable({
-  loader: () => import('./app/ruta/ViewRutaContainer'),
+const viewRuta = Loadable({
+  loader: () => import('./app/ruta/ViewRuta'),
+  loading: Loading,
+});
+
+const editRuta = Loadable({
+  loader: () => import('./app/ruta/EditRuta'),
   loading: Loading,
 });
 
@@ -207,9 +211,29 @@ const indexCooperativa = Loadable({
   loading: Loading,
 });
 
+const addCoop = Loadable({
+  loader: () => import('./app/cooperativa/AddCooperativa'),
+  loading: Loading,
+});
+
+const viewCoop = Loadable({
+  loader: () => import('./app/cooperativa/ViewCooperativa'),
+  loading: Loading,
+});
+
+const editCoop = Loadable({
+  loader: () => import('./app/cooperativa/EditCooperativa'),
+  loading: Loading,
+});
+
 /*OFICINAS*/
 const indexOficina = Loadable({
   loader: () => import('./app/oficina/indexOficina'),
+  loading: Loading,
+});
+
+const addOficina = Loadable({
+  loader: () => import('./app/oficina/AddOficina'),
   loading: Loading,
 });
 
@@ -218,23 +242,136 @@ const viewOficina = Loadable({
   loading: Loading,
 });
 
+const editOficina = Loadable({
+  loader: () => import('./app/oficina/EditOficina'),
+  loading: Loading,
+});
 
 
+/*BUSES*/
+const indexBus = Loadable({
+  loader: () => import('./app/bus/indexBus'),
+  loading: Loading,
+});
+
+const addBus = Loadable({
+  loader: () => import('./app/bus/AddBus'),
+  loading: Loading,
+});
+
+const viewBus = Loadable({
+  loader: () => import('./app/bus/ViewBus'),
+  loading: Loading,
+});
+
+
+const editBus = Loadable({
+  loader: () => import('./app/bus/EditBus'),
+  loading: Loading,
+});
+
+
+/*USERS*/
+const indexUser = Loadable({
+  loader: () => import('./app/user/indexUser'),
+  loading: Loading,
+});
+
+const addUser = Loadable({
+  loader: () => import('./app/user/AddUser'),
+  loading: Loading,
+});
+
+const viewUser = Loadable({
+  loader: () => import('./app/user/ViewUser'),
+  loading: Loading,
+});
+
+const editUser = Loadable({
+  loader: () => import('./app/user/EditUser'),
+  loading: Loading,
+});
+
+/*ROLES*/
+const indexRole = Loadable({
+  loader: () => import('./app/role/indexRole'),
+  loading: Loading,
+});
+
+const addRole = Loadable({
+  loader: () => import('./app/role/AddRole'),
+  loading: Loading,
+});
+
+const viewRole = Loadable({
+  loader: () => import('./app/role/ViewRole'),
+  loading: Loading,
+});
+
+const editRole = Loadable({
+  loader: () => import('./app/role/EditRole'),
+  loading: Loading,
+});
+
+
+/*DASHBOARD*/
+const Dashboard = Loadable({
+  loader: () => import('./app/utils/Dashboard'),
+  loading: Loading,
+});
+
+/*DENUNCIA*/
+const indexDenuncia = Loadable({
+  loader: () => import('./app/denuncia/indexDenuncia'),
+  loading: Loading,
+});
+
+const viewDenuncia = Loadable({
+  loader: () => import('./app/denuncia/ViewDenuncia'),
+  loading: Loading,
+});
 
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: DefaultLayout },
 
-  { path: '/rutas/view', exact: true, name: 'Rutas', component: indexRuta },
-  { path: '/rutas/view/add', exact: true, name: 'Adicionar ruta', component: addRuta },
-  { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRutaContainer},
+  { path: '/', exact: true, name: 'Inicio', component: DefaultLayout },
+  { path: '/dashboard', exact: true, name: 'Dashboard', component: Dashboard },
 
-  { path: '/coops/view', exact: true, name: 'Cooperativas', component: indexCooperativa },
+  { path: '/rutas', exact: true, name: 'Rutas', component: indexRuta },
+  { path: '/rutas/add', exact: true, name: 'Adicionar ruta', component: addRuta },
+  { path: '/rutas/view/:id', exact: true, name: 'Detalles de ruta', component: viewRuta},
+  { path: '/rutas/edit/:id', exact: true, name: 'Editar ruta', component: editRuta},
 
-  { path: '/oficinas/view', exact: true, name: 'Oficinas', component: indexOficina },
+  { path: '/coops', exact: true, name: 'Cooperativas', component: indexCooperativa },
+  { path: '/coops/add', exact: true, name: 'Adicionar cooperativa', component: addCoop },
+  { path: '/coops/view/:id', exact: true, name: 'Detalles de cooperativa', component: viewCoop },
+  { path: '/coops/edit/:id', exact: true, name: 'Editar cooperativa', component: editCoop },
+
+  { path: '/oficinas/', exact: true, name: 'Oficinas', component: indexOficina },
+  { path: '/oficinas/add', exact: true, name: 'Adicionar Oficina', component: addOficina },
+  { path: '/oficinas/edit/:id', exact: true, name: 'Editar oficina', component: editOficina },
   { path: '/oficinas/view/:id', exact: true, name: 'Detalles de oficina', component: viewOficina },
 
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+
+  { path: '/buses', exact: true, name: 'Buses', component: indexBus },
+  { path: '/buses/add', exact: true, name: 'Adicionar bus', component: addBus },
+  { path: '/buses/view/:id', exact: true, name: 'Detalles de bus', component: viewBus },
+  { path: '/buses/edit/:id', exact: true, name: 'Editar bus', component: editBus },
+
+  { path: '/users', exact: true, name: 'Usuarios', component: indexUser },
+  { path: '/users/add', exact: true, name: 'Adicionar Administrador', component: addUser },
+  { path: '/users/view/:id', exact: true, name: 'Detalles de usuario', component: viewUser },
+  { path: '/users/edit/:id', exact: true, name: 'Editar usuario', component: editUser },
+
+
+  { path: '/roles', exact: true, name: 'Roles', component: indexRole },
+  { path: '/roles/add', exact: true, name: 'Adicionar Rol', component: addRole },
+  { path: '/roles/view/:id', exact: true, name: 'Detalles de rol', component: viewRole },
+  { path: '/roles/edit/:id', exact: true, name: 'Editar rol', component: editRole },
+
+  { path: '/denuncias', exact: true, name: 'Denuncias', component: indexDenuncia },
+  { path: '/denuncias/view/:id', exact: true, name: 'Detalles de denuncia', component: viewDenuncia },
+
   { path: '/theme', exact: true, name: 'Theme', component: Colors },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
@@ -272,8 +409,9 @@ const routes = [
   { path: '/notifications/modals', name: 'Modals', component: Modals },
   { path: '/widgets', name: 'Widgets', component: Widgets },
   { path: '/charts', name: 'Charts', component: Charts },
-  { path: '/users', exact: true,  name: 'Users', component: Users },
-  { path: '/users/:id', exact: true, name: 'User Details', component: User },
+  { path: '/mojon', exact: true,  name: 'Users', component: Users },
+  { path: '/mojon/:id', exact: true, name: 'User Details', component: User },
+  { path: '/pizarra', exact: true, name: 'Dashboard', component: DashboardOficial },
 ];
 
 export default routes;

@@ -1,33 +1,41 @@
 import React from 'react';
-import axios from 'axios';
-import {API_ROOT} from "../../config";
-import { Button, Card, CardBody, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row, Table } from 'reactstrap';
+import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import {Link} from "react-router-dom";
+import API from '../../services/api';
+
+import AuthService from '../../services/AuthService';
+import LikeButton from "../utils/LikeButton";
+const auth = new AuthService();
 
 export default class ListarCooperativas extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      cooperativas: []
+      cooperativas: [],
     }
+
+    this.deleteCoop = this.deleteCoop.bind(this);
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/cooperativa`)
+    API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const coops = res.data;
         this.setState({cooperativas: coops});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
   deleteCoop(id){
-    axios.delete(`${API_ROOT}/cooperativa/${id}`)
+    API.delete(`/cooperativa/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const arr = this.state.cooperativas.filter(r => r.id !== id);
         this.setState({cooperativas: arr});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        console(err);
       });
   }
 
@@ -38,70 +46,41 @@ export default class ListarCooperativas extends React.Component{
           <Col>
             <Card>
               <CardHeader>
-                <i className="fa fa-industry"></i> <strong>Lista de Cooperativas</strong>
+                <i className="icon-home"></i> <strong>Lista de Cooperativas</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Pais</th>
                     <th>Provincia</th>
                     <th>Ciudad</th>
-                    <th>Parroquia</th>
-                    <th>Tipo</th>
-                    <th>Modalidad</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
                       {
-                        this.state.cooperativas.map(coop =>
-                          <tr>
+                        this.state.cooperativas.map((coop, index) =>
+                          <tr key={index} className="text-center">
                             <td>{coop.nombre}</td>
                             <td>{coop.pais}</td>
                             <td>{coop.provincia}</td>
                             <td>{coop.ciudad}</td>
-                            <td>{coop.parroquia}</td>
-                            <td>{coop.tipo}</td>
-                            <td>{coop.modalidad}</td>
                             <td>
-                              <Button onClick="" size="sm" color="success" outline>
-                                <i className="fa fa-lightbulb-o"></i>
-                              </Button>
+                              <LikeButton id={coop.id} modelo={'cooperativa'}/>
                               &nbsp;
-                              <Button size="sm" color="danger" outline onClick={ () => this.deleteCoop(coop.id) }>
-                                <i className="fa fa-trash"></i>
-                              </Button>
+                              <Link to={`/coops/view/${coop.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
+                              &nbsp;
+                              <Link to={`/coops/edit/${coop.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
+                              &nbsp;
+                              <Button onClick={ () => this.deleteCoop(coop.id) } size="sm" color="danger"><i className="cui-trash"></i></Button>
                             </td>
                           </tr>
-
                       )}
                   </tbody>
                 </Table>
-
-
-                <Pagination>
-                  <PaginationItem>
-                    <PaginationLink previous tag="button"></PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem active>
-                    <PaginationLink tag="button">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">2</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink tag="button">4</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink next tag="button"></PaginationLink>
-                  </PaginationItem>
-                </Pagination>
               </CardBody>
             </Card>
           </Col>

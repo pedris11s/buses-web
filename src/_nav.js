@@ -4,14 +4,10 @@ export default {
       name: 'Dashboard',
       url: '/dashboard',
       icon: 'icon-speedometer',
-      badge: {
-        variant: 'info',
-        text: 'NEW',
-      },
     },
     {
       title: true,
-      name: 'Info',
+      name: 'Admin',
       wrapper: {            // optional wrapper object
         element: '',        // required valid HTML5 element tag
         attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
@@ -19,26 +15,51 @@ export default {
       class: ''             // optional class names space delimited list for title item ex: "text-center"
     },
     {
+      name: 'Roles',
+      url: '/roles',
+      icon: 'icon-options',
+    },
+    {
+      name: 'Usuarios',
+      url: '/users',
+      icon: 'icon-people',
+    },
+    {
+      title: true,
+      name: 'Negocio',
+      wrapper: {            // optional wrapper object
+        element: '',        // required valid HTML5 element tag
+        attributes: {}        // optional valid JS object with JS API naming ex: { className: "my-class", style: { fontFamily: "Verdana" }, id: "my-id"}
+      },
+      class: ''             // optional class names space delimited list for title item ex: "text-center"
+    },
+    {
+      name: 'Oficinas',
+      url: '/oficinas',
+      icon: 'icon-briefcase',
+    },
+    {
       name: 'Cooperativas',
-      url: '/coops/view',
-      icon: 'fa fa-industry',
+      url: '/coops',
+      icon: 'icon-home',
     },
     {
       name: 'Rutas',
-      url: '/rutas/view',
+      url: '/rutas',
       icon: 'icon-cursor',
     },
     {
       name: 'Buses',
-      url: '/TODO',
+      url: '/buses',
       icon: 'fa fa-bus',
     },
     {
-      name: 'Oicinas',
-      url: '/oficinas/view',
-      icon: 'icon-briefcase',
+      name: 'Denuncias',
+      url: '/denuncias',
+      icon: 'fa fa-warning',
     },
-    {
+
+    /*{
       title: true,
       name: 'Theme',
       wrapper: {            // optional wrapper object
@@ -296,6 +317,6 @@ export default {
       url: 'http://coreui.io/pro/react/',
       icon: 'icon-layers',
       variant: 'danger',
-    },
+    },*/
   ],
 };

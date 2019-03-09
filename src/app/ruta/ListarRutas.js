@@ -1,92 +1,45 @@
 import React from 'react';
-import axios from 'axios';
-import {API_ROOT} from "../../config";
-import { Redirect } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import API from '../../services/api';
 
-const RutaRow = props => {
-  const ruta = props.ruta;
-  const rutaLink = `#/rutas/view/${ruta.id}`;
-
-  return (
-    <tr>
-      <td>{ruta.nombre}</td>
-      <td>{ruta.coo_origen}</td>
-      <td>{ruta.coo_destino}</td>
-      <td>{ruta.ciudad_origen}</td>
-      <td>{ruta.ciudad_destino}</td>
-      <td>
-        <a href={rutaLink}>
-          <Button size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
-        </a>
-        &nbsp;
-        <a>
-          {/*onClick={() => this.props.deleteRuta(ruta.id)}*/}
-          <Button onClick={ () => this.props.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
-        </a>
-      </td>
-    </tr>
-  );
-}
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class ListarRutas extends React.Component{
   constructor(props){
     super(props);
     this.state = {
       rutas: [],
-      viewRedirect: false,
-      viewModal: false
     }
 
     this.deleteRuta = this.deleteRuta.bind(this);
-    this.viewRuta = this.viewRuta.bind(this);
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      viewModal: !this.state.viewModal,
-    });
-  }
-
-  deleteRuta = (id) => {
-    axios.delete(`${API_ROOT}/ruta/${id}`)
-      .then(res => {
-        const arr = this.state.rutas.filter(r => r.id !== id);
-        this.setState({rutas: arr});
-        //console.log(this.state.rutas);
-      })
-      .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
-      });
-  }
-
-  setViewRedirect = () => {
-    this.setState({viewRedirect: true});
-  }
-
-  viewRuta = (id) => {
-    //console.log("ENTRE AQUI!!!!");
-    const link = `/rutas/view/${id}`;
-    if(this.state.viewRedirect)
-      return <Redirect to={link}/>
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/ruta`)
+    API.get(`/ruta`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        //console.log(res.data);
-        const rutas = res.data;
-        this.setState({ rutas });
-        //this.props.setRutas(rutas);
+        this.setState({ rutas: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  deleteRuta = (id) => {
+    API.delete(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+      .then(res => {
+        const arr = this.state.rutas.filter(r => r.id !== id);
+        this.setState({rutas: arr});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
   render(){
     return (
-      <div class="animated fadeIn">
+      <div className="animated fadeIn">
         <Row>
           <Col>
             <Card>
@@ -94,32 +47,31 @@ export default class ListarRutas extends React.Component{
                 <i className="icon-cursor"></i> <strong>Lista de Rutas</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Coo. Origen</th>
                     <th>Coo. Destino</th>
                     <th>Ciudad Origen</th>
                     <th>Ciudad Destino</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
                   { this.state.rutas.map( (ruta, index) =>
-                    <tr>
+                    <tr key={index} className="text-center">
                       <td>{ruta.nombre}</td>
                       <td>{ruta.coo_origen}</td>
                       <td>{ruta.coo_destino}</td>
                       <td>{ruta.ciudad_origen}</td>
                       <td>{ruta.ciudad_destino}</td>
                       <td>
-                          {this.viewRuta(ruta.id)}
-                          <Button onClick={ this.setViewRedirect } size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
+                        <Link to={`/rutas/view/${ruta.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
                         &nbsp;
-                        <a>
-                          <Button onClick={ () => this.deleteRuta(ruta.id) } size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
-                        </a>
+                        <Link to={`/rutas/edit/${ruta.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
+                        &nbsp;
+                        <Button onClick={() => this.deleteRuta(ruta.id)} size="sm" color="danger"><i className="cui-trash"></i></Button>
                       </td>
                     </tr>
                   )}

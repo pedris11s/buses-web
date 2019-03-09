@@ -1,66 +1,60 @@
 import React from 'react';
-import axios from 'axios';
-import { Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
-import {API_ROOT} from "../../config";
+import { Alert, Button, Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import {Link} from "react-router-dom";
+import API from '../../services/api';
 
-const OficinaRow = props => {
-  const oficina = props.oficina;
-  const oficinaLink = `#/oficinas/view/${oficina.id}`;
-
-  return (
-    <tr>
-      <td>{oficina.nombre}</td>
-      <td>{oficina.ciudad}</td>
-      <td>{oficina.direccion}</td>
-      <td>{oficina.telefono}</td>
-      <td>
-        <a href={oficinaLink}>
-          <Button size="sm" color="success" outline><i className="fa fa-lightbulb-o"></i></Button>
-        </a>
-        &nbsp;
-        <a>
-          <Button size="sm" color="danger" outline><i className="fa fa-trash"></i></Button>
-        </a>
-      </td>
-    </tr>
-  );
-}
-
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class ListarOficinas extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {
-      oficinas: []
+      oficinas: [],
+
+      alertVisible: false,
+      alertText: ''
     }
 
     this.deleteOficina = this.deleteOficina.bind(this);
   }
 
   componentDidMount(){
-    axios.get(`${API_ROOT}/oficina`)
+    API.get(`/oficina`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const arr = res.data;
-        this.setState({oficinas: arr});
+        const off = res.data;
+        this.setState({oficinas: off});
       })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   deleteOficina(id){
-    axios.delete(`${API_ROOT}/oficina/${id}`)
+    API.delete(`/oficina/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         const arr = this.state.oficinas.filter(r => r.id !== id);
         this.setState({oficinas: arr});
       })
       .catch(err => {
-        //FIXME
-        alert("soy un error" + err);
+        this.setState({
+          alertVisible: true,
+          alertText: err.toString()
+        });
       });
+  }
+
+  dissmissAlert(){
+    this.setState({alertVisible: false});
   }
 
   render(){
     return (
       <div className="animated fadeIn">
+        <Alert isOpen={this.state.alertVisible} toggle={this.dissmissAlert.bind(this)} color="danger" className="text-center">
+          {this.state.alertText}
+        </Alert>
         <Row>
           <Col>
             <Card>
@@ -68,21 +62,33 @@ export default class ListarOficinas extends React.Component{
                 <i className="icon-briefcase"></i> <strong>Lista de Oficinas</strong>
               </CardHeader>
               <CardBody>
-                <Table responsive>
+                <Table responsive hover>
                   <thead>
-                  <tr>
+                  <tr className="text-center">
                     <th>Nombre</th>
                     <th>Ciudad</th>
                     <th>Direccion</th>
                     <th>Telefono</th>
-                    <th>Actions</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
                     {
-                      this.state.oficinas.map( (oficina, index) =>
-                      <OficinaRow key={index} oficina={oficina} />
-                    )}
+                      this.state.oficinas.map( (oficina, index) => (
+                        <tr key={index} className="text-center">
+                          <td>{oficina.nombre}</td>
+                          <td>{oficina.ciudad}</td>
+                          <td>{oficina.direccion}</td>
+                          <td>{oficina.telefono}</td>
+                          <td>
+                            <Link to={`/oficinas/view/${oficina.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link>
+                            &nbsp;
+                            <Link to={`/oficinas/edit/${oficina.id}`}><Button size="sm" color="success"><i className="cui-pencil"></i></Button></Link>
+                            &nbsp;
+                            <Button onClick={() => this.deleteOficina(oficina.id)} size="sm" color="danger"><i className="cui-trash"></i></Button>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </Table>
 

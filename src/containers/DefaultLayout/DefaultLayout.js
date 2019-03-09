@@ -22,12 +22,36 @@ import DefaultAside from './DefaultAside';
 import DefaultFooter from './DefaultFooter';
 import DefaultHeader from './DefaultHeader';
 
+import { Nav, NavItem, NavLink} from 'reactstrap';
+
+import AuthService from '../../services/AuthService';
+import withAuth from '../../services/withAuth';
+const Auth = new AuthService();
+
 class DefaultLayout extends Component {
+
+  /*componentWillMount(){
+    if(!Auth.loggedIn()) {
+      //alert("NO ESTAS LOGUEADO");
+      this.props.history.replace('/login');
+    }
+  }*/
+
+  handleLogout(){
+    Auth.logout();
+    this.props.history.replace('/login');
+  }
+
   render() {
     return (
       <div className="app">
         <AppHeader fixed>
           <DefaultHeader />
+          <Nav navbar>
+            <NavItem className="d-md-down-none">
+              <NavLink href="/logout" onClick={this.handleLogout.bind(this)}><i className="fa fa-sign-out" ></i> Salir&nbsp;&nbsp;&nbsp;&nbsp;</NavLink>
+            </NavItem>
+          </Nav>
         </AppHeader>
         <div className="app-body">
           <AppSidebar fixed display="lg">
@@ -42,7 +66,7 @@ class DefaultLayout extends Component {
             <Container fluid>
               <Switch>
                 {routes.map((route, idx) => {
-                    return route.component ? (<Route key={idx} path={route.path} exact={route.exact} name={route.name} render={props => (
+                    return route.component ? (<Route key={idx} path={route.path} redirect={route.redirect} exact={route.exact} name={route.name} render={props => (
                         <route.component {...props} />
                       )} />)
                       : (null);
@@ -64,4 +88,4 @@ class DefaultLayout extends Component {
   }
 }
 
-export default DefaultLayout;
+export default withAuth(DefaultLayout);

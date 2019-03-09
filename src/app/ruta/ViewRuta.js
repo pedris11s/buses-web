@@ -1,8 +1,10 @@
 import React from 'react';
-import axios from 'axios';
-
+import {Link} from 'react-router-dom';
 import { Button, Table,Row, Col, Card, CardHeader, CardBody } from 'reactstrap';
-import {API_ROOT} from "../../config";
+import API from '../../services/api';
+
+import AuthService from '../../services/AuthService';
+const auth = new AuthService();
 
 export default class ViewRuta extends React.Component{
 
@@ -15,35 +17,64 @@ export default class ViewRuta extends React.Component{
 
   componentDidMount(){
     const id = this.props.match.params.id.toString();
-    axios.get(`${API_ROOT}/ruta/${id}`)
+    API.get(`/ruta/${id}`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const r = res.data;
-        //console.log(r);
-        this.setState({ ruta: r});
+        this.setState({ ruta: res.data});
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
   render(){
 
-    let cooperativa = (this.state.ruta.cooperativa === undefined) ? "Desconocida" : this.state.ruta.cooperativa;
-    let buses = (this.state.ruta.buses === undefined || this.state.ruta.buses.length === 0) ? "No hay buses." : this.state.ruta.buses;
 
-    console.log("ATRIBUTO BUSES ES UNA DUDA!!!");
-    console.log(this.state.ruta);
+    let buses = (this.state.ruta.buses === undefined ||
+                        this.state.ruta.buses === null ||
+                        this.state.ruta.buses.length === 0) ?
+                        <strong>No asignados.</strong>
+                        : this.state.ruta.buses.map(b =>
+                          <tr>
+                            <td>{b.nobus}</td>
+                            <td><Link to={`/buses/view/${b.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
+                          </tr>
+                        );
+    let cooperativas = (this.state.ruta.cooperativas === undefined ||
+                        this.state.ruta.cooperativas === null ||
+                        this.state.ruta.cooperativas.length === 0) ?
+                        <strong>No asignadas.</strong>
+                        : this.state.ruta.cooperativas.map(coop =>
+                          <tr>
+                            <td>{coop.nombre}</td>
+                            <td><Link to={`/coops/view/${coop.id}`}><Button size="sm" color="primary"><i className="cui-magnifying-glass"></i></Button></Link></td>
+                          </tr>
+                        );
 
+    //console.log(this.state.ruta.cooperativas);
     return (
       <div className="animated fadeIn">
 
         <Row>
           <Col>
+            <div class="pull-right">
+              <Link to={`/rutas/edit/${this.state.ruta.id}`} >
+                <Button size="sm" color="success"><i className="cui-pencil"></i>&nbsp;Editar ruta</Button>
+              </Link>
+            </div>
+          </Col>
+        </Row>
+        <br/>
+
+        <Row>
+          <Col xs="6">
             <Card>
               <CardHeader>
                 <strong><i className="icon-info pr-1"></i>Ruta id: {this.state.ruta.id}</strong>
               </CardHeader>
               <CardBody>
                 <Row>
-                  <Col xs="9">
-                    <Table responsive striped hover>
+                  <Col>
+                    <Table responsive striped>
                       <tbody>
                       <tr>
                         <td>Nombre:</td>
@@ -66,27 +97,47 @@ export default class ViewRuta extends React.Component{
                         <td><strong>{this.state.ruta.ciudad_destino}</strong></td>
                       </tr>
                       <tr>
-                        <td>Cooperativa:</td>
-                        <td><strong>{ cooperativa.nombre }</strong></td>
+                        <td>Creada:</td>
+                        <td><strong>{this.state.ruta.createdAt}</strong></td>
                       </tr>
-
+                      <tr>
+                        <td>Modificada:</td>
+                        <td><strong>{this.state.ruta.updatedAt}</strong></td>
+                      </tr>
                       </tbody>
                     </Table>
                   </Col>
-
-                  <Col xs="3">
-                    <Card>
-                      <CardHeader className="text-center">
-                        <i className="fa fa-bus"></i> Buses
-                      </CardHeader>
-                      <CardBody className="text-center">
-                        { buses }
-                      </CardBody>
-                    </Card>
-
-                    <Button color="success" block><i className="icon icon-pencil"></i> Edit</Button>
-                  </Col>
                 </Row>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="icon-home"></i> Cooperativas
+              </CardHeader>
+              <CardBody className="text-center">
+                <Table responsive hover>
+                  <tbody>
+                    { cooperativas }
+                  </tbody>
+                </Table>
+
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xs="3">
+            <Card>
+              <CardHeader className="text-center">
+                <i className="fa fa-bus"></i> Buses
+              </CardHeader>
+              <CardBody className="text-center">
+                <Table responsive hover>
+                  <tbody>
+                  { buses }
+                  </tbody>
+                </Table>
+
               </CardBody>
             </Card>
           </Col>
