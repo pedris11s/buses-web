@@ -119,7 +119,7 @@ export default class Dashboard extends React.Component{
                           </div>
                         </td>
                         <td className="text-center">
-                          <i className="fa fa-star"></i><span> { this.round(coop.rating) }</span>
+                        <span><i className="fa fa-star">  </i> { this.round(coop.rating) }</span>
                         </td>
                       </tr>
                     )}
@@ -157,7 +157,7 @@ export default class Dashboard extends React.Component{
                           </div>
                         </td>
                         <td className="text-center">
-                          <i className="fa fa-star"></i><span> { this.round(bus.rating) }</span>
+                        <span><i className="fa fa-star">  </i> { this.round(bus.rating) }</span>
                         </td>
                       </tr>
                     )}
