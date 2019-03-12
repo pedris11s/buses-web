@@ -11,7 +11,7 @@ export default class ViewDenuncia extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      denuncia: []
+      denuncia: [],
     }
   }
 
@@ -33,14 +33,36 @@ export default class ViewDenuncia extends React.Component{
         estado: text
     }
 
-    const id = this.state.denuncia.id.toString();
-    API.put(`/denuncia/${id}`, denuncia, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+    let idden = this.state.denuncia.id.toString(), idbus = this.state.denuncia.bus.id.toString(), value = this.state.denuncia.bus.cantAccidentes;
+    if(text == 'aprobada')
+      value = value + 1;
+    else{
+      if(this.state.denuncia.estado == 'aprobada')
+        value = value - 1;
+    }
+    
+    const data = {
+      cantAccidentes: value
+    }
+
+    API.put(`/denuncia/${idden}`, denuncia, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
         this.props.history.replace(`/denuncias`);
+      })
+      .then(() => {
+        API.put(`/bus/${idbus}`, data, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
+        .then(res => {})
       })
       .catch(err => {
         console.log(err);
       })
+
+    
+
+    
+      .catch(err => {
+        console.log(err);
+      })  
   }
 
   render() {

@@ -22,7 +22,7 @@ export default class Dashboard extends React.Component{
   componentDidMount(){
     API.get(`/cooperativa`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const arr = res.data.sort((a, b) => b.likes - a.likes);
+        const arr = res.data.sort((a, b) => b.rating - a.rating);
         this.setState({cooperativas: arr});
       })
       .catch(err => {
@@ -31,7 +31,7 @@ export default class Dashboard extends React.Component{
 
     API.get(`/bus`, { headers: {"Authorization" : `Bearer ${auth.getToken()}`} })
       .then(res => {
-        const arr = res.data.sort((a, b) => b.likes - a.likes);
+        const arr = res.data.sort((a, b) => b.rating - a.rating);
         this.setState({buses: arr});
       })
       .catch(err => {
@@ -55,6 +55,10 @@ export default class Dashboard extends React.Component{
       .catch(err => {
         console.log(err);
       });
+  }
+
+  round(x){
+    return Math.round(x * 10) / 10;
   }
 
   render(){
@@ -115,7 +119,7 @@ export default class Dashboard extends React.Component{
                           </div>
                         </td>
                         <td className="text-center">
-                          <i className="fa fa-star"></i><span> {coop.likes}</span>
+                        <span><i className="fa fa-star">  </i> { this.round(coop.rating) }</span>
                         </td>
                       </tr>
                     )}
@@ -153,7 +157,7 @@ export default class Dashboard extends React.Component{
                           </div>
                         </td>
                         <td className="text-center">
-                          <i className="fa fa-star"></i><span> {bus.likes}</span>
+                        <span><i className="fa fa-star">  </i> { this.round(bus.rating) }</span>
                         </td>
                       </tr>
                     )}

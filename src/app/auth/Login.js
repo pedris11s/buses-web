@@ -120,16 +120,16 @@ class Login extends Component {
                           <Button type="submit" color="success" block><i className="fa fa-sign-in"></i> Login</Button>
                         </Col>
                       </Row>
-                      <br/>
+                      {/* <br/>
                       <Row>
                         <Col>
                           <Link to={'/register'}><Button color="secondary" block><i className="icon-user-following"></i> Register</Button></Link>
                         </Col>
-                      </Row>
+                      </Row> */}
                     </Form>
-                    <br/>
+                    {/* <br/> */}
                     {/*<p className="text-muted text-center">Sign In with Soccial</p>*/}
-                    <Row>
+                    {/* <Row>
                       <Col xs={4}>
                         <Button type="submit" color="primary" active block><i className="fa fa-facebook-official"></i> </Button>
                       </Col>
@@ -141,7 +141,7 @@ class Login extends Component {
                       <Col xs={4}>
                         <Button type="submit" color="primary" block><i className="fa fa-twitter"></i> </Button>
                       </Col>
-                    </Row>
+                    </Row> */}
 
 
                   </CardBody>

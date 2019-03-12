@@ -28,6 +28,10 @@ export default class ViewBus extends React.Component{
       });
   }
 
+  round(x){
+    return Math.round(x * 10) / 10;
+  }
+
   render(){
 
     let cooperativa = (this.state.bus.cooperativa === undefined || this.state.bus.cooperativa === null || this.state.bus.cooperativa.length === 0) ? "(-)" : this.state.bus.cooperativa;
@@ -50,7 +54,8 @@ export default class ViewBus extends React.Component{
           <Col xs="9">
             <Card>
               <CardHeader>
-                <strong><i className="icon-info pr-1"></i>Bus id: {this.state.bus.id}</strong>
+                <strong><i className="icon-info pr-1"></i>Bus id: {this.state.bus.id} </strong>
+                <span class="pull-right"><i className="fa fa-star">  </i> { this.round(this.state.bus.rating) }</span>
               </CardHeader>
               <CardBody>
                 <Row>
@@ -72,6 +77,10 @@ export default class ViewBus extends React.Component{
                       <tr>
                         <td>Marca:</td>
                         <td><strong>{this.state.bus.marca}</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Cant. Accidentes:</td>
+                        <td><strong>{this.state.bus.cantAccidentes}</strong></td>
                       </tr>
                       <tr>
                         <td>Ruta:</td>
